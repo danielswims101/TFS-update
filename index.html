@@ -8,134 +8,1344 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-:root{--night:#07090f;--deep:#0d1120;--card:#111828;--card2:#141e30;--gold:#c9a84c;--gold-l:#edd97a;--gold-d:#6e5520;--teal:#2ec4aa;--text:#ede6d6;--text-m:#b0a690;--text-d:#665f50;--b1:rgba(201,168,76,.15);--b2:rgba(201,168,76,.4);--flame:#e8703a;--sea:#4aaee8;--moon:#9b8de8;--crystal:#2ec4aa;--wind:#e8c96a;--sun:#f5c842;--galaxy:#c084fc}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top, #10172a 0%, var(--night) 35%, #05070b 100%);color:var(--text);font-family:"Crimson Pro",Georgia,serif;line-height:1.8;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;background-image:radial-gradient(1px 1px at 5% 10%,rgba(255,255,255,.5) 0,transparent 100%),radial-gradient(1px 1px at 15% 35%,rgba(255,255,255,.3) 0,transparent 100%),radial-gradient(1.5px 1.5px at 28% 6%,rgba(255,255,255,.55) 0,transparent 100%),radial-gradient(1px 1px at 42% 22%,rgba(255,255,255,.35) 0,transparent 100%),radial-gradient(1px 1px at 58% 48%,rgba(255,255,255,.4) 0,transparent 100%),radial-gradient(1.5px 1.5px at 70% 8%,rgba(255,255,255,.5) 0,transparent 100%),radial-gradient(1px 1px at 82% 30%,rgba(255,255,255,.3) 0,transparent 100%),radial-gradient(1px 1px at 92% 65%,rgba(255,255,255,.4) 0,transparent 100%)}
+:root{
+  --night:#07090f;
+  --deep:#0d1120;
+  --card:#111828;
+  --card2:#141e30;
+  --gold:#c9a84c;
+  --gold-l:#edd97a;
+  --gold-d:#6e5520;
+  --teal:#2ec4aa;
+  --text:#ede6d6;
+  --text-m:#b0a690;
+  --text-d:#665f50;
+  --b1:rgba(201,168,76,.15);
+  --b2:rgba(201,168,76,.4);
+  --flame:#e8703a;
+  --sea:#4aaee8;
+  --moon:#9b8de8;
+  --crystal:#2ec4aa;
+  --wind:#e8c96a;
+  --sun:#f5c842;
+  --galaxy:#c084fc;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(circle at top, #10172a 0%, var(--night) 35%, #05070b 100%);
+  color:var(--text);
+  font-family:"Crimson Pro", Georgia, serif;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.55;
+  background-image:
+    radial-gradient(1px 1px at 5% 10%,rgba(255,255,255,.5) 0,transparent 100%),
+    radial-gradient(1px 1px at 15% 35%,rgba(255,255,255,.3) 0,transparent 100%),
+    radial-gradient(1.5px 1.5px at 28% 6%,rgba(255,255,255,.55) 0,transparent 100%),
+    radial-gradient(1px 1px at 42% 22%,rgba(255,255,255,.35) 0,transparent 100%),
+    radial-gradient(1px 1px at 58% 48%,rgba(255,255,255,.4) 0,transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 8%,rgba(255,255,255,.5) 0,transparent 100%),
+    radial-gradient(1px 1px at 82% 30%,rgba(255,255,255,.3) 0,transparent 100%),
+    radial-gradient(1px 1px at 92% 65%,rgba(255,255,255,.4) 0,transparent 100%);
+}
+a{color:inherit}
+img{max-width:100%;display:block}
 .page{position:relative;z-index:1}
-nav{position:sticky;top:0;z-index:200;background:rgba(7,9,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:.85rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.nav-logo{font-family:"Cinzel Decorative",serif;font-size:11px;letter-spacing:.15em;color:var(--gold-l);white-space:nowrap}
-.nav-links{display:flex;gap:1.1rem;list-style:none;flex-wrap:wrap;padding:0;margin:0}.nav-links a{color:var(--text-m);text-decoration:none;font-family:"Cinzel",serif;font-size:9px;letter-spacing:.14em;transition:color .2s}.nav-links a:hover{color:var(--gold-l)}
-.hero{text-align:center;padding:9rem 2rem 8rem;position:relative}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,168,76,.07) 0,transparent 70%);pointer-events:none}.hero-eye{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.35em;color:var(--gold-d);margin-bottom:2rem;text-transform:uppercase}.hero h1{font-family:"Cinzel Decorative",serif;font-size:clamp(2.8rem,8vw,5.8rem);color:var(--gold-l);line-height:1.05;margin:0 0 1.2rem;text-shadow:0 0 80px rgba(201,168,76,.2),0 0 160px rgba(201,168,76,.08)}.hero-tag{font-size:1.1rem;font-style:italic;color:var(--text-m);max-width:650px;margin:0 auto 1.15rem;line-height:1.75}.hero-lore{font-size:14.5px;color:var(--text-d);max-width:760px;margin:0 auto 3.4rem;line-height:1.9}.hero-rule{width:160px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 3.2rem}.pills{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap}.pill{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.12em;padding:.5rem 1.2rem;border:1px solid var(--b2);border-radius:30px;color:var(--gold);text-decoration:none;transition:.2s}.pill:hover{background:rgba(201,168,76,.12);color:var(--gold-l)}.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--b2),transparent)}
-.section{max-width:1080px;margin:0 auto;padding:5.5rem 2rem}.sec-title{font-family:"Cinzel Decorative",serif;font-size:.95rem;color:var(--gold);letter-spacing:.18em;margin-bottom:.6rem;display:flex;align-items:center;gap:1rem}.sec-title:after{content:"";flex:1;height:1px;background:var(--b2)}.sec-intro{font-size:15px;font-style:italic;color:var(--text-d);max-width:760px;margin-bottom:3rem;line-height:1.9}
-.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
-.card,.book-card,.spec-card,.team-card,.pet-card,.wolf-card,.balance-card,.queen-card,.sow-card{background:var(--card);border:1px solid var(--b1);border-radius:16px}.card,.balance-card,.sow-card,.pet-card,.wolf-card,.team-card,.queen-card,.spec-card{padding:1.5rem}
-.card:hover,.book-card:hover,.spec-card:hover,.team-card:hover,.wolf-card:hover,.balance-card:hover{border-color:var(--b2);transform:translateY(-3px)}.card,.book-card,.spec-card,.team-card,.wolf-card,.balance-card,.queen-card,.sow-card{transition:border-color .25s,transform .25s,background .25s}
-.card-rule,.srule{height:1px;background:var(--b1);margin:1.1rem 0}.lbl,.book-num,.spec-num,.elbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.22em;color:var(--gold-d);margin-bottom:.5rem}.body-text{font-size:14.5px;color:var(--text-m);line-height:1.75}.body-text strong{color:var(--text);font-weight:600}.body-text em{color:var(--text-d)}
-.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.75rem 0}.tag{display:inline-block;font-size:10.5px;padding:2px 10px;border-radius:20px;letter-spacing:.05em}.t-wind{background:rgba(232,201,106,.1);color:#e8c96a;border:1px solid rgba(232,201,106,.3)}.t-shard,.t-crystal{background:rgba(74,174,232,.1);color:#4aaee8;border:1px solid rgba(74,174,232,.3)}.t-moon{background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3)}.t-galaxy{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}.t-gold{background:rgba(201,168,76,.1);color:#c9a84c;border:1px solid rgba(201,168,76,.3)}.t-neutral{background:rgba(255,255,255,.04);color:#776f60;border:1px solid rgba(255,255,255,.08)}.t-flame{background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)}.t-sun{background:rgba(245,200,66,.1);color:#f5c842;border:1px solid rgba(245,200,66,.3)}.t-purple{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}
-.av{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:15px;border:1px solid rgba(255,255,255,.1)}.av-a{background:rgba(201,168,76,.15);color:#c9a84c}.av-t{background:rgba(232,145,80,.15);color:#d4945a}.av-ta{background:rgba(74,174,232,.15);color:#4aaee8}.av-as{background:rgba(155,141,232,.15);color:#9b8de8}.av-tw{background:rgba(192,132,252,.15);color:#c084fc}.dh{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.1rem}.dname{font-family:"Cinzel Decorative",serif;font-size:.95rem;margin-bottom:.2rem}.dsub{font-size:11.5px;color:var(--text-d);letter-spacing:.07em}
-.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}.book-card{padding:1.5rem;position:relative;overflow:hidden}.book-card:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}.book-card:hover:before{opacity:1}.book-title{font-family:"Cinzel Decorative",serif;font-size:.88rem;color:var(--gold-l);margin-bottom:.75rem;line-height:1.3}.book-desc{font-size:13.5px;color:var(--text-m);line-height:1.7;font-style:italic}.book-hook{font-size:12px;color:var(--gold-d);margin-top:.65rem;font-family:"Cinzel",serif;letter-spacing:.06em;border-top:1px solid var(--b1);padding-top:.6rem}
-.shard-card{border-radius:16px;padding:1.85rem;border:1px solid;transition:transform .25s;position:relative;overflow:hidden}.shard-card:hover{transform:translateY(-3px)}.sicon{width:54px;height:54px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid}.sicon svg{display:block}.sname{font-family:"Cinzel Decorative",serif;font-size:1.05rem;margin-bottom:.15rem}.sdom{font-size:11px;letter-spacing:.12em;opacity:.6}.slbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.2em;opacity:.55;margin-bottom:.45rem}
-.sf{background:rgba(232,112,58,.09);border-color:rgba(232,112,58,.3)}.sf .sicon{background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a}.sf .sname,.sf .body-text strong{color:#e8703a}.sf .srule{background:#e8703a}.ss{background:rgba(74,174,232,.09);border-color:rgba(74,174,232,.3)}.ss .sicon{background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8}.ss .sname,.ss .body-text strong{color:#4aaee8}.ss .srule{background:#4aaee8}.sm{background:rgba(155,141,232,.09);border-color:rgba(155,141,232,.3)}.sm .sicon{background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8}.sm .sname,.sm .body-text strong{color:#9b8de8}.sm .srule{background:#9b8de8}.sc{background:rgba(46,196,170,.08);border-color:rgba(46,196,170,.3)}.sc .sicon{background:rgba(46,196,170,.15);border-color:rgba(46,196,170,.4);color:#2ec4aa}.sc .sname,.sc .body-text strong{color:#2ec4aa}.sc .srule{background:#2ec4aa}.sw{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.28)}.sw .sicon{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#e8c96a}.sw .sname,.sw .body-text strong{color:#e8c96a}.sw .srule{background:#e8c96a}.ssu{background:rgba(245,200,66,.08);border-color:rgba(245,200,66,.3)}.ssu .sicon{background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842}.ssu .sname,.ssu .body-text strong{color:#f5c842}.ssu .srule{background:#f5c842}.sg{background:rgba(192,132,252,.09);border-color:rgba(192,132,252,.35)}.sg .sicon{background:rgba(192,132,252,.18);border-color:rgba(192,132,252,.5);color:#c084fc}.sg .sname,.sg .body-text strong{color:#c084fc}.sg .srule{background:#c084fc}
-.balance-card:hover{border-color:var(--b2)}.bal-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;flex-wrap:wrap}.bal-name{font-family:"Cinzel Decorative",serif;font-size:1.05rem}.bal-vs{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.2em;color:var(--text-d);padding:.2rem .65rem;border:1px solid var(--b1);border-radius:20px}.bal-quote{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--b1);font-style:italic;font-size:14px;color:var(--text-d);line-height:1.75}
-.wolf-card{padding:1.35rem;border-radius:12px;background:var(--card);border:1px solid var(--b1)}.wolf-card:hover{border-color:rgba(155,141,232,.45);transform:translateY(-2px)}.wname{font-family:"Cinzel Decorative",serif;font-size:12.5px;color:#9b8de8;margin-bottom:.2rem}.wrole{display:inline-block;font-size:10px;padding:2px 9px;border-radius:20px;background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3);margin-bottom:.75rem;letter-spacing:.08em}
-.spec-card{padding:1.5rem;border-radius:14px;background:var(--card);border:1px solid var(--b1)}.spec-card:hover{border-color:rgba(192,132,252,.4);transform:translateY(-3px)}.spec-num{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.3em;color:rgba(192,132,252,.6);margin-bottom:.4rem}.spec-title{font-family:"Cinzel Decorative",serif;font-size:.85rem;color:#c084fc;margin-bottom:.65rem;line-height:1.3}
-.team-card{text-align:center;padding:1.5rem;border-radius:14px}.team-card:hover{border-color:var(--b2);transform:translateY(-2px)}.tav{width:58px;height:58px;border-radius:50%;margin:0 auto .9rem;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:18px;color:var(--gold)}.tname{font-family:"Cinzel Decorative",serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.35rem}.trole{font-size:12.5px;color:var(--text-d);line-height:1.55}
-.pet-card{padding:1.35rem;border-radius:12px}.pname{font-family:"Cinzel Decorative",serif;font-size:12px;color:var(--teal);margin-bottom:.2rem}.pown{font-size:11px;color:var(--text-d);margin-bottom:.6rem;letter-spacing:.08em}
-.excerpt{background:var(--card);border-left:3px solid var(--gold);border-top:1px solid var(--b1);border-right:1px solid var(--b1);border-bottom:1px solid var(--b1);border-radius:0 12px 12px 0;padding:1.5rem 1.85rem;margin-bottom:1.85rem}.etext{font-style:italic;color:var(--text-m);font-size:15.5px;line-height:1.85}
-footer{border-top:1px solid var(--b1);text-align:center;padding:3rem 2rem;color:var(--text-d);font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.15em;line-height:2.2}
-@media(max-width:640px){nav{padding:.75rem 1rem}.nav-links{gap:.85rem}.section{padding:3.5rem 1.25rem}.hero{padding:5rem 1.25rem 4rem}.hero h1{font-size:2.4rem}}
+
+.skip-link{
+  position:absolute;
+  left:1rem;
+  top:-4rem;
+  z-index:300;
+  background:var(--gold-l);
+  color:#17120a;
+  padding:.7rem 1rem;
+  border-radius:999px;
+  font-family:"Cinzel",serif;
+  letter-spacing:.1em;
+  text-decoration:none;
+}
+.skip-link:focus{top:1rem}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:200;
+  background:rgba(7,9,15,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--b1);
+  padding:.85rem 2.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.nav-logo{
+  font-family:"Cinzel Decorative",serif;
+  font-size:11px;
+  letter-spacing:.15em;
+  color:var(--gold-l);
+  white-space:nowrap;
+}
+.nav-links{
+  display:flex;
+  gap:1.05rem;
+  list-style:none;
+  flex-wrap:wrap;
+  padding:0;
+  margin:0;
+}
+.nav-links a{
+  color:var(--text-m);
+  text-decoration:none;
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:.14em;
+  transition:color .2s, opacity .2s;
+}
+.nav-links a:hover,
+.nav-links a:focus{color:var(--gold-l);outline:none}
+
+.hero{
+  text-align:center;
+  padding:9rem 2rem 8rem;
+  position:relative;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(201,168,76,.07) 0,transparent 70%);
+  pointer-events:none;
+}
+.hero-eye{
+  font-family:"Cinzel",serif;
+  font-size:10px;
+  letter-spacing:.35em;
+  color:var(--gold-d);
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+.hero h1{
+  font-family:"Cinzel Decorative",serif;
+  font-size:clamp(2.8rem,8vw,5.8rem);
+  color:var(--gold-l);
+  line-height:1.05;
+  margin:0 0 1.2rem;
+  text-shadow:0 0 80px rgba(201,168,76,.2),0 0 160px rgba(201,168,76,.08);
+}
+.hero-tag{
+  font-size:1.1rem;
+  font-style:italic;
+  color:var(--text-m);
+  max-width:700px;
+  margin:0 auto 1.15rem;
+  line-height:1.75;
+}
+.hero-lore{
+  font-size:14.5px;
+  color:var(--text-d);
+  max-width:820px;
+  margin:0 auto 3.4rem;
+  line-height:1.9;
+}
+.hero-rule{
+  width:160px;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  margin:0 auto 3.2rem;
+}
+.pills{
+  display:flex;
+  gap:.65rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.pill{
+  font-family:"Cinzel",serif;
+  font-size:9.5px;
+  letter-spacing:.12em;
+  padding:.5rem 1.2rem;
+  border:1px solid var(--b2);
+  border-radius:30px;
+  color:var(--gold);
+  text-decoration:none;
+  transition:.2s;
+}
+.pill:hover,.pill:focus{
+  background:rgba(201,168,76,.12);
+  color:var(--gold-l);
+  outline:none;
+}
+
+.divider{
+  width:100%;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--b2),transparent);
+}
+
+.section{
+  max-width:1080px;
+  margin:0 auto;
+  padding:5.5rem 2rem;
+}
+.sec-title{
+  font-family:"Cinzel Decorative",serif;
+  font-size:.95rem;
+  color:var(--gold);
+  letter-spacing:.18em;
+  margin-bottom:.6rem;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+.sec-title:after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:var(--b2);
+}
+.sec-intro{
+  font-size:15px;
+  font-style:italic;
+  color:var(--text-d);
+  max-width:860px;
+  margin-bottom:3rem;
+  line-height:1.9;
+}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+
+.card,
+.book-card,
+.spec-card,
+.team-card,
+.pet-card,
+.wolf-card,
+.balance-card,
+.queen-card,
+.sow-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:16px;
+}
+.card,
+.balance-card,
+.sow-card,
+.pet-card,
+.wolf-card,
+.team-card,
+.queen-card,
+.spec-card{
+  padding:1.5rem;
+}
+.card,
+.book-card,
+.spec-card,
+.team-card,
+.wolf-card,
+.balance-card,
+.queen-card,
+.sow-card{
+  transition:border-color .25s, transform .25s, background .25s, box-shadow .25s;
+  box-shadow:var(--shadow);
+}
+.card:hover,
+.book-card:hover,
+.spec-card:hover,
+.team-card:hover,
+.wolf-card:hover,
+.balance-card:hover{
+  border-color:var(--b2);
+  transform:translateY(-3px);
+  background:var(--card2);
+}
+
+.card-rule,.srule{
+  height:1px;
+  background:var(--b1);
+  margin:1.1rem 0;
+}
+.lbl,.book-num,.spec-num,.elbl{
+  font-family:"Cinzel",serif;
+  font-size:9.5px;
+  letter-spacing:.22em;
+  color:var(--gold-d);
+  margin-bottom:.5rem;
+}
+.body-text{
+  font-size:14.5px;
+  color:var(--text-m);
+  line-height:1.75;
+}
+.body-text strong{color:var(--text);font-weight:600}
+.body-text em{color:var(--text-d)}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.3rem;
+  margin:.75rem 0;
+}
+.tag{
+  display:inline-block;
+  font-size:10.5px;
+  padding:2px 10px;
+  border-radius:20px;
+  letter-spacing:.05em;
+}
+.t-wind{background:rgba(232,201,106,.1);color:#e8c96a;border:1px solid rgba(232,201,106,.3)}
+.t-shard,.t-crystal{background:rgba(74,174,232,.1);color:#4aaee8;border:1px solid rgba(74,174,232,.3)}
+.t-moon{background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3)}
+.t-galaxy{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}
+.t-gold{background:rgba(201,168,76,.1);color:#c9a84c;border:1px solid rgba(201,168,76,.3)}
+.t-neutral{background:rgba(255,255,255,.04);color:#776f60;border:1px solid rgba(255,255,255,.08)}
+.t-flame{background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)}
+.t-sun{background:rgba(245,200,66,.1);color:#f5c842;border:1px solid rgba(245,200,66,.3)}
+.t-purple{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}
+
+.av{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Cinzel Decorative",serif;
+  font-size:15px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.av-a{background:rgba(201,168,76,.15);color:#c9a84c}
+.av-t{background:rgba(232,145,80,.15);color:#d4945a}
+.av-ta{background:rgba(74,174,232,.15);color:#4aaee8}
+.av-as{background:rgba(155,141,232,.15);color:#9b8de8}
+.av-tw{background:rgba(192,132,252,.15);color:#c084fc}
+.dh{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.1rem}
+.dname{font-family:"Cinzel Decorative",serif;font-size:.95rem;margin-bottom:.2rem}
+.dsub{font-size:11.5px;color:var(--text-d);letter-spacing:.07em}
+
+.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}
+.book-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:14px;
+  padding:1.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.book-card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  opacity:0;
+  transition:opacity .3s;
+}
+.book-card:hover:before{opacity:1}
+.book-num{
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:.3em;
+  color:var(--gold-d);
+  margin-bottom:.5rem;
+}
+.book-title{
+  font-family:"Cinzel Decorative",serif;
+  font-size:.88rem;
+  color:var(--gold-l);
+  margin-bottom:.75rem;
+  line-height:1.3;
+}
+.book-desc{
+  font-size:13.5px;
+  color:var(--text-m);
+  line-height:1.7;
+  font-style:italic;
+}
+.book-hook{
+  font-size:12px;
+  color:var(--gold-d);
+  margin-top:.65rem;
+  font-family:"Cinzel",serif;
+  letter-spacing:.06em;
+  border-top:1px solid var(--b1);
+  padding-top:.6rem;
+}
+
+.shard-card{
+  border-radius:16px;
+  padding:1.85rem;
+  border:1px solid;
+  position:relative;
+  overflow:hidden;
+}
+.shard-card:hover{transform:translateY(-3px)}
+.sicon{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  border:1px solid;
+}
+.sname{font-family:"Cinzel Decorative",serif;font-size:1.05rem;margin-bottom:.15rem}
+.sdom{font-size:11px;letter-spacing:.12em;opacity:.6}
+.srule{height:1px;margin:1rem 0;opacity:.3}
+.slbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.2em;opacity:.55;margin-bottom:.45rem}
+.sf{background:rgba(232,112,58,.09);border-color:rgba(232,112,58,.3)}
+.sf .sicon{background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a}
+.sf .sname{color:#e8703a}
+.sf .srule{background:#e8703a}
+.sf .body-text strong{color:#e8703a}
+.ss{background:rgba(74,174,232,.09);border-color:rgba(74,174,232,.3)}
+.ss .sicon{background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8}
+.ss .sname{color:#4aaee8}
+.ss .srule{background:#4aaee8}
+.ss .body-text strong{color:#4aaee8}
+.sm{background:rgba(155,141,232,.09);border-color:rgba(155,141,232,.3)}
+.sm .sicon{background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8}
+.sm .sname{color:#9b8de8}
+.sm .srule{background:#9b8de8}
+.sm .body-text strong{color:#9b8de8}
+.sc{background:rgba(46,196,170,.08);border-color:rgba(46,196,170,.3)}
+.sc .sicon{background:rgba(46,196,170,.15);border-color:rgba(46,196,170,.4);color:#2ec4aa}
+.sc .sname{color:#2ec4aa}
+.sc .srule{background:#2ec4aa}
+.sc .body-text strong{color:#2ec4aa}
+.sw{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.28)}
+.sw .sicon{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#e8c96a}
+.sw .sname{color:#e8c96a}
+.sw .srule{background:#e8c96a}
+.sw .body-text strong{color:#e8c96a}
+.ssu{background:rgba(245,200,66,.08);border-color:rgba(245,200,66,.3)}
+.ssu .sicon{background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842}
+.ssu .sname{color:#f5c842}
+.ssu .srule{background:#f5c842}
+.ssu .body-text strong{color:#f5c842}
+.sg{background:rgba(192,132,252,.09);border-color:rgba(192,132,252,.35)}
+.sg .sicon{background:rgba(192,132,252,.18);border-color:rgba(192,132,252,.5);color:#c084fc}
+.sg .sname{color:#c084fc}
+.sg .srule{background:#c084fc}
+.sg .body-text strong{color:#c084fc}
+
+.balance-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:16px;
+  padding:2rem;
+  transition:border-color .25s;
+  margin-bottom:1.5rem;
+}
+.balance-card:hover{border-color:var(--b2)}
+.bal-head{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:1.1rem;
+  flex-wrap:wrap;
+}
+.bal-name{font-family:"Cinzel Decorative",serif;font-size:1.05rem}
+.bal-vs{
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:.2em;
+  color:var(--text-d);
+  padding:.2rem .65rem;
+  border:1px solid var(--b1);
+  border-radius:20px;
+}
+.bal-quote{
+  margin-top:1rem;
+  padding-top:1rem;
+  border-top:1px solid var(--b1);
+  font-style:italic;
+  font-size:14px;
+  color:var(--text-d);
+  line-height:1.75;
+}
+
+.wolf-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:12px;
+  padding:1.35rem;
+}
+.wname{font-family:"Cinzel Decorative",serif;font-size:12.5px;color:#9b8de8;margin-bottom:.2rem}
+.wrole{
+  display:inline-block;
+  font-size:10px;
+  padding:2px 9px;
+  border-radius:20px;
+  background:rgba(155,141,232,.1);
+  color:#9b8de8;
+  border:1px solid rgba(155,141,232,.3);
+  margin-bottom:.75rem;
+  letter-spacing:.08em;
+}
+
+.spec-card{
+  background:var(--card);
+  border:1px solid var(--b1);
+  border-radius:14px;
+  padding:1.5rem;
+}
+.spec-num{
+  font-family:"Cinzel",serif;
+  font-size:9px;
+  letter-spacing:.3em;
+  color:rgba(192,132,252,.6);
+  margin-bottom:.4rem;
+}
+.spec-title{
+  font-family:"Cinzel Decorative",serif;
+  font-size:.85rem;
+  color:#c084fc;
+  margin-bottom:.65rem;
+  line-height:1.3;
+}
+
+.team-card{
+  text-align:center;
+  padding:1.5rem;
+  border-radius:14px;
+}
+.tav{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  margin:0 auto .9rem;
+  background:rgba(201,168,76,.1);
+  border:1px solid var(--b2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Cinzel Decorative",serif;
+  font-size:18px;
+  color:var(--gold);
+}
+.tname{font-family:"Cinzel Decorative",serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.35rem}
+.trole{font-size:12.5px;color:var(--text-d);line-height:1.55}
+
+.pet-card{border-radius:12px;padding:1.35rem}
+.pname{font-family:"Cinzel Decorative",serif;font-size:12px;color:var(--teal);margin-bottom:.2rem}
+.pown{font-size:11px;color:var(--text-d);margin-bottom:.6rem;letter-spacing:.08em}
+
+.excerpt{
+  background:var(--card);
+  border-left:3px solid var(--gold);
+  border-top:1px solid var(--b1);
+  border-right:1px solid var(--b1);
+  border-bottom:1px solid var(--b1);
+  border-radius:0 12px 12px 0;
+  padding:1.5rem 1.85rem;
+  margin-bottom:1.85rem;
+}
+.etext{
+  font-style:italic;
+  color:var(--text-m);
+  font-size:15.5px;
+  line-height:1.85;
+}
+
+.sow-banner{
+  background:linear-gradient(135deg,rgba(232,112,58,.12) 0%,rgba(74,174,232,.08) 100%);
+  border:1px solid rgba(232,112,58,.35);
+  border-radius:16px;
+  padding:2rem;
+  margin-bottom:2rem;
+  position:relative;
+  overflow:hidden;
+}
+.sow-banner:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:2px;
+  background:linear-gradient(to right,#e8703a,#4aaee8);
+}
+
+.notice{
+  background:rgba(255,255,255,.03);
+  border:1px dashed rgba(255,255,255,.12);
+  border-radius:14px;
+  padding:1rem 1.2rem;
+  color:var(--text-d);
+  font-size:13px;
+  line-height:1.7;
+}
+
+footer{
+  border-top:1px solid var(--b1);
+  text-align:center;
+  padding:3rem 2rem;
+  color:var(--text-d);
+  font-family:"Cinzel",serif;
+  font-size:9.5px;
+  letter-spacing:.15em;
+  line-height:2.2;
+}
+
+@media(max-width:760px){
+  nav{padding:.75rem 1rem}
+  .nav-links{gap:.75rem}
+  .section{padding:3.5rem 1.25rem}
+  .hero{padding:5rem 1.25rem 4rem}
+  .hero h1{font-size:2.4rem}
+}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+
 <div class="page">
 <nav>
-<div class="nav-logo">The Forbidden Scales</div>
-<ul class="nav-links">
-<li><a href="#dragons">Dragons</a></li><li><a href="#books">Books</a></li><li><a href="#shards">Shards</a></li><li><a href="#balance">Balance</a></li><li><a href="#excerpts">Excerpts</a></li><li><a href="#wolves">Wolf Pack</a></li><li><a href="#companions">Companions</a></li><li><a href="#lore">Lore</a></li><li><a href="#team">Team</a></li><li><a href="#contact">Contact</a></li>
-</ul>
+  <div class="nav-logo">The Forbidden Scales</div>
+  <ul class="nav-links">
+    <li><a href="#dragons">Dragons</a></li>
+    <li><a href="#ky">Ky</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="#sow">Scales of War</a></li>
+    <li><a href="#shards">Shards</a></li>
+    <li><a href="#queens">Queens</a></li>
+    <li><a href="#balance">Balance</a></li>
+    <li><a href="#excerpts">Excerpts</a></li>
+    <li><a href="#wolves">Wolf Pack</a></li>
+    <li><a href="#companions">Companions</a></li>
+    <li><a href="#lore">Lore</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
-<section class="hero">
-<p class="hero-eye">Official Records Site · Elina · Daniel · Raven · Varsha</p>
-<h1>The Forbidden<br>Scales</h1>
-<p class="hero-tag">An epic dragon saga of loyalty, ancient power, and the bonds forged between unlikely companions — written by four voices, one world.</p>
-<p class="hero-lore">In a world where dragon bloodlines are destiny and elemental Shards define the hierarchy of power, five extraordinary dragons and their companions are about to discover that the greatest force is not the one born into you — it is the one you choose to become. The scales are tipping. The Balance is fraying. Something forbidden has been waking up for a very long time.</p>
-<div class="hero-rule"></div>
-<div class="pills"><a href="#dragons" class="pill">Dragon Records</a><a href="#books" class="pill">The Books</a><a href="#shards" class="pill">The Shards</a><a href="#balance" class="pill">The Balance</a><a href="#wolves" class="pill">Wolf Pack</a><a href="#team" class="pill">The Authors</a></div>
-</section>
+
+<header class="hero">
+  <p class="hero-eye">Official Records Site · Elina · Daniel · Raven · Varsha</p>
+  <h1>The Forbidden<br>Scales</h1>
+  <p class="hero-tag">An epic dragon saga of loyalty, ancient power, and the bonds forged between unlikely companions — written by four voices, one world.</p>
+  <p class="hero-lore">This scaffold is built to feel like a high-end archival fantasy site: dark, ceremonial, elegant, and easy to expand. Replace each placeholder block with your canon text without changing the structure, and the whole page will still read like a finished premium product.</p>
+  <div class="hero-rule"></div>
+  <div class="pills">
+    <a href="#dragons" class="pill">Dragon Records</a>
+    <a href="#ky" class="pill">Ky</a>
+    <a href="#books" class="pill">Books</a>
+    <a href="#sow" class="pill">Scales of War</a>
+    <a href="#shards" class="pill">Shards</a>
+    <a href="#queens" class="pill">Queens</a>
+    <a href="#balance" class="pill">Balance</a>
+    <a href="#wolves" class="pill">Wolf Pack</a>
+  </div>
+</header>
+
 <div class="divider"></div>
+
+<main id="main">
 <section class="section" id="dragons">
-<div class="sec-title">Dragon Records</div>
-<p class="sec-intro">Five dragons. Four authors. Every one of them a main character. Each written by a different member of the team, giving every dragon a wholly distinct voice, a wholly distinct history, and a wholly distinct weight to carry. Twilight belongs to all four authors together. These are not supporting characters. Every single one of them is the protagonist of their own story.</p>
-<div class="g2">
-<div class="card"><div class="dh"><div class="av av-a">A</div><div><div class="dname" style="color:#c9a84c">Agate</div><div class="dsub">WindScale · Queen's Regent · Written by Elina</div></div></div><div class="tags"><span class="tag t-wind">WindScale</span><span class="tag t-gold">Pescatarian</span><span class="tag t-neutral">Photographic Memory</span><span class="tag t-gold">Queen's Regent</span><span class="tag t-neutral">Bound to Saiber</span></div><div class="card-rule"></div><div class="lbl">Appearance</div><div class="body-text">Agate is immediately striking — her scales are a layered blend of <strong>tangerine orange and deep amber-gold</strong>, the colours shifting between them as she moves like something caught between fire and honey. Her wings are a softer clementine, her underbelly faint apricot. Waves of golden scales march down her spine and forearms, catching light like armour she was born wearing. Her claws are pure gold, and her eyes are amber with bright gold flecks in the iris — eyes that look like they are lit from behind. She wears copper and bronze armbands, an amber necklace, and the long winding golden tail-band of a high-ranking advisor.</div><div class="card-rule"></div><div class="lbl">Power</div><div class="body-text">During moments of intense emotion — real joy, grief, white-hot rage — Agate generates <strong>uncontrolled energy outbursts that command the wind</strong>. Early on, this power is entirely involuntary and frightening. She cannot predict it and cannot stop it. Later, as her character grows, she learns to reach for it deliberately — to turn a gust of emotion into a weapon, a shield, or a shelter for the people she loves. At her strongest, the winds around her respond to the direction of her thoughts before she even consciously commands them.</div><div class="card-rule"></div><div class="lbl">Personality Arc</div><div class="body-text">She begins the story <strong>nervous and over-careful</strong>, someone who triple-checks everything and apologises out of reflex. Her cleverness is real but she hides it behind politeness, afraid of taking up too much space. Over the course of the series she becomes funny, warm, and startlingly calm under pressure — the kind of leader that others follow without being asked, and without her ever noticing it is happening. Her photographic memory is both her greatest tactical asset and her quiet burden — she never forgets anything. Not victories. Not wounds.</div><div class="card-rule"></div><div class="lbl">Role & Relationships</div><div class="body-text">As the Queen's Regent, Agate holds a position of enormous political power and almost no personal freedom. She is bound to the throne's interests even when they conflict with her own. Her bond with Saiber runs deeper than she acknowledges out loud — he saved her life at her promotion ceremony, and the connection between them is one of the oldest mysteries in the records. Her relationship with Topaz is quieter: a mutual respect between two people who understand what it means to carry something heavy without showing it.</div></div>
-<div class="card"><div class="dh"><div class="av av-t">T</div><div><div class="dname" style="color:#d4945a">Topaz</div><div class="dsub">WindScale · Prince · Written by Daniel</div></div></div><div class="tags"><span class="tag t-wind">WindScale</span><span class="tag t-gold">Prince</span><span class="tag t-flame">Snot Wind</span><span class="tag t-neutral">Bonded to Fang</span></div><div class="card-rule"></div><div class="lbl">Appearance</div><div class="body-text">Topaz has the kind of presence that makes a room feel smaller. His scales are <strong>deep tangerine shot through with dark gold flecks</strong>, and his golden-brown eyes hold a sharp intelligence that evaluates everything and gives away nothing. He has a winding golden tail-band shaped as a coiled snake, a whip-thin tail, claws as sharp as obsidian, and teeth described as steel blades. A scar cuts through the thick of his tail — origin never officially recorded, though it came from a confrontation he refuses to explain. His pouch, worn at his side, has never been opened in front of anyone.</div><div class="card-rule"></div><div class="lbl">Power — The Snot Wind</div><div class="body-text"><strong>Topaz can blast concentrated wind from his snout.</strong> This ability is officially, permanently, and non-negotiably named Snot Wind by Daniel, the author, under direct threat of resignation from TFS if changed. Despite the undignified name, it is genuinely devastating at close range — a focused burst of wind pressure from the snout that can knock a dragon twice his size off their feet, deflect projectiles mid-flight, and in combat, disorient an opponent's balance completely before Topaz follows with something worse.</div><div class="card-rule"></div><div class="lbl">Personality</div><div class="body-text">Bitter, haughty, and protective in ways he would never voluntarily admit. Topaz has been let down before — by people he trusted, by the idea that royalty meant safety — and he has constructed an armour of arrogance around that history so effectively that most people never get close enough to see past it. The ones who do get a dragon who would walk into something catastrophic for them without hesitating. He has what the records describe as <strong>moon eyes for Agate</strong> — which he would deny, loudly, and unconvincingly.</div><div class="card-rule"></div><div class="lbl">The Bond with Fang</div><div class="body-text">Topaz and Fang met when Topaz fled his home and stumbled upon the blue wolf during a pack hunt. They made eye contact and both felt something neither can properly explain — a recognition, a correspondence between their temperaments. They do not need language to communicate, though Fang can growl something approximating dragon words. Fang always knows where Topaz is. Topaz has never once asked him to leave.</div></div>
-<div class="card"><div class="dh"><div class="av av-ta">T</div><div><div class="dname" style="color:#4aaee8">Talon</div><div class="dsub">ShardScale · Servant of Ky · Written by Raven</div></div></div><div class="tags"><span class="tag t-shard">ShardScale</span><span class="tag t-neutral">Vegan</span><span class="tag t-neutral">No Power</span><span class="tag t-neutral">Bonded to Dyno</span></div><div class="card-rule"></div><div class="lbl">Appearance</div><div class="body-text">Small and scrawny — easily overlooked, which suits him. <strong>Light icy-blue scales</strong>, with dark blue dots scattered across the underside of his wings like a constellation pressed into his skin. Electric-blue eyes that are sharper than they first appear. A small leather pouch hangs around his neck. He has never explained what is inside it, and no one has pushed hard enough to find out. He carries a crystal dagger with a smooth rock handle, watermelon tourmaline fragments frozen into it, and the inscription: <em>Failure is not trying, whilst winning is putting up a fight.</em></div><div class="card-rule"></div><div class="lbl">Power — None</div><div class="body-text">In a world entirely defined by elemental power, Talon has <strong>nothing</strong>. No ability. No domain. No gift from his bloodline. He has survived entirely through wit, adaptability, and a stubbornness that refuses to let circumstances be the end of the story. Whether this makes him the weakest member of the group or the most dangerous depends entirely on who you ask. Several characters have made the mistake of assuming the former.</div><div class="card-rule"></div><div class="lbl">Personality & History</div><div class="body-text">Just after hatching, Talon's parents and sister were taken from him by a palace guard. He was forced to pass tests to prove his worth before he was allowed to continue living in the palace. He saw his biological sister occasionally after — always by the Queen's side, always changed by it: snobby, self-entitled, unrecognisable. He stumbled into a friendship with Aquamarine through a collision and a mess of shattered glass, and she became the first person who felt like family. Then he found Ky. Then the others. Talon does not believe in luck. He believes in people. He is deeply shy around everyone except the people he loves — with them, he is warm, quietly funny, and completely steady.</div></div>
-<div class="card"><div class="dh"><div class="av av-as">A</div><div><div class="dname" style="color:#9b8de8">Ash</div><div class="dsub">MoonScale · Secret Heir · Written by Varsha</div></div></div><div class="tags"><span class="tag t-moon">MoonScale</span><span class="tag t-gold">Royalty</span><span class="tag t-neutral">Night-Powered</span><span class="tag t-neutral">Bonded to Storm</span><span class="tag t-neutral">Eclipse's Cousin</span></div><div class="card-rule"></div><div class="lbl">Appearance</div><div class="body-text">Ash is the kind of dragon who could stand completely still in a dark room and become part of it. Her scales are <strong>black and deep navy-blue in a gradient</strong> that fades seamlessly into shadow — in dim light she is almost invisible, which is often deliberate. Tiny silver stars are scattered across her wings like actual sky pressed into membrane. Her eyes are blue, with a depth to them that seems greater than it should be, as though there is more light behind them than in front. In full moonlight, she is breathtaking. In daylight, she looks like something that belongs elsewhere.</div><div class="card-rule"></div><div class="lbl">Power & Status</div><div class="body-text">Ash <strong>draws power directly from the moon</strong> — which means her strength rises and falls with the lunar cycle. At a full moon, she is formidable. In direct sunlight, she is diminished, and she knows it. She is a MoonScale royal, technically in line to the throne after Princess Cyllene and Prince Nighthunter, but she is a runaway hiding what she is. She carves weapons from wood in the dark and calls them daggers. She carries citrine stones. She carved Eclipse's face from memory and embedded the jewels as eyes.</div><div class="card-rule"></div><div class="lbl">Personality & Bond with Storm</div><div class="body-text">Guarded with strangers — not out of unkindness but out of earned caution. Get past that wall and you find someone who is <strong>fun, intensely driven, and frighteningly smart</strong>, with a dry humour that catches people off guard. She says nothing she does not mean. Ash and Storm share a connection that cannot be explained and has never needed to be — they communicate in feelings and images across enormous distances. Storm's hunting instinct and Ash's strategic thinking have never once conflicted.</div></div>
-<div class="card"><div class="dh"><div class="av av-tw">Tw</div><div><div class="dname" style="color:#c084fc">Twilight</div><div class="dsub">GalaxyScale · Twiy · Shared by all four authors</div></div></div><div class="tags"><span class="tag t-galaxy">GalaxyScale</span><span class="tag t-purple">Wanted</span><span class="tag t-neutral">Dual Domain</span><span class="tag t-neutral">Bonded to Angel</span></div><div class="card-rule"></div><div class="lbl">Appearance</div><div class="body-text">Twilight's scales are <strong>pink and purple in a mix that shifts and catches light differently depending on the angle</strong> — stand in front of her and she looks one way, step to the side and she looks entirely different, like a gemstone that refuses to be singular. A dab of royal blue sits at the end of her tail. Her claws are rose gold. And her eyes — look at them closely and there is what appears to be a star-shaped marking in the iris, like a birthmark in the shape of a constellation. It does not move. It does not change. It has been there since she hatched.</div><div class="card-rule"></div><div class="lbl">Power</div><div class="body-text">As a GalaxyScale, Twilight <strong>draws from the galaxy and stars simultaneously</strong> — light and dark in equal measure, neither one dominant. During moments of extreme emotion, she releases uncontrolled blasts of raw power and energy that are difficult to predict and harder to stop. She is one of the rarest and most potentially powerful types of dragon alive. Someone knows this. Someone has decided that this makes her a problem that needs to be resolved.</div><div class="card-rule"></div><div class="lbl">Personality & Status</div><div class="body-text">Kind without conditions, adventurous to a fault, and constitutionally incapable of being anything other than completely honest even when honesty is the least convenient possible option. She is funny and generous and clumsy in ways that make everyone around her simultaneously fond of her and slightly anxious. Her recklessness is not thoughtlessness — it is a deep, genuine belief that the world is worth running toward. She calls herself <strong>Twiy</strong> and most people who love her call her that too. Currently wanted by an unknown faction for reasons not yet disclosed in the official records.</div></div>
-</div>
+  <div class="sec-title">Dragon Records</div>
+  <p class="sec-intro">Use this section for the main dragon dossiers. Keep the same card style and replace the placeholder prose with your full canon text. If you want, you can give each card a dedicated image, sigil, or excerpt panel later.</p>
+
+  <div class="g2">
+    <article class="card">
+      <div class="dh">
+        <div class="av av-a">A</div>
+        <div>
+          <div class="dname" style="color:#c9a84c">Agate</div>
+          <div class="dsub">WindScale · Queen's Regent · Written by Elina</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag t-wind">WindScale</span>
+        <span class="tag t-gold">Pescatarian</span>
+        <span class="tag t-neutral">Photographic Memory</span>
+        <span class="tag t-gold">Queen's Regent</span>
+        <span class="tag t-neutral">Bound to Saiber</span>
+      </div>
+      <div class="card-rule"></div>
+      <div class="lbl">Appearance</div>
+      <div class="body-text">[Insert full Agate appearance canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Power</div>
+      <div class="body-text">[Insert full Agate power canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Personality Arc</div>
+      <div class="body-text">[Insert full Agate personality canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Role & Relationships</div>
+      <div class="body-text">[Insert full Agate relationship canon here.]</div>
+    </article>
+
+    <article class="card">
+      <div class="dh">
+        <div class="av av-t">T</div>
+        <div>
+          <div class="dname" style="color:#d4945a">Topaz</div>
+          <div class="dsub">WindScale · Prince · Written by Daniel</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag t-wind">WindScale</span>
+        <span class="tag t-gold">Prince</span>
+        <span class="tag t-flame">Snot Wind</span>
+        <span class="tag t-neutral">Bonded to Fang</span>
+      </div>
+      <div class="card-rule"></div>
+      <div class="lbl">Appearance</div>
+      <div class="body-text">[Insert full Topaz appearance canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Power</div>
+      <div class="body-text">[Insert full Topaz power canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Personality</div>
+      <div class="body-text">[Insert full Topaz personality canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Bond with Fang</div>
+      <div class="body-text">[Insert full Topaz and Fang bond canon here.]</div>
+    </article>
+
+    <article class="card">
+      <div class="dh">
+        <div class="av av-ta">T</div>
+        <div>
+          <div class="dname" style="color:#4aaee8">Talon</div>
+          <div class="dsub">ShardScale · Servant of Ky · Written by Raven</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag t-shard">ShardScale</span>
+        <span class="tag t-neutral">Vegan</span>
+        <span class="tag t-neutral">No Power</span>
+        <span class="tag t-neutral">Bonded to Dyno</span>
+      </div>
+      <div class="card-rule"></div>
+      <div class="lbl">Appearance</div>
+      <div class="body-text">[Insert full Talon appearance canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Power</div>
+      <div class="body-text">[Insert full Talon power canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Personality & History</div>
+      <div class="body-text">[Insert full Talon history canon here.]</div>
+    </article>
+
+    <article class="card">
+      <div class="dh">
+        <div class="av av-as">A</div>
+        <div>
+          <div class="dname" style="color:#9b8de8">Ash</div>
+          <div class="dsub">MoonScale · Secret Heir · Written by Varsha</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag t-moon">MoonScale</span>
+        <span class="tag t-gold">Royalty</span>
+        <span class="tag t-neutral">Night-Powered</span>
+        <span class="tag t-neutral">Bonded to Storm</span>
+        <span class="tag t-neutral">Eclipse's Cousin</span>
+      </div>
+      <div class="card-rule"></div>
+      <div class="lbl">Appearance</div>
+      <div class="body-text">[Insert full Ash appearance canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Power & Status</div>
+      <div class="body-text">[Insert full Ash power/status canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Personality & Bond with Storm</div>
+      <div class="body-text">[Insert full Ash personality canon here.]</div>
+    </article>
+
+    <article class="card">
+      <div class="dh">
+        <div class="av av-tw">Tw</div>
+        <div>
+          <div class="dname" style="color:#c084fc">Twilight</div>
+          <div class="dsub">GalaxyScale · Twiy · Shared by all four authors</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag t-galaxy">GalaxyScale</span>
+        <span class="tag t-purple">Wanted</span>
+        <span class="tag t-neutral">Dual Domain</span>
+        <span class="tag t-neutral">Bonded to Angel</span>
+      </div>
+      <div class="card-rule"></div>
+      <div class="lbl">Appearance</div>
+      <div class="body-text">[Insert full Twilight appearance canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Power</div>
+      <div class="body-text">[Insert full Twilight power canon here.]</div>
+      <div class="card-rule"></div>
+      <div class="lbl">Personality & Status</div>
+      <div class="body-text">[Insert full Twilight personality canon here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
+<section class="section" id="ky">
+  <div class="sec-title">Ky</div>
+  <p class="sec-intro">Give Ky his own full dossier here. This section is intentionally separate so he reads like a major pillar of the archive rather than a footnote.</p>
+  <div class="card">
+    <div class="dh">
+      <div class="av av-tw">K</div>
+      <div>
+        <div class="dname" style="color:#c084fc">Ky</div>
+        <div class="dsub">ShardScale · Strategic Lead · Talon's anchor</div>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag t-shard">ShardScale</span>
+      <span class="tag t-neutral">Strategist</span>
+      <span class="tag t-neutral">Protective</span>
+      <span class="tag t-neutral">Brother-figure</span>
+    </div>
+    <div class="card-rule"></div>
+    <div class="lbl">Presence</div>
+    <div class="body-text">[Insert full Ky presence canon here.]</div>
+    <div class="card-rule"></div>
+    <div class="lbl">Role</div>
+    <div class="body-text">[Insert full Ky role canon here.]</div>
+    <div class="card-rule"></div>
+    <div class="lbl">Why he matters</div>
+    <div class="body-text">[Insert full Ky importance canon here.]</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="books">
-<div class="sec-title">The Books</div>
-<p class="sec-intro">Twenty main volumes. Fifteen special stories and editions. Each book building on the last, each one a step deeper into a world that keeps revealing new rooms. No spoilers. Only promises and hooks designed to keep you up past midnight.</p>
-<!-- paste the full book cards here from the HTML above -->
+  <div class="sec-title">The Books</div>
+  <p class="sec-intro">Use this as a structured archive for all twenty books and the special editions. The layout is already premium; you only need to paste in the canon text for each entry.</p>
+  <div class="books-grid">
+    <article class="book-card">
+      <div class="book-num">Book One</div>
+      <div class="book-title">[Book One Title]</div>
+      <div class="book-desc">[Insert full Book One description here.]</div>
+      <div class="book-hook">[Insert Book One hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Two</div>
+      <div class="book-title">[Book Two Title]</div>
+      <div class="book-desc">[Insert full Book Two description here.]</div>
+      <div class="book-hook">[Insert Book Two hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Three</div>
+      <div class="book-title">[Book Three Title]</div>
+      <div class="book-desc">[Insert full Book Three description here.]</div>
+      <div class="book-hook">[Insert Book Three hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Four</div>
+      <div class="book-title">[Book Four Title]</div>
+      <div class="book-desc">[Insert full Book Four description here.]</div>
+      <div class="book-hook">[Insert Book Four hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Five</div>
+      <div class="book-title">[Book Five Title]</div>
+      <div class="book-desc">[Insert full Book Five description here.]</div>
+      <div class="book-hook">[Insert Book Five hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Six</div>
+      <div class="book-title">[Book Six Title]</div>
+      <div class="book-desc">[Insert full Book Six description here.]</div>
+      <div class="book-hook">[Insert Book Six hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Seven</div>
+      <div class="book-title">[Book Seven Title]</div>
+      <div class="book-desc">[Insert full Book Seven description here.]</div>
+      <div class="book-hook">[Insert Book Seven hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Eight</div>
+      <div class="book-title">[Book Eight Title]</div>
+      <div class="book-desc">[Insert full Book Eight description here.]</div>
+      <div class="book-hook">[Insert Book Eight hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Nine</div>
+      <div class="book-title">[Book Nine Title]</div>
+      <div class="book-desc">[Insert full Book Nine description here.]</div>
+      <div class="book-hook">[Insert Book Nine hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Ten</div>
+      <div class="book-title">[Book Ten Title]</div>
+      <div class="book-desc">[Insert full Book Ten description here.]</div>
+      <div class="book-hook">[Insert Book Ten hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Eleven</div>
+      <div class="book-title">[Book Eleven Title]</div>
+      <div class="book-desc">[Insert full Book Eleven description here.]</div>
+      <div class="book-hook">[Insert Book Eleven hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Twelve</div>
+      <div class="book-title">[Book Twelve Title]</div>
+      <div class="book-desc">[Insert full Book Twelve description here.]</div>
+      <div class="book-hook">[Insert Book Twelve hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Thirteen</div>
+      <div class="book-title">[Book Thirteen Title]</div>
+      <div class="book-desc">[Insert full Book Thirteen description here.]</div>
+      <div class="book-hook">[Insert Book Thirteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Fourteen</div>
+      <div class="book-title">[Book Fourteen Title]</div>
+      <div class="book-desc">[Insert full Book Fourteen description here.]</div>
+      <div class="book-hook">[Insert Book Fourteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Fifteen</div>
+      <div class="book-title">[Book Fifteen Title]</div>
+      <div class="book-desc">[Insert full Book Fifteen description here.]</div>
+      <div class="book-hook">[Insert Book Fifteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Sixteen</div>
+      <div class="book-title">[Book Sixteen Title]</div>
+      <div class="book-desc">[Insert full Book Sixteen description here.]</div>
+      <div class="book-hook">[Insert Book Sixteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Seventeen</div>
+      <div class="book-title">[Book Seventeen Title]</div>
+      <div class="book-desc">[Insert full Book Seventeen description here.]</div>
+      <div class="book-hook">[Insert Book Seventeen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Eighteen</div>
+      <div class="book-title">[Book Eighteen Title]</div>
+      <div class="book-desc">[Insert full Book Eighteen description here.]</div>
+      <div class="book-hook">[Insert Book Eighteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Nineteen</div>
+      <div class="book-title">[Book Nineteen Title]</div>
+      <div class="book-desc">[Insert full Book Nineteen description here.]</div>
+      <div class="book-hook">[Insert Book Nineteen hook here.]</div>
+    </article>
+    <article class="book-card">
+      <div class="book-num">Book Twenty</div>
+      <div class="book-title">[Book Twenty Title]</div>
+      <div class="book-desc">[Insert full Book Twenty description here.]</div>
+      <div class="book-hook">[Insert Book Twenty hook here.]</div>
+    </article>
+  </div>
+
+  <div style="height:1.5rem"></div>
+
+  <div class="g2">
+    <article class="spec-card">
+      <div class="spec-num">Special 01</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 02</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 03</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 04</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 05</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 06</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 07</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 08</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 09</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 10</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 11</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 12</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 13</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 14</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+    <article class="spec-card">
+      <div class="spec-num">Special 15</div>
+      <div class="spec-title">[Special Edition Title]</div>
+      <div class="body-text">[Insert special edition text here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
+<section class="section" id="sow">
+  <div class="sec-title">Scales of War</div>
+  <p class="sec-intro">This can hold the companion-series material, side arcs, or war-era records. It is structured to look premium even before content is inserted.</p>
+  <div class="sow-banner">
+    <div class="lbl">Archive Note</div>
+    <div class="body-text">[Insert opening Scales of War note here.]</div>
+  </div>
+  <div class="g2">
+    <article class="sow-card">
+      <div class="sow-name">Ky</div>
+      <div class="sow-sub">[Subtitle]</div>
+      <div class="weapon-badge t-purple">Core figure</div>
+      <div class="body-text">[Insert Ky companion-series text here.]</div>
+    </article>
+    <article class="sow-card">
+      <div class="sow-name">Fang</div>
+      <div class="sow-sub">Companion · Wolf</div>
+      <div class="weapon-badge t-neutral">Companion</div>
+      <div class="body-text">[Insert Fang companion text here.]</div>
+    </article>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="shards">
-<div class="sec-title">The Shards</div>
-<p class="sec-intro">The most powerful dragon bloodlines in recorded history. Each Shard commands absolute dominion over a fundamental force of the world — not as a skill, not as a learned ability, but as a birthright written into their scales. Old scholars called them Shards because they believed each bloodline was a fragment broken from something far greater. No two Shards are equivalent. No Shard is safe to underestimate.</p>
-<!-- paste the shard cards here from the HTML above -->
+  <div class="sec-title">The Shards</div>
+  <p class="sec-intro">Use this section for the full shard taxonomy. Each shard card can later be expanded into a long lore block with powers, limits, symbols, and political meaning.</p>
+  <div class="g2">
+    <article class="shard-card sf">
+      <div class="dh">
+        <div class="sicon">✦</div>
+        <div>
+          <div class="sname">[Shard Name]</div>
+          <div class="sdom">[Domain]</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Canon</div>
+      <div class="body-text">[Insert full shard lore here.]</div>
+    </article>
+    <article class="shard-card ss">
+      <div class="dh">
+        <div class="sicon">✦</div>
+        <div>
+          <div class="sname">[Shard Name]</div>
+          <div class="sdom">[Domain]</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Canon</div>
+      <div class="body-text">[Insert full shard lore here.]</div>
+    </article>
+    <article class="shard-card sm">
+      <div class="dh">
+        <div class="sicon">✦</div>
+        <div>
+          <div class="sname">[Shard Name]</div>
+          <div class="sdom">[Domain]</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Canon</div>
+      <div class="body-text">[Insert full shard lore here.]</div>
+    </article>
+    <article class="shard-card sc">
+      <div class="dh">
+        <div class="sicon">✦</div>
+        <div>
+          <div class="sname">[Shard Name]</div>
+          <div class="sdom">[Domain]</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Canon</div>
+      <div class="body-text">[Insert full shard lore here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
+<section class="section" id="queens">
+  <div class="sec-title">The Queens</div>
+  <p class="sec-intro">Reserved for the royal line entries. These cards are built to feel ceremonial and archival, with room for lineage, titles, temperament, and plot significance.</p>
+  <div class="g4">
+    <article class="queen-card">
+      <div class="queen-av">Q</div>
+      <div class="queen-name">[Queen Name]</div>
+      <div class="queen-tribe">[Tribe / Court]</div>
+      <div class="queen-desc">[Insert queen profile text here.]</div>
+    </article>
+    <article class="queen-card">
+      <div class="queen-av">Q</div>
+      <div class="queen-name">[Queen Name]</div>
+      <div class="queen-tribe">[Tribe / Court]</div>
+      <div class="queen-desc">[Insert queen profile text here.]</div>
+    </article>
+    <article class="queen-card">
+      <div class="queen-av">Q</div>
+      <div class="queen-name">[Queen Name]</div>
+      <div class="queen-tribe">[Tribe / Court]</div>
+      <div class="queen-desc">[Insert queen profile text here.]</div>
+    </article>
+    <article class="queen-card">
+      <div class="queen-av">Q</div>
+      <div class="queen-name">[Queen Name]</div>
+      <div class="queen-tribe">[Tribe / Court]</div>
+      <div class="queen-desc">[Insert queen profile text here.]</div>
+    </article>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <section class="section" id="balance">
-<div class="sec-title">The Great Balance</div>
-<p class="sec-intro">Nothing in the world of the Forbidden Scales exists without its opposite. The ancient scholars called it the Correspondence — the principle that the world maintains itself not through peace, but through opposition. Every power has a mirror. Every strength has a counter. When one Shard rises unchecked, another is drawn toward it like tide to shore.</p>
-<!-- paste the balance cards here from the HTML above -->
+  <div class="sec-title">The Great Balance</div>
+  <p class="sec-intro">This section is meant to explain oppositions, consequences, and the rules that keep the world from becoming unhinged.</p>
+  <div class="balance-card">
+    <div class="bal-head">
+      <div class="bal-name">[Correspondence Pair]</div>
+      <div class="bal-vs">[PAIR]</div>
+    </div>
+    <div class="body-text">[Insert full balance explanation here.]</div>
+    <div class="bal-quote">[Insert canon quote or summary line here.]</div>
+  </div>
+  <div class="balance-card">
+    <div class="bal-head">
+      <div class="bal-name">[Correspondence Pair]</div>
+      <div class="bal-vs">[PAIR]</div>
+    </div>
+    <div class="body-text">[Insert full balance explanation here.]</div>
+    <div class="bal-quote">[Insert canon quote or summary line here.]</div>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="excerpts">
-<div class="sec-title">Reading Excerpts</div>
-<p class="sec-intro">Scenes from the manuscript — windows into the world as it exists on the page. These are not summaries. These are the actual words.</p>
-<!-- paste excerpt cards here -->
+  <div class="sec-title">Reading Excerpts</div>
+  <p class="sec-intro">Use these as pull-quotes or preview passages. Keep them short and visually dramatic.</p>
+  <div class="excerpt">
+    <div class="elbl">Excerpt One</div>
+    <div class="etext">[Insert excerpt text here.]</div>
+  </div>
+  <div class="excerpt">
+    <div class="elbl">Excerpt Two</div>
+    <div class="etext">[Insert excerpt text here.]</div>
+  </div>
+  <div class="excerpt">
+    <div class="elbl">Excerpt Three</div>
+    <div class="etext">[Insert excerpt text here.]</div>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="wolves">
-<div class="sec-title">The Wolf Pack</div>
-<p class="sec-intro">The Red Wolf pack — 28 members strong, led by Fang and the injured Storm. Bonded to the dragon companions through something older than language. Not pets. Not weapons. Not servants. Partners — with their own hierarchy, their own opinions, and their own reasons for being here.</p>
-<!-- paste wolf cards here -->
+  <div class="sec-title">The Wolf Pack</div>
+  <p class="sec-intro">A large pack section works best when each card is consistent and easy to scan. Fang can be treated here as a companion-linked wolf entry, separate from the dragon main cast.</p>
+  <div class="g3">
+    <article class="wolf-card">
+      <div class="wname">Fang</div>
+      <div class="wrole">Companion · Wolf</div>
+      <div class="body-text">[Insert Fang's wolf-pack record here.]</div>
+    </article>
+    <article class="wolf-card">
+      <div class="wname">[Wolf Name]</div>
+      <div class="wrole">[Role]</div>
+      <div class="body-text">[Insert wolf record here.]</div>
+    </article>
+    <article class="wolf-card">
+      <div class="wname">[Wolf Name]</div>
+      <div class="wrole">[Role]</div>
+      <div class="body-text">[Insert wolf record here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="companions">
-<div class="sec-title">Companions & Familiars</div>
-<p class="sec-intro">Not every bond in this series is between dragons. Some of the most important relationships are between a dragon and the smaller, stranger creature that decided — without being asked — that this particular dragon was worth staying near.</p>
-<div class="g3">
-<div class="pet-card"><div class="pname">Saiber</div><div class="pown">Elina's companion · Male peregrine falcon</div><div class="body-text" style="font-size:13.5px">Grayish-blue head, brown and white wings. Loves strawberries and marshmallows specifically. Non-mythical, which in this world means he has no power beyond being a peregrine falcon — which is objectively enough.</div></div>
-<div class="pet-card"><div class="pname">Dyno</div><div class="pown">Raven's companion · Male hawk</div><div class="body-text" style="font-size:13.5px">A hawk with an enormous personality relative to his physical size. Loves blueberries. A narcissist, presented as a perspective. His story is narrated entirely by him.</div></div>
-<div class="pet-card"><div class="pname">Angel</div><div class="pown">Twilight's companion · Small bonded familiar</div><div class="body-text" style="font-size:13.5px">Quiet, watchful, and oddly protective. Angel and Twilight share the kind of bond that does not need a public explanation.</div></div>
-</div>
+  <div class="sec-title">Companions & Familiars</div>
+  <p class="sec-intro">This area is for the smaller but important bonded characters. It keeps the page grounded and gives every side companion a dignified place in the archive.</p>
+  <div class="g3">
+    <article class="pet-card">
+      <div class="pname">Saiber</div>
+      <div class="pown">[Owner / bond]</div>
+      <div class="body-text">[Insert companion text here.]</div>
+    </article>
+    <article class="pet-card">
+      <div class="pname">Dyno</div>
+      <div class="pown">[Owner / bond]</div>
+      <div class="body-text">[Insert companion text here.]</div>
+    </article>
+    <article class="pet-card">
+      <div class="pname">Angel</div>
+      <div class="pown">[Owner / bond]</div>
+      <div class="body-text">[Insert companion text here.]</div>
+    </article>
+    <article class="pet-card">
+      <div class="pname">Fang</div>
+      <div class="pown">Companion · Wolf</div>
+      <div class="body-text">[Insert Fang companion entry here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="lore">
-<div class="sec-title">World & Lore</div>
-<div class="g2">
-<div class="card"><div class="lbl">Story Order — Character Arc Sequence</div><div class="body-text" style="font-size:14px;margin-bottom:.75rem">The planned order of primary perspective focus across the main series:</div><div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center"><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Eclipse</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Ky</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Topaz</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Talon</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Twilight</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Agate</span><span class="tag t-gold" style="font-family:'Cinzel',serif;font-size:10px">Ash</span></div></div>
-<div class="card"><div class="lbl">The Laws of the World</div><div class="body-text" style="font-size:14px"><strong>No omnipotent characters</strong> — Eclipse is one standing exception, along with the Shards, and they still have consequences.<br><strong>No all-powerful magic</strong> — wishing or willing anything into existence is prohibited.<br><strong>No mythicals except dragons</strong> — wolves are extraordinary but not mythical.<br><strong>Body limits apply</strong> — every dragon must fit within their Shard type's physical range.<br><strong>Four pages minimum per chapter</strong> — no exceptions.<br><strong>Companions stay companions</strong> — they are part of the story, not the main characters.</div></div>
-<div class="card"><div class="lbl">The Current Font</div><div class="body-text" style="font-size:14px">The manuscript is currently typeset in <strong>Times New Roman</strong> — chosen for its clean, standard book quality. Though for some parts of the book, the font may change depending on the context.</div></div>
-<div class="card"><div class="lbl">Department Heads</div><div class="body-text" style="font-size:14px;line-height:2"><strong>Elina</strong> — Head of Art · Co-Head of Marketing · Co-Head of Original Book<br><strong>Daniel</strong> — Head of Tech · Head of Rewriting · Co-Head of Marketing<br><strong>Raven</strong> — Co-Head of Marketing · Co-Head of Original Book<br><strong>Varsha</strong> — Head of Editing · Co-Head of Publishing · Co-Head of Marketing</div></div>
-</div>
+  <div class="sec-title">World & Lore</div>
+  <div class="g2">
+    <article class="card">
+      <div class="lbl">Story Order</div>
+      <div class="body-text">[Insert reading order, arc order, or perspective order here.]</div>
+    </article>
+    <article class="card">
+      <div class="lbl">Rules of the World</div>
+      <div class="body-text">[Insert the full world rules and limits here.]</div>
+    </article>
+    <article class="card">
+      <div class="lbl">Production Notes</div>
+      <div class="body-text">[Insert team workflow / publication / formatting notes here.]</div>
+    </article>
+    <article class="card">
+      <div class="lbl">Archive Notes</div>
+      <div class="body-text">[Insert archive notes, canon clarifications, or meta lore here.]</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="team">
-<div class="sec-title">The Authors</div>
-<p class="sec-intro">Four authors. One world. The Forbidden Scales is built collaboratively — each author owns their own dragon, their companion, and their corner of the story. Twilight is written by all four together.</p>
-<div class="g4">
-<div class="team-card"><div class="tav">E</div><div class="tname">Elina Yoon</div><div class="trole">Head of Art · Co-Head of Marketing · Co-Head of Original Book</div></div>
-<div class="team-card"><div class="tav">D</div><div class="tname">Daniel Lim</div><div class="trole">Head of Tech · Head of Websites · Co-Head of Marketing</div></div>
-<div class="team-card"><div class="tav">R</div><div class="tname">Raven Taylor</div><div class="trole">Co-Head of Marketing · Co-Head of Original Book</div></div>
-<div class="team-card"><div class="tav">V</div><div class="tname">Varsha Gangu</div><div class="trole">Head of Editing · Co-Head of Publishing · Co-Head of Marketing</div></div>
-</div>
+  <div class="sec-title">The Authors</div>
+  <p class="sec-intro">This section gives the collaboration a polished credit block while keeping the same visual tone as the rest of the page.</p>
+  <div class="g4">
+    <article class="team-card">
+      <div class="tav">E</div>
+      <div class="tname">Elina Yoon</div>
+      <div class="trole">Head of Art · Co-Head of Marketing · Co-Head of Original Book</div>
+    </article>
+    <article class="team-card">
+      <div class="tav">D</div>
+      <div class="tname">Daniel Lim</div>
+      <div class="trole">Head of Tech · Head of Rewriting · Co-Head of Marketing</div>
+    </article>
+    <article class="team-card">
+      <div class="tav">R</div>
+      <div class="tname">Raven Taylor</div>
+      <div class="trole">Co-Head of Marketing · Co-Head of Original Book</div>
+    </article>
+    <article class="team-card">
+      <div class="tav">V</div>
+      <div class="tname">Varsha Gangu</div>
+      <div class="trole">Head of Editing · Co-Head of Publishing · Co-Head of Marketing</div>
+    </article>
+  </div>
 </section>
+
 <div class="divider"></div>
+
 <section class="section" id="contact">
-<div class="sec-title">Contact the Team</div>
-<p class="sec-intro">Reach out to any author directly. For general inquiries, any team member can help.</p>
-<div class="card" style="padding:0;overflow:hidden">
-<div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)"><div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">E</div><div><div class="cname">Elina Yoon</div><div class="cdet">elinayoonny@gmail.com</div></div></div>
-<div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)"><div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">D</div><div><div class="cname">Daniel Lim</div><div class="cdet">danielwonillim@gmail.com</div></div></div>
-<div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)"><div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">R</div><div><div class="cname">Raven Taylor</div><div class="cdet"></div></div></div>
-<div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem"><div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">V</div><div><div class="cname">Varsha Gangu</div><div class="cdet">ivarshagangu@gmail.com</div></div></div>
-</div>
+  <div class="sec-title">Contact the Team</div>
+  <p class="sec-intro">You can keep this compact and elegant. The card stack works well for emails and other contact details.</p>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)">
+      <div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">E</div>
+      <div>
+        <div class="cname" style="font-family:'Cinzel Decorative',serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.15rem">Elina Yoon</div>
+        <div class="cdet" style="font-size:13px;color:var(--text-d)">[email]</div>
+      </div>
+    </div>
+    <div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)">
+      <div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">D</div>
+      <div>
+        <div class="cname" style="font-family:'Cinzel Decorative',serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.15rem">Daniel Lim</div>
+        <div class="cdet" style="font-size:13px;color:var(--text-d)">[email]</div>
+      </div>
+    </div>
+    <div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)">
+      <div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">R</div>
+      <div>
+        <div class="cname" style="font-family:'Cinzel Decorative',serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.15rem">Raven Taylor</div>
+        <div class="cdet" style="font-size:13px;color:var(--text-d)">[email]</div>
+      </div>
+    </div>
+    <div class="contact-row" style="display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem">
+      <div class="cinit" style="width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:13px;color:var(--gold)">V</div>
+      <div>
+        <div class="cname" style="font-family:'Cinzel Decorative',serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.15rem">Varsha Gangu</div>
+        <div class="cdet" style="font-size:13px;color:var(--text-d)">[email]</div>
+      </div>
+    </div>
+  </div>
 </section>
-<footer>The Forbidden Scales · Official Records Site<br>Elina Yoon · Daniel Lim · Raven Taylor · Varsha Gangu<br>All content belongs to its respective authors · All rights reserved</footer>
+</main>
+
+<footer>
+  The Forbidden Scales · Official Records Site<br>
+  Elina Yoon · Daniel Lim · Raven Taylor · Varsha Gangu<br>
+  Premium scaffold version · Replace placeholders with canon text
+</footer>
 </div>
 </body>
 </html>
