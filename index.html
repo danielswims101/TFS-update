@@ -53,13 +53,22 @@ body::before{content:"";position:fixed;inset:0;z-index:0;
   background-attachment:fixed;pointer-events:none}
 .page{position:relative;z-index:1}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:200;background:rgba(7,9,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:.85rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.nav-logo{font-family:"Cinzel Decorative",serif;font-size:11px;letter-spacing:.15em;color:var(--gold);white-space:nowrap}
-.nav-links{display:flex;gap:1.25rem;list-style:none;flex-wrap:wrap}
-.nav-links a{color:var(--text-m);text-decoration:none;font-family:"Cinzel",serif;font-size:9px;letter-spacing:.14em;transition:color .2s}
-.nav-links a:hover{color:var(--gold-l)}
-
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">The Forbidden Scales</div>
+  <ul class="nav-links">
+    <li><a href="#dragons">Dragons</a></li>
+    <li><a href="#shards">Shards</a></li>
+    <li><a href="#balance">Balance</a></li>
+    <li><a href="#excerpts">Excerpts</a></li>
+    <li><a href="#wolves">Wolf Pack</a></li>
+    <li><a href="#companions">Companions</a></li>
+    <li><a href="#lore">Lore</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+  
 /* HERO */
 .hero{text-align:center;padding:9rem 2rem 8rem;position:relative}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 50%,rgba(201,168,76,.05) 0%,transparent 70%);pointer-events:none}
@@ -268,25 +277,18 @@ cat >> /home/claude/tfs_site.html << 'NAVHERO'
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <p class="hero-eye">Official Records Site &nbsp;·&nbsp; Elina · Daniel · Raven · Varsha</p>
-  <h1>The Forbidden<br>Scales</h1>
-  <p class="hero-tag">An epic dragon saga of loyalty, ancient power, and the bonds forged between unlikely companions — written by four voices, one world.</p>
-  <p class="hero-lore">In a world where dragon bloodlines are destiny and elemental Shards define the hierarchy of power, five extraordinary dragons and their companions are about to discover that the greatest force is not the one born into you — it is the one you choose to become. The scales are tipping. The Balance is fraying. Something forbidden has been waking up for a very long time.</p>
-  <div class="hero-rule"></div>
-  <div class="pills">
-    <a href="#dragons" class="pill">Dragon Records</a>
-    <a href="#books" class="pill">The Books</a>
-    <a href="#sow" class="pill">Scales of War</a>
-    <a href="#shards" class="pill">The Shards</a>
-    <a href="#queens" class="pill">The Queens</a>
-    <a href="#balance" class="pill">The Balance</a>
-    <a href="#wolves" class="pill">Wolf Pack</a>
-    <a href="#team" class="pill">The Authors</a>
-  </div>
-</section>
+<div class="hero-nav-pills">
+  <a href="#dragons" class="hero-pill">Dragon Records</a>
+  <a href="#shards" class="hero-pill">The Shards</a>
+  <a href="#balance" class="hero-pill">The Balance</a>
+  <a href="#excerpts" class="hero-pill">Excerpts</a>
+  <a href="#wolves" class="hero-pill">Wolf Pack</a>
+  <a href="#companions" class="hero-pill">Companions</a>
+  <a href="#lore" class="hero-pill">Lore</a>
+  <a href="#team" class="hero-pill">The Authors</a>
+</div>
 <div class="divider"></div>
+
 NAVHERO
 echo "Nav/Hero done"
 Output
@@ -768,3 +770,527 @@ PYEOF
 Output
 
 SOW done: 11663
+  
+<!-- SHARDS -->
+<section class="section" id="shards">
+  <div class="sec-title">The Shards</div>
+  <p class="sec-intro">The elemental bloodlines of the dragon world are not just categories of power. They are inheritances, identities, and entire ways of being. Some are loud and obvious. Some are hidden in plain sight. All of them shape the Balance more than most dragons understand.</p>
+
+  <div class="g2">
+    <div class="shard-card sf">
+      <div class="dh">
+        <div class="sicon">🔥</div>
+        <div>
+          <div class="sname">FlameShard</div>
+          <div class="sdom">Heat · Fire · Volatility</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">The most feared and most loudly misunderstood of the major Shards. FlameShard dragons carry power that can become destructive fast, but in the right hands it is also discipline, protection, and resolve. Their bloodline is tied closely to war, leadership, and the politics of survival.</div>
+    </div>
+
+    <div class="shard-card ss">
+      <div class="dh">
+        <div class="sicon">🌊</div>
+        <div>
+          <div class="sname">SeaShard</div>
+          <div class="sdom">Tide · Pressure · Depth</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">SeaShard dragons are shaped by endurance, control, and pressure that never looks dangerous until it becomes overwhelming. Their politics are old, their traditions are older, and their courts tend to know more about the world than they are saying aloud.</div>
+    </div>
+
+    <div class="shard-card sm">
+      <div class="dh">
+        <div class="sicon">🌙</div>
+        <div>
+          <div class="sname">MoonShard</div>
+          <div class="sdom">Night · Change · Reflection</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">MoonShard power follows cycles, shadows, and the kind of strength that changes with what the sky is doing. They are often underestimated because their power is quiet until it is not. That mistake tends to be expensive.</div>
+    </div>
+
+    <div class="shard-card sc">
+      <div class="dh">
+        <div class="sicon">💎</div>
+        <div>
+          <div class="sname">CrystalShard</div>
+          <div class="sdom">Clarity · Structure · Precision</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">CrystalShard dragons are exacting, elegant, and terrifyingly hard to move once they have committed to a course. Their power tends to reward planning, discipline, and the ability to see the hidden shape of a problem before anyone else can.</div>
+    </div>
+
+    <div class="shard-card sw">
+      <div class="dh">
+        <div class="sicon">🌪</div>
+        <div>
+          <div class="sname">WindShard</div>
+          <div class="sdom">Motion · Breath · Freedom</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">WindShard dragons live at the edge between speed and control. Their powers can look graceful or chaotic, but in practice they are often the ones who notice danger first. They are linked to movement, instinct, and the ability to adapt without breaking.</div>
+    </div>
+
+    <div class="shard-card ssu">
+      <div class="dh">
+        <div class="sicon">☀️</div>
+        <div>
+          <div class="sname">SunShard</div>
+          <div class="sdom">Light · Heat · Authority</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">SunShard dragons carry visibility, pressure, and the burden of being seen. Their power is often tied to leadership, diplomacy, and public strength. When they choose to shine, they can turn a battlefield into a stage and a stage into a verdict.</div>
+    </div>
+
+    <div class="shard-card sg">
+      <div class="dh">
+        <div class="sicon">✦</div>
+        <div>
+          <div class="sname">GalaxyShard</div>
+          <div class="sdom">Stars · Vastness · Duality</div>
+        </div>
+      </div>
+      <div class="srule"></div>
+      <div class="slbl">Nature</div>
+      <div class="body-text">GalaxyShard dragons are rare, difficult to classify, and often treated like myth even when standing directly in front of someone. Their power reaches into vastness, contradiction, and the kind of force that can hold both light and dark without choosing one to become.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- QUEENS -->
+<section class="section" id="queens">
+  <div class="sec-title">The Queens</div>
+  <p class="sec-intro">The six kingdoms each have a ruler with a different style of power, a different relationship to their tribe, and a different way of holding a world together that is always trying to split. Some rule by force. Some by memory. Some by love. None of them are simple.</p>
+
+  <div class="g3">
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a;">F</div>
+      <div class="queen-name" style="color:#e8703a;">Queen Firetalon</div>
+      <div class="queen-tribe">FlameScales</div>
+      <div class="queen-desc">Commanding, precise, and frighteningly hard to manipulate. She believes strength should have rules and discipline should have purpose. When she acts, the whole kingdom feels it.</div>
+    </div>
+
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8;">A</div>
+      <div class="queen-name" style="color:#4aaee8;">Queen Angelfish</div>
+      <div class="queen-tribe">SeaScales</div>
+      <div class="queen-desc">Elegant on the surface, unreadable underneath. She understands diplomacy as a weapon and compassion as a kind of leverage, though she is not cruel. She simply knows the sea keeps what it can.</div>
+    </div>
+
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8;">S</div>
+      <div class="queen-name" style="color:#9b8de8;">Queen Sapphire</div>
+      <div class="queen-tribe">ShardScales</div>
+      <div class="queen-desc">The kind of ruler who makes every room feel like a negotiation. She values structure, loyalty, and results, but she also knows exactly how much damage a throne can do to the dragon sitting on it.</div>
+    </div>
+
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#c9a84c;">O</div>
+      <div class="queen-name" style="color:#c9a84c;">Queen Opalite</div>
+      <div class="queen-tribe">WindScales</div>
+      <div class="queen-desc">Graceful, quick-thinking, and impossible to pin down. She can sound soft while making a decision that changes everything. Her kingdom moves on her intuition almost as much as on law.</div>
+    </div>
+
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842;">S</div>
+      <div class="queen-name" style="color:#f5c842;">Queen Sunstone</div>
+      <div class="queen-tribe">SunScales</div>
+      <div class="queen-desc">Warm in public, relentless in private. She represents the kingdom that tries hardest to look stable, which means she is constantly balancing tradition, expectation, and the quiet fear of collapse.</div>
+    </div>
+
+    <div class="queen-card">
+      <div class="queen-av" style="background:rgba(192,132,252,.15);border-color:rgba(192,132,252,.4);color:#c084fc;">G</div>
+      <div class="queen-name" style="color:#c084fc;">Queen Goldstone</div>
+      <div class="queen-tribe">GalaxyScales</div>
+      <div class="queen-desc">Rarely seen, always important, and impossible to fully separate from the secret history of her tribe. She rules through long memory, hidden ties, and the kind of authority that survives because it was never built for display.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- BALANCE -->
+<section class="section" id="balance">
+  <div class="sec-title">The Balance</div>
+  <p class="sec-intro">The Balance is the oldest structure in the series after the world itself, an invisible system of opposing forces that keeps the kingdoms from drifting into permanent chaos. It is not worshipped in the normal sense, though some dragons treat it like a sacred law and others treat it like a curse. The truth is simpler and harder: it is a mechanism that does not care whether anyone understands it, only whether it continues to function.</p>
+
+  <div class="balance-card">
+    <div class="bal-head">
+      <div class="bal-name">The Wheel</div>
+      <div class="bal-vs">OPPOSING FORCES</div>
+    </div>
+    <div class="body-text">The Wheel is the pattern by which power is distributed, mirrored, and resisted across the world. Flame does not exist without water pushing back against it, and light does not stay stable without shadow defining its edge. The Wheel is why kingdoms have always been able to coexist without one bloodline consuming the others permanently. It is also why every attempt to dominate the world eventually creates its own collapse. The Balance does not reward cruelty. It simply waits until cruelty creates consequences large enough to be felt everywhere at once.</div>
+    <div class="bal-quote">What looks like stability is often only the pause before the world remembers how to break.</div>
+  </div>
+
+  <div class="balance-card">
+    <div class="bal-head">
+      <div class="bal-name">The Correspondence</div>
+      <div class="bal-vs">SERIES-LONG TENSION</div>
+    </div>
+    <div class="body-text">The Correspondence is the hidden logic beneath the kingdoms, the old alignment of bloodlines, roles, inheritances, and old obligations that keeps certain dragons tied to certain events long before they know why. Some are born directly into that structure, others are pulled into it by accident, and some seem to be placed there by history itself with no warning at all. Throughout the series, the characters keep discovering that what they thought was random was actually shaped by older rules they were never taught. The worst part is that the rules are not fully broken. They are only damaged enough to let the wrong things through.</div>
+    <div class="bal-quote">A prophecy is not always a prediction. Sometimes it is just the record of a system that has been failing for a very long time.</div>
+  </div>
+
+  <div class="balance-card">
+    <div class="bal-head">
+      <div class="bal-name">What Is Breaking</div>
+      <div class="bal-vs">CURRENT THREAT</div>
+    </div>
+    <div class="body-text">The Balance is fraying rather than shattering, which is why so many dragons miss the danger at first. It shows up in missing pages, forgotten names, strange power surges, impossible survivals, and bloodlines that should not still be awake. The kingdoms notice the symptoms before they recognize the illness. That delay matters, because every lost record and every silenced witness makes the next fracture easier to hide. By the time the characters understand the shape of the problem, the problem has already spread into the foundations of their world.</div>
+    <div class="bal-quote">The world does not end by announcing itself. It ends by teaching everyone to call the damage normal.</div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- EXCERPTS -->
+<section class="section" id="excerpts">
+  <div class="sec-title">Excerpts</div>
+  <p class="sec-intro">These lines are written like fragments pulled from a larger archive, the kind of sentences that remain after the context has been sealed away. They are not meant to explain the story. They are meant to preserve the feeling of it: ancient, elegant, dangerous, and always one step away from revelation.</p>
+
+  <div class="excerpt">
+    <div class="elbl">RECORD ONE</div>
+    <div class="etext">The first thing any dragon learns about power is that the world will praise it only after it has already learned to fear it.</div>
+  </div>
+
+  <div class="excerpt">
+    <div class="elbl">RECORD TWO</div>
+    <div class="etext">They were not friends because fate had made them compatible. They became friends because they survived each other’s worst instincts long enough to notice the shape of trust forming underneath.</div>
+  </div>
+
+  <div class="excerpt">
+    <div class="elbl">RECORD THREE</div>
+    <div class="etext">A kingdom is never only its ruler. It is also the stories the ruler is trying to keep buried, the names that survive despite that effort, and the children who grow up asking the wrong questions at the wrong time.</div>
+  </div>
+
+  <div class="excerpt">
+    <div class="elbl">RECORD FOUR</div>
+    <div class="etext">The stars above the dragon world do not simply shine. They remember. And when they are disturbed, the memory reaches down into blood and bone.</div>
+  </div>
+
+  <div class="excerpt">
+    <div class="elbl">RECORD FIVE</div>
+    <div class="etext">No one noticed the Balance failing at first because the failures were polite. They arrived as hesitation, silence, and the strange sense that everyone had forgotten something important in the same exact way.</div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- THE BALANCE -->
+<section class="section" id="balance">
+  <div class="section-title">The Balance</div>
+  <p class="section-intro">Nothing in the world of The Forbidden Scales exists without its opposite. Every strength has a mirror. Every power has a counter. The ancient scholars called this the Correspondence: the belief that the world does not stay whole because all things agree, but because opposing forces are forced to remain in motion together. When one side grows too strong, another rises to push back. When one bloodline, kingdom, or power reaches too far, the world answers.</p>
+
+  <div class="balance-pair">
+    <div class="balance-header">
+      <div class="balance-name" style="color:#f09575">Flame</div>
+      <div class="balance-vs">vs</div>
+      <div class="balance-name" style="color:#85b7eb">Sea</div>
+    </div>
+    <div class="balance-body">
+      Flame and Sea are the oldest known opposition in the world. Flame burns with overwhelming force, turning stone to glass and air to heat, while Sea answers with water, ice, and pressure that can smother even the hottest fire. A Flame Shard can overpower ordinary defenses, but Sea Shards can remove the moisture, cool the air, and freeze the battlefield before the flames fully spread. Neither side is simple victory material for the other. They do not cancel each other out so much as force the fight to become something else entirely.
+    </div>
+    <div class="balance-lore">This is why old records treat fire and water as a law rather than a battle. Each side makes the other reveal its limits.</div>
+  </div>
+
+  <div class="balance-pair">
+    <div class="balance-header">
+      <div class="balance-name" style="color:#e8c96a">Wind</div>
+      <div class="balance-vs">vs</div>
+      <div class="balance-name" style="color:#3dd6c0">Crystal</div>
+    </div>
+    <div class="balance-body">
+      Wind is motion, reach, and speed. Crystal is weight, structure, and resistance. Wind Shards can redirect projectiles, launch themselves across huge distances, and tear through open spaces with force, but Crystal can anchor, brace, and build defensive walls that make raw motion harder to use. When these two powers clash, the result is often not a clean victory but a shift in terrain. One side controls the air; the other controls what the air strikes.
+    </div>
+    <div class="balance-lore">The smartest Wind fighters do not try to beat Crystal head-on. They aim for balance points, weak seams, and the moment before the armor settles.</div>
+  </div>
+
+  <div class="balance-pair">
+    <div class="balance-header">
+      <div class="balance-name" style="color:#b3a0ee">Moon</div>
+      <div class="balance-vs">vs</div>
+      <div class="balance-name" style="color:#fac775">Sun</div>
+    </div>
+    <div class="balance-body">
+      Moon and Sun represent one of the most dangerous forms of opposition because both are extreme and both are absolute. Moon Shards dominate darkness, silence, and perception, while Sun Shards dominate radiance, exposure, and overwhelming light. A Moon Shard can blind, conceal, and disorient; a Sun Shard can expose, burn through, and force everything into visibility. When the two meet, the battlefield becomes a contest not just of power but of what can be perceived at all.
+    </div>
+    <div class="balance-lore">The old scholars feared this pairing most because neither side is weaker by nature. Each simply makes the other visible.</div>
+  </div>
+
+  <div class="balance-pair">
+    <div class="balance-header">
+      <div class="balance-name" style="color:#cbb8ff">Galaxy</div>
+      <div class="balance-vs">vs</div>
+      <div class="balance-name" style="color:#8a8070">All others</div>
+    </div>
+    <div class="balance-body">
+      Galaxy Shards are the exception that proves the rule. They carry both Moon and Sun power at once, which makes them difficult to classify and even harder to stop. Because they can move between darkness and radiance, they are not locked into the weaknesses of either side in the normal way. That is part of why they are rare, and part of why they are feared. Their existence suggests that the Balance is not always neat, only old.
+    </div>
+    <div class="balance-lore">The world rarely likes dragons that do not fit the expected pattern. Galaxy Shards are one of the sharpest examples of that unease.</div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- EXCERPTS -->
+<section class="section" id="excerpts">
+  <div class="section-title">Excerpts</div>
+  <p class="section-intro">These are fragments from the records: lines kept because they matter, even when the context around them has been lost, removed, or deliberately left out. They do not explain everything. They only preserve the shape of the story well enough for the next reader to understand that something larger exists beneath the surface.</p>
+
+  <div class="excerpt-box">
+    <div class="excerpt-label">RECORD I</div>
+    <div class="excerpt-text">The first thing the world teaches a dragon is not how to fly. It is how to survive being named before they understand what their name will cost them.</div>
+  </div>
+
+  <div class="excerpt-box">
+    <div class="excerpt-label">RECORD II</div>
+    <div class="excerpt-text">Loyalty does not always arrive as a promise. Sometimes it begins as a mistake, then stays because both sides are too stubborn to admit they needed it.</div>
+  </div>
+
+  <div class="excerpt-box">
+    <div class="excerpt-label">RECORD III</div>
+    <div class="excerpt-text">The Balance was never gentle. It only ever looked gentle from a distance, while everyone still had enough time to pretend the cracks were decoration.</div>
+  </div>
+
+  <div class="excerpt-box">
+    <div class="excerpt-label">RECORD IV</div>
+    <div class="excerpt-text">A kingdom can hide its history in many ways: in missing names, altered records, quiet halls, and the dragons who were taught not to ask the wrong questions twice.</div>
+  </div>
+
+  <div class="excerpt-box">
+    <div class="excerpt-label">RECORD V</div>
+    <div class="excerpt-text">Some bonds are born from family. Others are forged by fear, rescue, rivalry, or the simple decision to stand beside someone after they have already fallen once.</div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- WOLF PACK -->
+<section class="section" id="wolves">
+  <div class="section-title">Wolf Pack</div>
+  <p class="section-intro">The Wolf Pack is a structured group with leaders, healers, scouts, hunters, caretakers, pups, and gatherers. It is a full society of wolves with roles that matter to the world of The Forbidden Scales. Fang leads as alpha male, Storm serves as female alpha, and the rest of the pack are organized into the duties that keep them alive and functional.</p>
+
+  <div class="grid-3">
+    <div class="wolf-card">
+      <div class="wolf-name">Fang</div>
+      <div class="wolf-role">Alpha Male</div>
+      <div class="wolf-desc">Blue-coated wolf, dark gold eyes, silver claws, silver-tipped tail, orange-red flecks in the eyes. Fang can run faster than a flying dragon, understands Topaz in certain ways through their connection, and can call his pack across the continent when needed. He loves berries, vegetables, and sugarcane, rolls in mud, climbs trees, and races Topaz. He is vegan, photographic in memory, and the pack’s strongest leader.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Storm</div>
+      <div class="wolf-role">Female Alpha</div>
+      <div class="wolf-desc">White fur with blue specks, red features, and red eyes. Storm is Arctic and Red wolf heritage, fast, agile, and deeply loyal to Ash. She is injured in the paw, which slows her speed, but she still remains a powerful leader. Ash and Storm understand each other, which makes their connection one of the clearest in the records.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Freki</div>
+      <div class="wolf-role">Main Healer</div>
+      <div class="wolf-desc">Dusky blue and silver coat with black nose, white underbelly, and dusky red ears, tail, and legs. Freki is deeply loyal to Storm and to the pack, loves herbs, nature, hunting, caring for pups, swimming, and rolling in snow. She has excellent senses and photographic memory, and she prefers her original language even though she can vaguely speak Dragon.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Echo</div>
+      <div class="wolf-role">Head of Defense</div>
+      <div class="wolf-desc">Silky red fur with black splotches, strong muscles, piercing black eyes, and sturdy claws. Echo is strong, confident, loud, stealthy, and highly respected. She is kind but firm, deeply loyal to Fang and Storm, and much more loyal to Fang overall. She does not trust newcomers easily and will deal with threats when ordered to.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Chair</div>
+      <div class="wolf-role">Scout Leader</div>
+      <div class="wolf-desc">Whitish-red fur with maroon splotches. Chair is serious, bossy, and does not like pups. He trusts his group, but he is not gentle or especially kind about it. He prefers to sit around lazily in his free time, which fits the irony of his name. His role is practical, not warm.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Bolt</div>
+      <div class="wolf-role">Gatherer Leader</div>
+      <div class="wolf-desc">Red-tinted green fur, brownish-maroon underbelly, and leaf-like shapes in brown. Bolt is fast, resourceful, and prefers being alone. He has a soft spot for Hail, good instincts, and anger issues that loud noises or sudden movements can trigger. Hail often helps him manage them.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Aspen</div>
+      <div class="wolf-role">Hunter Leader</div>
+      <div class="wolf-desc">Bright red fur, black underbelly, black splotches, and heterochromia with one brown eye and one yellow eye. Aspen is kind and caring but focused on getting work done. She dislikes procrastination, gets along with the healers and caretakers, and likes carving small wooden figures in her free time.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Hail</div>
+      <div class="wolf-role">Caretaker Leader</div>
+      <div class="wolf-desc">Light blue fur with red flecks, deep soft golden-brown eyes, silver-tipped tail, and retractable teal claws. Hail is protective, kind, trusting, and always with the pups. She is extremely smart, solves problems well, and has no hesitation about killing a threat to protect a pup. Fang wants her as a scout, but she prefers the caretakers.</div>
+    </div>
+
+    <div class="wolf-card">
+      <div class="wolf-name">Pack Structure</div>
+      <div class="wolf-role">28 Total Wolves</div>
+      <div class="wolf-desc">The pack includes healers Ace, Kodiak, Griffin, and Freki; guards Gunnolf, Adwulf, Aragorn, Echo, and Adalwolf; scouts Chair, GreenBean, and Beowulf; pups GreenBean, Taco, Apollo, and Adalwolf; gatherers Turtle, Bolt, and Cypress; hunters Ares, Apollo, and Aspen; and caretakers Potato, Bonecrusher, Hail, Starveil, and Thorin. The full pack count is 28 wolves.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- COMPANIONS -->
+<section class="section" id="companions">
+  <div class="section-title">Companions</div>
+  <p class="section-intro">Companions are their own section and have their own hyperlink because they are separate from the wolf pack. These are the bonded animals tied to specific authors or dragons, and they are treated as individual records rather than part of the pack structure. In the files, they are listed as their own category because each bond matters on its own terms.</p>
+
+  <div class="grid-3">
+    <div class="pet-card">
+      <div class="pet-name">Saiber</div>
+      <div class="pet-owner">Agate's peregrine falcon</div>
+      <div class="pet-desc">Grayish-blue head, brown and white wings, black eyes with shadowed golden irises. Saiber loves strawberries and marshmallows and is marked as non-mythical. He is a companion record, not part of the wolf pack.</div>
+    </div>
+
+    <div class="pet-card">
+      <div class="pet-name">Dyno</div>
+      <div class="pet-owner">Talon's hawk companion</div>
+      <div class="pet-desc">Dyno is a hawk who loves blueberries and is described as a narcissist. He is non-mythical and has his own record entry because he is a companion, not a wolf pack member.</div>
+    </div>
+
+    <div class="pet-card">
+      <div class="pet-name">Angel</div>
+      <div class="pet-owner">Twighlight's arctic fox</div>
+      <div class="pet-desc">White fur with dabs of blue, pink, and purple, blueish-brown eyes, and teal-tipped dark blue claws. Angel has a majestic tail and belongs in the companions section as her own separate record.</div>
+    </div>
+
+    <div class="pet-card">
+      <div class="pet-name">Storm</div>
+      <div class="pet-owner">Ash’s wolf companion</div>
+      <div class="pet-desc">Storm is also listed as Ash’s companion and should stay in the companions section when referenced in that context. She is fast, loyal, and able to understand Ash, which makes her bond especially important.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- LORE -->
+<section class="section" id="lore">
+  <div class="section-title">Lore</div>
+  <p class="section-intro">The lore of The Forbidden Scales is not just background information. It is the structure that everything else rests on. The world is built from tribes, ranks, inherited powers, hidden history, and long-running consequences that reach far beyond any one dragon’s life. Almost every important detail in the records points to something older than the current story, as if the world itself was written in layers and only the newest layer is visible at first glance.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="lbl">The World</div>
+      <div class="body-text">The dragon world is divided into kingdoms and bloodlines, but those divisions are not just political. They shape identity, duty, power, and survival. A dragon’s tribe determines how they are seen, what expectations follow them, and what kind of future others believe they are allowed to have. That makes the world feel larger than any single setting, because every place in it carries rules, history, and memory.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">Power and Cost</div>
+      <div class="body-text">Power in this series is never presented as free. Wind can be overwhelming, moonlight can strengthen and weaken, galaxy power can be extraordinary and dangerous, and the rare Shards are so powerful that the world itself seems to react to them. The records repeatedly show that the more a character gains, the more the world asks in return. That is part of what gives the series its tension: strength is real, but it always has a price.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">The Shards</div>
+      <div class="body-text">The Shards are the highest and most dangerous bloodlines in the records. Flame, Sea, Moon, Crystal, Wind, Sun, and Galaxy each represent a domain of power that is fundamental rather than ordinary. They are not simply stronger dragons. They are force made into living form, which is why they are feared, studied, and in some cases hunted. Galaxy is especially rare because it carries both Moon and Sun power together, making it the most difficult bloodline to classify or counter.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">The Balance</div>
+      <div class="body-text">The Balance is the oldest governing idea in the world. It is the reason opposing powers exist in pairs, the reason no force can remain unchecked forever, and the reason records keep returning to the theme of correspondence. Flame opposes Sea, Wind opposes Crystal, Moon opposes Sun, and Galaxy stands at a strange intersection of both sides. The Balance is not a moral force. It does not reward goodness or punish evil in any simple way. It preserves motion, and motion is what keeps the world from locking into collapse.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">Bloodline Memory</div>
+      <div class="body-text">Bloodlines in this world carry more than appearance or elemental ability. They carry expectation, inherited patterns, and the pressure of history. That is why some dragons seem to know who they are before they fully understand themselves. The world has already been teaching them through custom, rank, and assumption. A dragon can resist that pressure, but they cannot pretend it is not there.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">Records and Gaps</div>
+      <div class="body-text">The archive is full of missing pieces on purpose. Sections exist because someone thought they were important enough to preserve, but the writing often hints that not everything was meant to be seen by every reader. There are removed pages, special editions, notes on mistakes, owing pages, and records that feel like they were meant to be read after something else happened. That creates the feeling that the story is still unfolding even when the page is static.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">Companions</div>
+      <div class="body-text">Companions are a separate section because they matter in their own right. They are not simply animals placed beside the dragons. Saiber, Fang, Dyno, Storm, and Angel each have their own roles, behaviors, and connections. Some are protectors, some are family substitutes, some are witnesses, and some are part of the emotional framework of a character’s life. The records give them space because the bonds themselves are part of the worldbuilding.</div>
+    </div>
+
+    <div class="card">
+      <div class="lbl">Story Shape</div>
+      <div class="body-text">The whole series feels like a growing archive of connected revelations. Early records explain the main dragons; later records expand the world through rules, animals, departments, notes, and hidden pages. That structure matters because it makes the story feel lived-in rather than invented all at once. The reader is not simply being told a story. They are being invited into a system of memory, recordkeeping, and revealed history.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="section-title">The Authors</div>
+  <p class="section-intro">The site is maintained by four authors: Daniel, Elina, Raven, and Varsha. Their names appear throughout the records because they are the people building the archive, writing the books, and organizing the material that keeps the whole project moving forward. The page also reflects how each author handles different responsibilities inside the project.</p>
+
+  <div class="grid-4">
+    <div class="team-card">
+      <div class="team-avatar">D</div>
+      <div class="team-name">Daniel</div>
+      <div class="team-role">Head of Tech, Co-Head of Marketing, and Head of Websites.</div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar">E</div>
+      <div class="team-name">Elina</div>
+      <div class="team-role">Co-Head of Marketing, Head of Art, and Co-Head of Original Book.</div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar">R</div>
+      <div class="team-name">Raven</div>
+      <div class="team-role">Co-Head of Marketing and Co-Head of Original Book.</div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-avatar">V</div>
+      <div class="team-name">Varsha</div>
+      <div class="team-role">Co-Head of Marketing, Head of Editing, and Co-Head of Publishing.</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-title">Contact</div>
+  <p class="section-intro">The contact section should stay simple and functional, since it exists to connect readers and collaborators with the authors. The records list the team’s school emails and additional contact methods directly, making this section practical rather than decorative.</p>
+
+  <div class="contact-block">
+    <div class="contact-row">
+      <div class="contact-init">D</div>
+      <div>
+        <div class="contact-name">Daniel Lim</div>
+        <div class="contact-detail">limd@elisabethmorrow.org · 646-483-9001 · danielwonillim@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-init">E</div>
+      <div>
+        <div class="contact-name">Elina Yoon</div>
+        <div class="contact-detail">yoone@elisabethmorrow.org · elinayoonny@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-init">V</div>
+      <div>
+        <div class="contact-name">Varsha Gangu</div>
+        <div class="contact-detail">ganguvarsha@elisabethmorrow.org · ivarshagangu@gmail.com</div>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-init">R</div>
+      <div>
+        <div class="contact-name">Raven Taylor</div>
+        <div class="contact-detail">taylorr@elisabehtmorrow.org</div>
+      </div>
+    </div>
+</section>
+<div class="divider"></div>
+
+  
