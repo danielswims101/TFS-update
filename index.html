@@ -1,1296 +1,284 @@
 bash
 
-wc -c /mnt/user-data/outputs/TheForbiddenScales_Website.html
-Output
-
-101280 /mnt/user-data/outputs/TheForbiddenScales_Website.html
-
-
-bash
-
-cat > /home/claude/tfs_part1.py << 'PYEOF'
-# Part 1: CSS and opening HTML
-css = """<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Forbidden Scales — Official Records Site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{
-  --night:#07090f;--deep:#0d1120;--card:#111828;--card2:#141e30;
-  --gold:#c9a84c;--gold-l:#edd97a;--gold-d:#6e5520;
-  --teal:#2ec4aa;--text:#ede6d6;--text-m:#b0a690;--text-d:#665f50;
-  --b1:rgba(201,168,76,0.15);--b2:rgba(201,168,76,0.40);
-  --flame:#e8703a;--sea:#4aaee8;--moon:#9b8de8;--crystal:#2ec4aa;
-  --wind:#e8c96a;--sun:#f5c842;--galaxy:#c084fc;
-}
-body{background:var(--night);color:var(--text);font-family:"Crimson Pro",Georgia,serif;font-size:17px;line-height:1.8;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;z-index:0;
-  background-image:
-    radial-gradient(1px 1px at 5% 10%,rgba(255,255,255,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 15% 35%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 28% 6%,rgba(255,255,255,.55) 0%,transparent 100%),
-    radial-gradient(1px 1px at 42% 22%,rgba(255,255,255,.35) 0%,transparent 100%),
-    radial-gradient(1px 1px at 58% 48%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1.5px 1.5px at 70% 8%,rgba(255,255,255,.5) 0%,transparent 100%),
-    radial-gradient(1px 1px at 82% 30%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 92% 65%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1px 1px at 3% 72%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 22% 80%,rgba(255,255,255,.45) 0%,transparent 100%),
-    radial-gradient(1px 1px at 47% 88%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 65% 77%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1px 1px at 88% 90%,rgba(255,255,255,.35) 0%,transparent 100%),
-    radial-gradient(1px 1px at 35% 55%,rgba(255,255,255,.25) 0%,transparent 100%),
-    radial-gradient(1px 1px at 75% 42%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 10% 95%,rgba(255,255,255,.4) 0%,transparent 100%),
-    radial-gradient(1px 1px at 55% 15%,rgba(255,255,255,.3) 0%,transparent 100%),
-    radial-gradient(1px 1px at 95% 20%,rgba(255,255,255,.45) 0%,transparent 100%);
-  background-attachment:fixed;pointer-events:none}
-.page{position:relative;z-index:1}
-
-<!-- NAVIGATION -->
-<nav>
-  <div class="nav-logo">The Forbidden Scales</div>
-  <ul class="nav-links">
-    <li><a href="#dragons">Dragons</a></li>
-    <li><a href="#shards">Shards</a></li>
-    <li><a href="#balance">Balance</a></li>
-    <li><a href="#excerpts">Excerpts</a></li>
-    <li><a href="#wolves">Wolf Pack</a></li>
-    <li><a href="#companions">Companions</a></li>
-    <li><a href="#lore">Lore</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-  
-/* HERO */
-.hero{text-align:center;padding:9rem 2rem 8rem;position:relative}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 50% 50%,rgba(201,168,76,.05) 0%,transparent 70%);pointer-events:none}
-.hero-eye{font-family:"Cinzel",serif;font-size:10px;letter-spacing:.35em;color:var(--gold-d);margin-bottom:2rem;text-transform:uppercase}
-.hero h1{font-family:"Cinzel Decorative",serif;font-size:clamp(2.6rem,8vw,5.5rem);color:var(--gold-l);line-height:1.05;margin-bottom:1.5rem;text-shadow:0 0 80px rgba(201,168,76,.2),0 0 160px rgba(201,168,76,.08)}
-.hero-tag{font-size:1.1rem;font-style:italic;color:var(--text-m);max-width:560px;margin:0 auto 1.25rem;line-height:1.75}
-.hero-lore{font-size:14.5px;color:var(--text-d);max-width:580px;margin:0 auto 3.5rem;line-height:1.9}
-.hero-rule{width:160px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 3.5rem}
-.pills{display:flex;gap:.65rem;justify-content:center;flex-wrap:wrap}
-.pill{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.12em;padding:.5rem 1.2rem;border:1px solid var(--b2);border-radius:30px;color:var(--gold);text-decoration:none;transition:background .2s,color .2s}
-.pill:hover{background:rgba(201,168,76,.12);color:var(--gold-l)}
-
-/* LAYOUT */
-.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--b2),transparent)}
-.section{max-width:980px;margin:0 auto;padding:5.5rem 2rem}
-.sec-title{font-family:"Cinzel Decorative",serif;font-size:.95rem;color:var(--gold);letter-spacing:.18em;margin-bottom:.6rem;display:flex;align-items:center;gap:1rem}
-.sec-title::after{content:"";flex:1;height:1px;background:var(--b2)}
-.sec-intro{font-size:15px;font-style:italic;color:var(--text-d);max-width:700px;margin-bottom:3rem;line-height:1.9}
-.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem}
-.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
-.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.1rem}
-
-/* CARDS */
-.card{background:var(--card);border:1px solid var(--b1);border-radius:16px;padding:1.85rem;transition:border-color .25s,transform .25s,background .25s}
-.card:hover{border-color:var(--b2);transform:translateY(-3px);background:var(--card2)}
-.card-rule{height:1px;background:var(--b1);margin:1.1rem 0}
-.lbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.22em;color:var(--gold-d);margin-bottom:.5rem}
-.body-text{font-size:14.5px;color:var(--text-m);line-height:1.75}
-.body-text strong{color:var(--text);font-weight:600}
-.body-text em{color:var(--text-d)}
-
-/* TAGS */
-.tags{display:flex;flex-wrap:wrap;gap:.3rem;margin:.75rem 0}
-.tag{display:inline-block;font-size:10.5px;padding:2px 10px;border-radius:20px;letter-spacing:.05em}
-.t-wind{background:rgba(46,196,170,.1);color:#2ec4aa;border:1px solid rgba(46,196,170,.3)}
-.t-shard{background:rgba(74,174,232,.1);color:#4aaee8;border:1px solid rgba(74,174,232,.3)}
-.t-moon{background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3)}
-.t-galaxy{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}
-.t-gold{background:rgba(201,168,76,.1);color:#c9a84c;border:1px solid rgba(201,168,76,.3)}
-.t-neutral{background:rgba(255,255,255,.04);color:#776f60;border:1px solid rgba(255,255,255,.08)}
-.t-flame{background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)}
-.t-sun{background:rgba(245,200,66,.1);color:#f5c842;border:1px solid rgba(245,200,66,.3)}
-.t-purple{background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)}
-.t-crystal{background:rgba(46,196,170,.1);color:#2ec4aa;border:1px solid rgba(46,196,170,.3)}
-
-/* AVATARS */
-.av{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:15px;border:1px solid rgba(255,255,255,.1)}
-.av-a{background:rgba(201,168,76,.15);color:#c9a84c}
-.av-t{background:rgba(232,145,80,.15);color:#d4945a}
-.av-ta{background:rgba(74,174,232,.15);color:#4aaee8}
-.av-as{background:rgba(155,141,232,.15);color:#9b8de8}
-.av-tw{background:rgba(192,132,252,.15);color:#c084fc}
-.dh{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.1rem}
-.dname{font-family:"Cinzel Decorative",serif;font-size:.95rem;margin-bottom:.2rem}
-.dsub{font-size:11.5px;color:var(--text-d);letter-spacing:.07em}
-
-/* BOOKS */
-.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.25rem}
-.book-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:1.5rem;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
-.book-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
-.book-card:hover{border-color:var(--b2);transform:translateY(-3px)}
-.book-card:hover::before{opacity:1}
-.book-num{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.3em;color:var(--gold-d);margin-bottom:.5rem}
-.book-title{font-family:"Cinzel Decorative",serif;font-size:.88rem;color:var(--gold-l);margin-bottom:.75rem;line-height:1.3}
-.book-desc{font-size:13.5px;color:var(--text-m);line-height:1.7;font-style:italic}
-.book-hook{font-size:12px;color:var(--gold-d);margin-top:.65rem;font-family:"Cinzel",serif;letter-spacing:.06em;border-top:1px solid var(--b1);padding-top:.6rem}
-
-/* SHARDS */
-.shard-card{border-radius:16px;padding:1.85rem;border:1px solid;transition:transform .25s;position:relative;overflow:hidden}
-.shard-card:hover{transform:translateY(-3px)}
-.sicon{width:54px;height:54px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;border:1px solid}
-.sicon svg{display:block}
-.sname{font-family:"Cinzel Decorative",serif;font-size:1.05rem;margin-bottom:.15rem}
-.sdom{font-size:11px;letter-spacing:.12em;opacity:.6}
-.srule{height:1px;margin:1rem 0;opacity:.3}
-.slbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.2em;opacity:.55;margin-bottom:.45rem}
-.sf{background:rgba(232,112,58,.09);border-color:rgba(232,112,58,.3)}
-.sf .sicon{background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a}
-.sf .sname{color:#e8703a}.sf .srule{background:#e8703a}.sf .body-text strong{color:#e8703a}
-.ss{background:rgba(74,174,232,.09);border-color:rgba(74,174,232,.3)}
-.ss .sicon{background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8}
-.ss .sname{color:#4aaee8}.ss .srule{background:#4aaee8}.ss .body-text strong{color:#4aaee8}
-.sm{background:rgba(155,141,232,.09);border-color:rgba(155,141,232,.3)}
-.sm .sicon{background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8}
-.sm .sname{color:#9b8de8}.sm .srule{background:#9b8de8}.sm .body-text strong{color:#9b8de8}
-.sc{background:rgba(46,196,170,.08);border-color:rgba(46,196,170,.3)}
-.sc .sicon{background:rgba(46,196,170,.15);border-color:rgba(46,196,170,.4);color:#2ec4aa}
-.sc .sname{color:#2ec4aa}.sc .srule{background:#2ec4aa}.sc .body-text strong{color:#2ec4aa}
-.sw{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.28)}
-.sw .sicon{background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#e8c96a}
-.sw .sname{color:#e8c96a}.sw .srule{background:#e8c96a}.sw .body-text strong{color:#e8c96a}
-.ssu{background:rgba(245,200,66,.08);border-color:rgba(245,200,66,.3)}
-.ssu .sicon{background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842}
-.ssu .sname{color:#f5c842}.ssu .srule{background:#f5c842}.ssu .body-text strong{color:#f5c842}
-.sg{background:rgba(192,132,252,.09);border-color:rgba(192,132,252,.35)}
-.sg .sicon{background:rgba(192,132,252,.18);border-color:rgba(192,132,252,.5);color:#c084fc}
-.sg .sname{color:#c084fc}.sg .srule{background:#c084fc}.sg .body-text strong{color:#c084fc}
-
-/* BALANCE */
-.balance-card{background:var(--card);border:1px solid var(--b1);border-radius:16px;padding:2rem;margin-bottom:1.5rem;transition:border-color .25s}
-.balance-card:hover{border-color:var(--b2)}
-.bal-head{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;flex-wrap:wrap}
-.bal-name{font-family:"Cinzel Decorative",serif;font-size:1.05rem}
-.bal-vs{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.2em;color:var(--text-d);padding:.2rem .65rem;border:1px solid var(--b1);border-radius:20px}
-.bal-quote{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--b1);font-style:italic;font-size:14px;color:var(--text-d);line-height:1.75}
-
-/* WOLVES */
-.wolf-card{background:var(--card);border:1px solid var(--b1);border-radius:12px;padding:1.35rem;transition:border-color .2s,transform .2s}
-.wolf-card:hover{border-color:rgba(155,141,232,.45);transform:translateY(-2px)}
-.wname{font-family:"Cinzel Decorative",serif;font-size:12.5px;color:#9b8de8;margin-bottom:.2rem}
-.wrole{display:inline-block;font-size:10px;padding:2px 9px;border-radius:20px;background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3);margin-bottom:.75rem;letter-spacing:.08em}
-
-/* SPECIALS */
-.spec-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:1.5rem;transition:border-color .25s,transform .25s}
-.spec-card:hover{border-color:rgba(192,132,252,.4);transform:translateY(-3px)}
-.spec-num{font-family:"Cinzel",serif;font-size:9px;letter-spacing:.3em;color:rgba(192,132,252,.6);margin-bottom:.4rem}
-.spec-title{font-family:"Cinzel Decorative",serif;font-size:.85rem;color:#c084fc;margin-bottom:.65rem;line-height:1.3}
-
-/* QUEENS */
-.queen-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:1.4rem;transition:border-color .25s,transform .25s;text-align:center}
-.queen-card:hover{border-color:var(--b2);transform:translateY(-3px)}
-.queen-av{width:56px;height:56px;border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:16px;border:1px solid}
-.queen-name{font-family:"Cinzel Decorative",serif;font-size:.8rem;margin-bottom:.25rem}
-.queen-tribe{font-size:11px;color:var(--text-d);letter-spacing:.1em;margin-bottom:.5rem}
-.queen-desc{font-size:13px;color:var(--text-m);line-height:1.6}
-
-/* SOW CHARS */
-.sow-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:1.65rem;transition:border-color .25s,transform .25s}
-.sow-card:hover{border-color:var(--b2);transform:translateY(-3px)}
-.sow-name{font-family:"Cinzel Decorative",serif;font-size:1rem;margin-bottom:.2rem}
-.sow-sub{font-size:11.5px;color:var(--text-d);letter-spacing:.07em;margin-bottom:.75rem}
-.weapon-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.12em;padding:.25rem .75rem;border-radius:20px;margin-bottom:.75rem}
-
-/* TEAM */
-.team-card{background:var(--card);border:1px solid var(--b1);border-radius:14px;padding:1.5rem;text-align:center;transition:border-color .2s,transform .2s}
-.team-card:hover{border-color:var(--b2);transform:translateY(-2px)}
-.tav{width:58px;height:58px;border-radius:50%;margin:0 auto .9rem;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:18px;color:var(--gold)}
-.tname{font-family:"Cinzel Decorative",serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.35rem}
-.trole{font-size:12.5px;color:var(--text-d);line-height:1.55}
-
-/* CONTACT */
-.contact-block{background:var(--card);border:1px solid var(--b1);border-radius:14px;overflow:hidden}
-.contact-row{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.65rem;border-bottom:1px solid var(--b1)}
-.contact-row:last-child{border-bottom:none}
-.cinit{width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-family:"Cinzel Decorative",serif;font-size:13px;color:var(--gold);flex-shrink:0}
-.cname{font-family:"Cinzel Decorative",serif;font-size:10.5px;color:var(--gold-l);margin-bottom:.15rem}
-.cdet{font-size:13px;color:var(--text-d)}
-
-/* PETS */
-.pet-card{background:var(--card);border:1px solid var(--b1);border-radius:12px;padding:1.35rem}
-.pname{font-family:"Cinzel Decorative",serif;font-size:12px;color:var(--teal);margin-bottom:.2rem}
-.pown{font-size:11px;color:var(--text-d);margin-bottom:.6rem;letter-spacing:.08em}
-
-/* EXCERPT */
-.excerpt{background:var(--card);border-left:3px solid var(--gold);border-top:1px solid var(--b1);border-right:1px solid var(--b1);border-bottom:1px solid var(--b1);border-radius:0 12px 12px 0;padding:1.5rem 1.85rem;margin-bottom:1.85rem}
-.elbl{font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.22em;color:var(--gold-d);margin-bottom:.75rem}
-.etext{font-style:italic;color:var(--text-m);font-size:15.5px;line-height:1.85}
-
-/* SOW BANNER */
-.sow-banner{background:linear-gradient(135deg,rgba(232,112,58,.12) 0%,rgba(74,174,232,.08) 100%);border:1px solid rgba(232,112,58,.35);border-radius:16px;padding:2rem;margin-bottom:2rem;position:relative;overflow:hidden}
-.sow-banner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#e8703a,#4aaee8)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--b1);text-align:center;padding:3rem 2rem;color:var(--text-d);font-family:"Cinzel",serif;font-size:9.5px;letter-spacing:.15em;line-height:2.2}
-
-@media(max-width:640px){
-  nav{padding:.75rem 1rem}.nav-links{gap:.85rem}
-  .section{padding:3.5rem 1.25rem}.hero{padding:5rem 1.25rem 4rem}.hero h1{font-size:2.4rem}
-}
-</style>
-</head>
-<body>
-<div class="page">
-"""
-
-with open('/home/claude/tfs_site.html', 'w') as f:
-    f.write(css)
-
-print("Part 1 done:", len(css), "chars")
-PYEOF
-python3 /home/claude/tfs_part1.py
-Output
-
-Part 1 done: 17061 chars
-
-
-bash
-
-cat >> /home/claude/tfs_site.html << 'NAVHERO'
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">The Forbidden Scales</div>
-  <ul class="nav-links">
-    <li><a href="#dragons">Dragons</a></li>
-    <li><a href="#books">Books</a></li>
-    <li><a href="#sow">Scales of War</a></li>
-    <li><a href="#shards">Shards</a></li>
-    <li><a href="#queens">Queens</a></li>
-    <li><a href="#balance">Balance</a></li>
-    <li><a href="#excerpts">Excerpts</a></li>
-    <li><a href="#wolves">Wolf Pack</a></li>
-    <li><a href="#companions">Companions</a></li>
-    <li><a href="#lore">Lore</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<div class="hero-nav-pills">
-  <a href="#dragons" class="hero-pill">Dragon Records</a>
-  <a href="#shards" class="hero-pill">The Shards</a>
-  <a href="#balance" class="hero-pill">The Balance</a>
-  <a href="#excerpts" class="hero-pill">Excerpts</a>
-  <a href="#wolves" class="hero-pill">Wolf Pack</a>
-  <a href="#companions" class="hero-pill">Companions</a>
-  <a href="#lore" class="hero-pill">Lore</a>
-  <a href="#team" class="hero-pill">The Authors</a>
-</div>
-<div class="divider"></div>
-
-NAVHERO
-echo "Nav/Hero done"
-Output
-
-Nav/Hero done
-
-
-bash
-
 python3 << 'PYEOF'
-dragons_section = '''<!-- DRAGON RECORDS -->
-<section class="section" id="dragons">
-  <div class="sec-title">Dragon Records</div>
-  <p class="sec-intro">Five dragons. Four authors. Every one of them a main character. Each written by a different member of the team — giving every dragon a wholly distinct voice, a wholly distinct history, and a wholly distinct weight to carry. Twilight belongs to all four authors together. These are not supporting characters. Every single one of them is the protagonist of their own story.</p>
-  <div class="g2">
+# SVG icons - same as last working version
+FLAME_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><path d="M16 3 C16 3 20 9 19 13 C22 10 23 7 23 7 C26 13 25 18 22 21 C24 19 24 22 23 24 C21 28 17 29 14 28 C9 26 7 21 8 17 C9 14 12 13 12 13 C10 17 13 19 15 18 C13 15 14 10 16 3Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M16 18 C16 18 18 20 17 23 C16 25 14 25 13 23 C12 21 14 18 16 18Z" fill="currentColor" opacity="0.6"/><circle cx="16" cy="13" r="1" fill="currentColor" opacity="0.4"/></svg>'
+SEA_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><path d="M4 14 Q8 10 12 14 Q16 18 20 14 Q24 10 28 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M4 19 Q8 15 12 19 Q16 23 20 19 Q24 15 28 19" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M10 8 L16 4 L22 8" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><circle cx="16" cy="4" r="1.2" fill="currentColor" opacity="0.5"/></svg>'
+MOON_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><path d="M20 6 C13 7 8 13 9 20 C10 26 16 30 22 28 C16 29 10 24 10 18 C10 11 15 6 22 6Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" fill="currentColor" opacity="0.12"/><circle cx="23" cy="9" r="1" fill="currentColor" opacity="0.6"/><circle cx="26" cy="6" r="0.7" fill="currentColor" opacity="0.4"/><circle cx="27" cy="14" r="0.5" fill="currentColor" opacity="0.3"/></svg>'
+CRYSTAL_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><polygon points="16,3 22,9 22,20 16,26 10,20 10,9" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><polygon points="16,3 22,9 16,12 10,9" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round" fill="currentColor" opacity="0.1"/><polygon points="16,26 22,20 16,17 10,20" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round" fill="currentColor" opacity="0.08"/><circle cx="16" cy="14.5" r="2" stroke="currentColor" stroke-width="0.8" fill="currentColor" opacity="0.2"/></svg>'
+WIND_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><path d="M4 11 Q10 9 16 11 Q22 13 26 10 C28 8 28 5 26 4 C24 3 22 5 24 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M4 16 Q12 14 20 16 Q26 18 28 16" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M4 21 Q9 19 14 21 Q19 23 22 21 C24 20 25 17 23 16 C21 15 19 17 21 19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M6 13 L3 16 L6 19" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>'
+SUN_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:30px;height:30px"><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="1.3"/><circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.2"/><line x1="16" y1="3" x2="16" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="25" x2="16" y2="29" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="3" y1="16" x2="7" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="25" y1="16" x2="29" y2="16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><line x1="6.5" y1="6.5" x2="9.4" y2="9.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="22.6" y1="22.6" x2="25.5" y2="25.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="25.5" y1="6.5" x2="22.6" y2="9.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="9.4" y1="22.6" x2="6.5" y2="25.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+GALAXY_SVG = '<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:34px;height:34px"><ellipse cx="16" cy="16" rx="12" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(-30 16 16)"/><ellipse cx="16" cy="16" rx="12" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(30 16 16)" opacity="0.6"/><circle cx="16" cy="16" r="2.5" fill="currentColor" opacity="0.5"/><circle cx="16" cy="16" r="1.2" fill="currentColor"/><circle cx="9" cy="10" r="0.8" fill="currentColor" opacity="0.5"/><circle cx="23" cy="22" r="0.8" fill="currentColor" opacity="0.5"/><path d="M16 4 L16.5 7 L16 7.5 L15.5 7Z" fill="currentColor" opacity="0.6"/><path d="M16 25 L16.5 28 L16 28.5 L15.5 28Z" fill="currentColor" opacity="0.4"/><path d="M4 16 L7 16.5 L7.5 16 L7 15.5Z" fill="currentColor" opacity="0.4"/><path d="M25 16 L28 16.5 L28.5 16 L28 15.5Z" fill="currentColor" opacity="0.6"/></svg>'
+ARROW_SVG = '<svg class="arrow-svg" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 6 L14 6 M10 2 L14 6 L10 10" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
-    <!-- AGATE -->
-    <div class="card">
-      <div class="dh">
-        <div class="av av-a">A</div>
-        <div><div class="dname" style="color:#c9a84c">Agate</div><div class="dsub">WindScale &nbsp;·&nbsp; Queen\'s Regent &nbsp;·&nbsp; Written by Elina</div></div>
-      </div>
-      <div class="tags">
-        <span class="tag t-wind">WindScale</span><span class="tag t-gold">Pescatarian</span>
-        <span class="tag t-neutral">Photographic Memory</span><span class="tag t-gold">Queen\'s Regent</span>
-        <span class="tag t-neutral">Bound to Saiber</span>
-      </div>
-      <div class="card-rule"></div>
-      <div class="lbl">Appearance</div>
-      <div class="body-text">Immediately striking — her scales are a layered blend of <strong>tangerine orange and deep amber-gold</strong>, the colours shifting between them as she moves like something caught between fire and honey. Her wings are a softer clementine, underbelly faint apricot. Waves of golden scales march down her spine and forearms, catching light like armour she was born wearing. Her claws are pure gold. Her eyes are amber with bright gold flecks — eyes that look like they are lit from behind. She wears copper and bronze armbands, an amber necklace, and the long winding golden tailband of a high-ranking advisor.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Power</div>
-      <div class="body-text">During moments of intense emotion — real joy, grief, white-hot rage — Agate generates <strong>uncontrolled energy outbursts that command the wind</strong>. Early on, entirely involuntary. Later, she learns to reach for it deliberately — turning emotion into a weapon, a shield, or a shelter. At her strongest, the winds around her respond to the direction of her thoughts before she consciously commands them. Her photographic memory means she never forgets anything. Not victories. Not wounds.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">The Bond with Saiber</div>
-      <div class="body-text">Agate and Saiber share something that cannot be fully explained and has never needed to be. It is not simply companionship — it is a <strong>metaphysical and literal binding</strong> in the fantasy sense of the word. Where Agate goes, Saiber follows, and where Saiber is threatened, Agate\'s power responds before her mind does. He saved her life at her promotion ceremony, throwing himself at an attacker without hesitation. She did not ask him to. He simply knew. Their bond is one of the oldest mysteries in the records.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Personality Arc & Role</div>
-      <div class="body-text">Begins <strong>nervous and over-careful</strong> — someone who triple-checks everything and apologises out of reflex. Cleverness hidden behind politeness. Over the course of the series she becomes funny, warm, and startlingly calm under pressure — the kind of leader others follow without being asked, without her ever noticing it\'s happening. As Queen\'s Regent she holds enormous political power and almost no personal freedom, bound to the throne\'s interests even when they conflict with her own. She is, by every measure, the emotional centre of the group.</div>
-    </div>
+# Balance icons (larger, colored)
+def bal_icon(color, svg_inner):
+    return f'<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;flex-shrink:0">{svg_inner}</svg>'
 
-    <!-- TOPAZ -->
-    <div class="card">
-      <div class="dh">
-        <div class="av av-t">T</div>
-        <div><div class="dname" style="color:#d4945a">Topaz</div><div class="dsub">WindScale &nbsp;·&nbsp; Prince &nbsp;·&nbsp; Written by Daniel</div></div>
-      </div>
-      <div class="tags">
-        <span class="tag t-wind">WindScale</span><span class="tag t-gold">Prince</span>
-        <span class="tag t-flame">Snot Wind</span><span class="tag t-neutral">Bonded to Fang</span>
-      </div>
-      <div class="card-rule"></div>
-      <div class="lbl">Appearance</div>
-      <div class="body-text"><strong>Deep tangerine scales shot through with dark gold flecks</strong>. Golden-brown eyes with a sharp intelligence that evaluates everything and gives away nothing. A winding golden tailband shaped as a coiled snake, a whip-thin tail, claws as sharp as obsidian, teeth described as steel blades. A scar cuts through the thick of his tail — origin never officially recorded, though it came from a confrontation he refuses to explain. His pouch, worn at his side, has never been opened in front of anyone. His mother\'s servants once prepared an orange and cinnamon perfume for his nightmares, and he told every visiting dragonet it was hers.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Power — The Snot Wind</div>
-      <div class="body-text"><strong>Topaz can blast concentrated wind from his snout.</strong> This ability is officially, permanently, and non-negotiably named Snot Wind by Daniel, the author, under direct threat of resignation from TFS if changed. Despite the name it is genuinely devastating at close range — a focused burst of wind pressure that can knock a dragon twice his size off their feet, deflect projectiles, and in combat disorient an opponent\'s balance completely before Topaz follows with something worse.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Personality & History</div>
-      <div class="body-text">Bitter, haughty, and protective in ways he would never voluntarily admit. He has been let down before — by people he trusted, by the idea that royalty meant safety — and constructed armour of arrogance around that history so effectively that most people never get past it. The ones who do get a dragon who would walk into something catastrophic for them without hesitation. He has what the records describe as <strong>moon eyes for Agate</strong> — which he would deny, loudly, unconvincingly. He killed his own father to save Eclipse. He broke down in grief immediately after. He is not over it.</div>
-    </div>
+BAL_FLAME = bal_icon('#e8703a', '<path d="M18 4 C18 4 22 10 21 15 C25 11 26 8 26 8 C30 16 28 22 24 26 C27 23 27 27 25 29 C23 34 18 35 15 34 C10 32 8 26 10 21 C11 17 15 16 15 16 C13 21 17 24 19 22 C17 18 18 11 18 4Z" stroke="#e8703a" stroke-width="1.3" stroke-linejoin="round" fill="#e8703a" fill-opacity="0.12"/><path d="M18 23 C18 23 21 26 19 29 C18 31 15 31 14 29 C13 27 16 23 18 23Z" fill="#e8703a" opacity="0.5"/>')
+BAL_SEA = bal_icon('#4aaee8', '<path d="M4 16 Q9 11 14 16 Q19 21 24 16 Q29 11 33 16" stroke="#4aaee8" stroke-width="1.5" stroke-linecap="round"/><path d="M4 22 Q9 17 14 22 Q19 27 24 22 Q29 17 33 22" stroke="#4aaee8" stroke-width="1.5" stroke-linecap="round"/><path d="M12 9 L18 4 L24 9" stroke="#4aaee8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/><circle cx="18" cy="4" r="1.5" fill="#4aaee8" opacity="0.5"/>')
+BAL_SUN = bal_icon('#f5c842', '<circle cx="18" cy="18" r="6" stroke="#f5c842" stroke-width="1.4" fill="#f5c842" fill-opacity="0.15"/><line x1="18" y1="4" x2="18" y2="9" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/><line x1="18" y1="27" x2="18" y2="32" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="18" x2="9" y2="18" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/><line x1="27" y1="18" x2="32" y2="18" stroke="#f5c842" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="7" x2="11" y2="11" stroke="#f5c842" stroke-width="1.3" stroke-linecap="round"/><line x1="25" y1="25" x2="29" y2="29" stroke="#f5c842" stroke-width="1.3" stroke-linecap="round"/><line x1="29" y1="7" x2="25" y2="11" stroke="#f5c842" stroke-width="1.3" stroke-linecap="round"/><line x1="11" y1="25" x2="7" y2="29" stroke="#f5c842" stroke-width="1.3" stroke-linecap="round"/>')
+BAL_MOON = bal_icon('#9b8de8', '<path d="M23 6 C14 8 9 17 10 25 C11 32 19 37 26 35 C19 36 12 30 12 22 C12 14 18 8 26 8 C25.2 7.3 24.1 6.6 23 6Z" stroke="#9b8de8" stroke-width="1.3" stroke-linejoin="round" fill="#9b8de8" fill-opacity="0.12"/><circle cx="28" cy="10" r="1.2" fill="#9b8de8" opacity="0.6"/><circle cx="32" cy="7" r="0.8" fill="#9b8de8" opacity="0.4"/><circle cx="33" cy="17" r="0.6" fill="#9b8de8" opacity="0.3"/>')
+BAL_WIND = bal_icon('#e8c96a', '<path d="M4 12 Q12 9 20 12 Q28 15 33 11 C36 8 36 5 33 4 C30 3 28 6 31 8" stroke="#e8c96a" stroke-width="1.4" stroke-linecap="round"/><path d="M4 18 Q14 15 25 18 Q31 20 34 18" stroke="#e8c96a" stroke-width="1.5" stroke-linecap="round"/><path d="M4 24 Q11 21 18 24 Q24 27 28 24 C31 23 32 19 29 18 C26 17 24 20 27 22" stroke="#e8c96a" stroke-width="1.4" stroke-linecap="round"/>')
+BAL_CRYSTAL = bal_icon('#2ec4aa', '<polygon points="18,3 25,10 25,24 18,31 11,24 11,10" stroke="#2ec4aa" stroke-width="1.3" stroke-linejoin="round" fill="#2ec4aa" fill-opacity="0.08"/><polygon points="18,3 25,10 18,14 11,10" stroke="#2ec4aa" stroke-width="0.9" stroke-linejoin="round" fill="#2ec4aa" fill-opacity="0.12"/><polygon points="18,31 25,24 18,20 11,24" stroke="#2ec4aa" stroke-width="0.9" stroke-linejoin="round" fill="#2ec4aa" fill-opacity="0.1"/><circle cx="18" cy="17" r="2.5" stroke="#2ec4aa" stroke-width="1" fill="#2ec4aa" fill-opacity="0.2"/>')
 
-    <!-- TALON -->
-    <div class="card">
-      <div class="dh">
-        <div class="av av-ta">T</div>
-        <div><div class="dname" style="color:#4aaee8">Talon</div><div class="dsub">ShardScale &nbsp;·&nbsp; Servant of Ky &nbsp;·&nbsp; Written by Raven</div></div>
-      </div>
-      <div class="tags">
-        <span class="tag t-shard">ShardScale</span><span class="tag t-neutral">Vegan</span>
-        <span class="tag t-neutral">No Power</span><span class="tag t-neutral">Bonded to Dyno</span>
-      </div>
-      <div class="card-rule"></div>
-      <div class="lbl">Appearance</div>
-      <div class="body-text">Small and scrawny — easily overlooked, which suits him. <strong>Light icy-blue scales</strong>, dark blue dots across the underside of his wings like a constellation pressed into his skin. Electric-blue eyes sharper than they first appear. A small leather pouch around his neck — what\'s inside has never been explained. A crystal dagger with a smooth rock handle, watermelon tourmaline fragments frozen into it, and the inscription: <em>Failure is not trying, whilst winning is putting up a fight.</em></div>
-      <div class="card-rule"></div>
-      <div class="lbl">Power — None</div>
-      <div class="body-text">In a world entirely defined by elemental power, Talon has <strong>nothing</strong>. No ability. No domain. No gift from his bloodline. He has survived entirely through wit, adaptability, and a stubbornness that refuses to let circumstances be the end of the story. Whether this makes him the weakest member of the group or the most dangerous depends entirely on who you ask. Several characters have made the mistake of assuming the former.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">History & Personality</div>
-      <div class="body-text">Parents and sister taken just after hatching. Forced to pass tests to prove his worth to survive the palace. His sister became the Queen\'s favourite and unrecognisable. He found Aquamarine through a collision and shattered glass — she became his first family. Then he found Ky. Then the others. <strong>He does not believe in luck. He believes in people.</strong> Deeply shy with everyone except those he loves. Fiercely protective of Dyno and most of all of Ky, whom he regards not as a master but as a brother.</div>
-    </div>
+# Weapon icons
+LANCE = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="2" y1="14" x2="14" y2="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="8" x2="14" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+SPEAR = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="5" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="11" y1="5" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+TRIDENT = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="6" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="10" x2="6" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+DAGGER = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><path d="M4 12 L12 4 M9 4 L12 4 L12 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+SWORD = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="3" y1="13" x2="13" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="3" x2="13" y2="3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="13" y1="3" x2="13" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+BOW = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><path d="M2 8 Q6 4 10 8 Q14 12 14 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>'
+STAFF = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/><line x1="8" y1="2" x2="8" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="12" x2="8" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="2" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+GALAXY_WPN = '<svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><ellipse cx="8" cy="8" rx="5" ry="2" stroke="currentColor" stroke-width="1.1" transform="rotate(-30 8 8)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" opacity=".5"/></svg>'
 
-    <!-- ASH -->
-    <div class="card">
-      <div class="dh">
-        <div class="av av-as">A</div>
-        <div><div class="dname" style="color:#9b8de8">Ash</div><div class="dsub">MoonScale &nbsp;·&nbsp; Secret Heir &nbsp;·&nbsp; Written by Varsha</div></div>
-      </div>
-      <div class="tags">
-        <span class="tag t-moon">MoonScale</span><span class="tag t-gold">Royalty</span>
-        <span class="tag t-neutral">Night-Powered</span><span class="tag t-neutral">Bonded to Storm</span>
-        <span class="tag t-neutral">Eclipse\'s Cousin</span>
-      </div>
-      <div class="card-rule"></div>
-      <div class="lbl">Appearance</div>
-      <div class="body-text"><strong>Black and deep navy-blue in a gradient</strong> that fades seamlessly into shadow — in dim light she is nearly invisible, which is often deliberate. Tiny silver stars scattered across her wings like actual sky pressed into membrane. Blue eyes with a depth that seems greater than it should, as though there is more light behind them than in front. In full moonlight she is breathtaking. In daylight she looks like something that belongs elsewhere.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Power & Status</div>
-      <div class="body-text">Draws power <strong>directly from the moon</strong> — strength rises and falls with the lunar cycle. At full moon, formidable. In direct sunlight, diminished. A MoonScale royal, technically in line to the throne after Princess Cyllene and Prince Nighthunter — but she is a runaway, hiding what she is. She carves weapons from wood in the dark and calls them daggers. She carries citrine stones. She carved Eclipse\'s face from memory and embedded the jewels as eyes.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Personality & Bond with Storm</div>
-      <div class="body-text">Guarded with strangers — not unkindness but earned caution. Get past that wall and find someone <strong>fun, intensely driven, and frighteningly smart</strong>, with a dry humour that catches people off guard. She says nothing she does not mean. Ash and Storm share a connection that cannot be explained and has never needed to be — they communicate in feelings and images across enormous distances. Storm\'s hunting instinct and Ash\'s strategic thinking have never once conflicted.</div>
-    </div>
-
-    <!-- TWILIGHT -->
-    <div class="card">
-      <div class="dh">
-        <div class="av av-tw">Tw</div>
-        <div><div class="dname" style="color:#c084fc">Twilight</div><div class="dsub">GalaxyScale &nbsp;·&nbsp; "Twiy" &nbsp;·&nbsp; Shared by all four authors</div></div>
-      </div>
-      <div class="tags">
-        <span class="tag t-galaxy">GalaxyScale</span><span class="tag t-purple">Wanted</span>
-        <span class="tag t-neutral">Dual Domain</span><span class="tag t-neutral">Bonded to Angel</span>
-      </div>
-      <div class="card-rule"></div>
-      <div class="lbl">Appearance</div>
-      <div class="body-text"><strong>Pink and purple scales that shift and catch light differently depending on the angle</strong> — like a gemstone that refuses to be singular. A dab of royal blue at the end of her tail. Rose-gold claws. And her eyes: look closely and there is a star-shaped marking in the iris — a birthmark in the shape of a constellation. It does not move. It does not change. It has been there since she hatched.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Power</div>
-      <div class="body-text">As a GalaxyScale, Twilight <strong>draws from the galaxy and stars simultaneously</strong> — light and dark in equal measure. During extreme emotion she releases uncontrolled blasts of raw power difficult to predict and harder to stop. After being rescued from the SeaScale dungeons by Princess Pearl and the group, she said: <em>"The stars will shine bright tonight. But you will not live to see them."</em> A beam of pure starlight struck her attacker down and burned them to ash. She was horrified. She did not know she could do that.</div>
-      <div class="card-rule"></div>
-      <div class="lbl">Personality & Status</div>
-      <div class="body-text">Kind without conditions. Adventurous to a fault. Constitutionally incapable of being anything other than completely honest even when honesty is the least convenient option. Funny, generous, recklessly clumsy. She calls herself <strong>Twiy</strong>. Currently wanted by an unknown faction for reasons not yet disclosed. She does not know yet. The people who do know have decided, for now, not to tell her.</div>
-    </div>
-
-  </div>
-</section>
-<div class="divider"></div>
-'''
-
-with open('/home/claude/tfs_site.html', 'a') as f:
-    f.write(dragons_section)
-print("Dragons section done:", len(dragons_section))
-PYEOF
-Output
-
-Dragons section done: 13312
-
-
-bash
-
-python3 << 'PYEOF'
-books = '''<!-- THE BOOKS -->
+content = f'''
+<!-- ══ BOOKS ══ -->
 <section class="section" id="books">
   <div class="sec-title">The Forbidden Scales — The Books</div>
   <p class="sec-intro">Twenty main volumes. Fifteen special stories and editions. Each book building on the last, each one a step deeper into a world that keeps revealing new rooms. No spoilers. Only promises — and hooks designed to keep you up past midnight.</p>
-
   <div class="books-grid">
-    <div class="book-card">
-      <div class="book-num">Book One</div>
-      <div class="book-title">The Heartstonian Friendship</div>
-      <div class="book-desc">Five dragons from different tribes, different ranks, different worlds — thrown together by circumstances none of them chose. Before the powers, before the politics, before everything else: the moment that will either save or doom all of them. The first question the book asks is simple. Are they really friends? The answer will take twenty books to fully deliver.</div>
-      <div class="book-hook">The world needs them to trust each other. The world has not told them this yet.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Two</div>
-      <div class="book-title">A Revival</div>
-      <div class="book-desc">Something that was believed to be over is not over. Something believed to be dead is not dead. The group, barely held together after Book One, must now contend with a threat that should not exist — and the discovery that some of what they were told about the world was deliberately, carefully wrong.</div>
-      <div class="book-hook">They buried it. They did not bury it deep enough.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Three</div>
-      <div class="book-title">The True Awakening</div>
-      <div class="book-desc">Powers begin to shift. Things dormant come online. Things assumed understood turn out to be only partly understood. For some, this is a gift. For others, it is the thing they were most afraid of. The world gets bigger and more dangerous in equal measure.</div>
-      <div class="book-hook">The power was always there. The question is what it will do now that it is awake.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Four</div>
-      <div class="book-title">Heated Rebellion</div>
-      <div class="book-desc">Someone has had enough. A rebellion is building — not only among the dragons, but within the group itself. Loyalties that seemed certain are tested. Old alliances crack. Fire, in both the literal and metaphorical sense, is everywhere. This is the book where the series stops being about finding your place and starts being about fighting for it.</div>
-      <div class="book-hook">You can only push someone so far. They pushed too far.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Five</div>
-      <div class="book-title">The Fractured Crown</div>
-      <div class="book-desc">Royalty has never been safe, and now it is not even stable. The thrones of the dragon world are cracking — politically, physically, personally. The question of who deserves power — and who has simply inherited it — becomes unavoidable and unanswerable.</div>
-      <div class="book-hook">The crown was never a gift. It was always a trap.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Six</div>
-      <div class="book-title">Shards of the Forgotten</div>
-      <div class="book-desc">History returns. Ancient Shard bloodlines believed extinct or erased begin to resurface — and with them, answers to questions the group has been asking since Book One. The world is older than anyone told them. The Balance is older still. It has been broken before, and someone made sure no one would remember.</div>
-      <div class="book-hook">They erased the records. They forgot that some of the records walked away.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Seven</div>
-      <div class="book-title">When Stars Burn Dark</div>
-      <div class="book-desc">Twilight and Ash step into the foreground. The galaxy and the moon — light and dark, star and shadow — their arcs converge here in ways neither anticipated. This is the book about what it means to carry power you did not ask for, and what happens when you finally stop running from it.</div>
-      <div class="book-hook">She stopped running. The darkness had been waiting for exactly that moment.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Eight</div>
-      <div class="book-title">The Last Correspondence</div>
-      <div class="book-desc">The Wheel is cracking. The Balance — the ancient system of opposing powers that keeps the world stable — is failing, and the group is at the centre of it. This is the book where the consequences of everything that has happened since Book One finally arrive all at once.</div>
-      <div class="book-hook">The letters stopped arriving. That means one of two things. Neither one is good.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Nine</div>
-      <div class="book-title">Eclipse of the Forbidden</div>
-      <div class="book-desc">Eclipse lives. Eclipse has always lived. And now Eclipse is no longer in the background. The most powerful dragon in the series steps forward — and the group must decide what side of that event they want to be on. The word "forbidden" finally becomes clear.</div>
-      <div class="book-hook">She told them she was gone. She never said it was permanent.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Ten</div>
-      <div class="book-title">The Final Scale</div>
-      <div class="book-desc">The end of the first half. What was broken, what was built, what was lost, and what remains. After ten books of a world getting bigger and more dangerous, this one asks: what does it look like when it finally takes a breath? Every main character gets an ending that is true to who they are. Whether that ending is happy depends on what you consider happiness.</div>
-      <div class="book-hook">The scale tips. The world holds its breath. One side wins. Then the second half begins.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Eleven</div>
-      <div class="book-title">Blood of the Unbroken</div>
-      <div class="book-desc">Something survived the events of Book Ten that should not have. The group, scattered and changed, is forced to reunite — but the people who come back are not the same people who separated. They have been remade by what happened to them. Whether they can still trust each other is a question none of them want to answer out loud.</div>
-      <div class="book-hook">The scar healed wrong. Now it has to be broken open again.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Twelve</div>
-      <div class="book-title">The Hollow Throne</div>
-      <div class="book-desc">The seat of power in the dragon world is empty. Every faction wants to fill it. Every faction has a reason no other faction should. The group is caught between political forces bigger than any of them — and discovering that the throne was not empty by accident.</div>
-      <div class="book-hook">Empty seats are not vacant. They are invitations to the wrong kind of dragon.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Thirteen</div>
-      <div class="book-title">The Starless Age</div>
-      <div class="book-desc">The sky goes dark. Not metaphorically. Not gradually. All at once, something extinguishes the stars visible from the dragon world — and both Sun Shards and Galaxy Shards feel it in their bones. This is the book where the threat stops being political and becomes something much, much older.</div>
-      <div class="book-hook">The stars are not gone. They are being held somewhere. The question is by what.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Fourteen</div>
-      <div class="book-title">The War of the Wheel</div>
-      <div class="book-desc">The Correspondence — the ancient balance of opposing Shard bloodlines — goes to war with itself. Shard against Shard, ancient law against ancient law. The group must find a way to stand in the middle of a conflict that has been coming for centuries without being destroyed by either side.</div>
-      <div class="book-hook">When the elements fight each other, the world is the battlefield.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Fifteen</div>
-      <div class="book-title">Shadow and Ruin</div>
-      <div class="book-desc">ShadowHunter. The spirit that possessed Eclipse, that haunted the group across continents, that seemed impossible to permanently stop. This is her book. The history no one knew. The reason she is what she is. Understanding her will not make her safe. But it might make her stoppable.</div>
-      <div class="book-hook">She was not always this. Something made her this. That something still exists.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Sixteen</div>
-      <div class="book-title">The Drowned Kingdom</div>
-      <div class="book-desc">Deep beneath the ocean there is a kingdom that the SeaScales do not talk about and the other tribes do not know exists. This book goes there. What they find changes the history of every tribe on the continent — and explains something about the original Heartstone that no living dragon understood.</div>
-      <div class="book-hook">They call it drowned. The dragons inside it call it home.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Seventeen</div>
-      <div class="book-title">Children of the Galaxy</div>
-      <div class="book-desc">The GalaxyScales have no queen. They have no official territory, no formal recognition, no throne. Goldstone holds them together through sheer force of will and something older than politics. This book is their story — where they came from, why they hide, what they are waiting for.</div>
-      <div class="book-hook">Every tribe has a history. The GalaxyScales have a secret instead.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Eighteen</div>
-      <div class="book-title">The Price of the Heartstone</div>
-      <div class="book-desc">The Heartstone — created by all the tribes\' Shards, said to be one of the greatest objects of power in the world — is found. What it costs to use it, who has been keeping it, and what it was actually built to do are three completely different answers from what anyone expected.</div>
-      <div class="book-hook">They said it could save the world. They didn\'t say what it would cost.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Nineteen</div>
-      <div class="book-title">The Age Before</div>
-      <div class="book-desc">A book told entirely in the past. The world fifteen years ago. Night and Luna. The GalaxyScales\' secret home before it was revealed. The first meeting that started everything. The war that was already coming before any of the main characters hatched. Context for every single thing that has happened since Book One.</div>
-      <div class="book-hook">Now you know why. Now go back and reread everything.</div>
-    </div>
-    <div class="book-card">
-      <div class="book-num">Book Twenty</div>
-      <div class="book-title">The Forbidden Scales</div>
-      <div class="book-desc">The final book. The same title as the series. The ending of everything. The Wheel either turns again or it does not. The Balance either holds or it breaks permanently. Every character who has made it this far gets the ending they have been moving toward since the beginning. No spoilers. Only this: the title is not a coincidence.</div>
-      <div class="book-hook">It was always going to end here. The scales were always going to tip this way. They just didn\'t know which way was which.</div>
-    </div>
+    <div class="book-card"><div class="book-num">Book One</div><div class="book-title">The Heartstonian Friendship</div><div class="book-desc">Five dragons from different tribes, different ranks, different worlds — thrown together by circumstances none of them chose. Before the powers, before the politics, before everything else: the moment that will either save or doom all of them.</div><div class="book-hook">The world needs them to trust each other. The world has not told them this yet.</div></div>
+    <div class="book-card"><div class="book-num">Book Two</div><div class="book-title">A Revival</div><div class="book-desc">Something believed to be over is not over. Something believed to be dead is not dead. The group, barely held together, must contend with a threat that should not exist — and the discovery that some of what they were told about the world was deliberately, carefully wrong.</div><div class="book-hook">They buried it. They did not bury it deep enough.</div></div>
+    <div class="book-card"><div class="book-num">Book Three</div><div class="book-title">The True Awakening</div><div class="book-desc">Powers begin to shift. Things dormant come online. Things assumed understood turn out to be only partly understood. For some, this is a gift. For others, it is the thing they were most afraid of.</div><div class="book-hook">The power was always there. The question is what it will do now that it is awake.</div></div>
+    <div class="book-card"><div class="book-num">Book Four</div><div class="book-title">Heated Rebellion</div><div class="book-desc">Someone has had enough. A rebellion is building — not only among dragons, but within the group itself. Loyalties that seemed certain are tested. Old alliances crack. Fire, literal and metaphorical, is everywhere.</div><div class="book-hook">You can only push someone so far. They pushed too far.</div></div>
+    <div class="book-card"><div class="book-num">Book Five</div><div class="book-title">The Fractured Crown</div><div class="book-desc">Royalty has never been safe, and now it is not even stable. The thrones of the dragon world are cracking — politically, physically, personally. The question of who deserves power, and who has simply inherited it, becomes unavoidable.</div><div class="book-hook">The crown was never a gift. It was always a trap.</div></div>
+    <div class="book-card"><div class="book-num">Book Six</div><div class="book-title">Shards of the Forgotten</div><div class="book-desc">History returns. Ancient Shard bloodlines believed extinct begin to resurface — and with them, answers to questions the group has been asking since Book One. The world is older than anyone told them. The Balance has been broken before.</div><div class="book-hook">They erased the records. They forgot that some of the records walked away.</div></div>
+    <div class="book-card"><div class="book-num">Book Seven</div><div class="book-title">When Stars Burn Dark</div><div class="book-desc">Twilight and Ash step into the foreground. The galaxy and the moon — light and dark, star and shadow — their arcs converge here in ways neither anticipated. This is the book about what it means to carry power you did not ask for.</div><div class="book-hook">She stopped running. The darkness had been waiting for exactly that moment.</div></div>
+    <div class="book-card"><div class="book-num">Book Eight</div><div class="book-title">The Last Correspondence</div><div class="book-desc">The Wheel is cracking. The Balance — the ancient system of opposing powers that keeps the world stable — is failing, and the group is at the centre of it. The consequences of everything since Book One arrive all at once.</div><div class="book-hook">The letters stopped arriving. That means one of two things. Neither one is good.</div></div>
+    <div class="book-card"><div class="book-num">Book Nine</div><div class="book-title">Eclipse of the Forbidden</div><div class="book-desc">Eclipse lives. Eclipse has always lived. And now Eclipse is no longer in the background. The most powerful dragon in the series steps forward — and the group must decide what side of that event they want to be on.</div><div class="book-hook">She told them she was gone. She never said it was permanent.</div></div>
+    <div class="book-card"><div class="book-num">Book Ten</div><div class="book-title">The Final Scale</div><div class="book-desc">The end of the first half. What was broken, what was built, what was lost, and what remains. Every main character gets an ending that is true to who they are. Whether that ending is happy depends on what you consider happiness.</div><div class="book-hook">The scale tips. The world holds its breath. Then the second half begins.</div></div>
+    <div class="book-card"><div class="book-num">Book Eleven</div><div class="book-title">Blood of the Unbroken</div><div class="book-desc">Something survived the events of Book Ten that should not have. The group, scattered and changed, is forced to reunite — but the people who come back are not the same people who separated. They have been remade by what happened to them.</div><div class="book-hook">The scar healed wrong. Now it has to be broken open again.</div></div>
+    <div class="book-card"><div class="book-num">Book Twelve</div><div class="book-title">The Hollow Throne</div><div class="book-desc">The seat of power in the dragon world is empty. Every faction wants to fill it. Every faction has a reason no other faction should. The group discovers the throne was not empty by accident.</div><div class="book-hook">Empty seats are not vacant. They are invitations to the wrong kind of dragon.</div></div>
+    <div class="book-card"><div class="book-num">Book Thirteen</div><div class="book-title">The Starless Age</div><div class="book-desc">The sky goes dark. Not metaphorically — all at once, something extinguishes the stars. Both Sun Shards and Galaxy Shards feel it in their bones. The threat stops being political and becomes something much, much older.</div><div class="book-hook">The stars are not gone. They are being held somewhere. The question is by what.</div></div>
+    <div class="book-card"><div class="book-num">Book Fourteen</div><div class="book-title">The War of the Wheel</div><div class="book-desc">The Correspondence — the ancient balance of opposing Shard bloodlines — goes to war with itself. Shard against Shard, ancient law against ancient law. When the elements fight each other, the world is the battlefield.</div><div class="book-hook">When the elements fight each other, the world is the battlefield.</div></div>
+    <div class="book-card"><div class="book-num">Book Fifteen</div><div class="book-title">Shadow and Ruin</div><div class="book-desc">ShadowHunter. The spirit that possessed Eclipse, that haunted the group across continents. This is her book. The history no one knew. The reason she is what she is. Understanding her will not make her safe. But it might make her stoppable.</div><div class="book-hook">She was not always this. Something made her this. That something still exists.</div></div>
+    <div class="book-card"><div class="book-num">Book Sixteen</div><div class="book-title">The Drowned Kingdom</div><div class="book-desc">Deep beneath the ocean there is a kingdom the SeaScales do not talk about and the other tribes do not know exists. What they find changes the history of every tribe on the continent.</div><div class="book-hook">They call it drowned. The dragons inside it call it home.</div></div>
+    <div class="book-card"><div class="book-num">Book Seventeen</div><div class="book-title">Children of the Galaxy</div><div class="book-desc">The GalaxyScales have no queen, no official territory, no throne. Goldstone holds them together through sheer force of will and something older than politics. This book is their story — where they came from, why they hide, what they are waiting for.</div><div class="book-hook">Every tribe has a history. The GalaxyScales have a secret instead.</div></div>
+    <div class="book-card"><div class="book-num">Book Eighteen</div><div class="book-title">The Price of the Heartstone</div><div class="book-desc">The Heartstone — created by all tribes\' Shards, said to be the greatest object of power — is found. What it costs to use it, who has been keeping it, and what it was actually built to do are three completely different answers from what anyone expected.</div><div class="book-hook">They said it could save the world. They didn\'t say what it would cost.</div></div>
+    <div class="book-card"><div class="book-num">Book Nineteen</div><div class="book-title">The Age Before</div><div class="book-desc">Told entirely in the past. The world fifteen years ago. Night and Luna. The GalaxyScales\' secret home before it was revealed. The first meeting that started everything. Context for every single thing that has happened since Book One.</div><div class="book-hook">Now you know why. Now go back and reread everything.</div></div>
+    <div class="book-card"><div class="book-num">Book Twenty</div><div class="book-title">The Forbidden Scales</div><div class="book-desc">The final book. The same title as the series. The Wheel either turns again or it does not. The Balance either holds or it breaks permanently. Every character who has made it this far gets the ending they have been moving toward since the beginning.</div><div class="book-hook">It was always going to end here. They just didn\'t know which way the scales would tip.</div></div>
   </div>
-
-  <!-- SPECIAL STORIES -->
   <div style="margin-top:3rem">
     <div class="lbl" style="margin-bottom:1.5rem;font-size:10px">Special Stories, Companion Tales &amp; Editions — 15 Total</div>
     <div class="g3">
-      <div class="spec-card">
-        <div class="spec-num">Special Story I</div>
-        <div class="spec-title">The Falcon Who Chose</div>
-        <div class="body-text" style="font-size:13.5px">Saiber\'s story, told entirely from his perspective. Non-mythical, no power — just a peregrine falcon who decided, without being asked, that Agate was worth everything. About what loyalty looks like from the smallest member of the group.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story II</div>
-        <div class="spec-title">The Hawk, Objectively</div>
-        <div class="body-text" style="font-size:13.5px">Dyno narrates his own story. He is a narcissist. This is not presented as a flaw — it is presented as a perspective. Unreliable narrator, blueberry obsession, and a surprisingly sharp view of the main series. His reliability is left as an exercise for the reader.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story III</div>
-        <div class="spec-title">Storm at the Edge</div>
-        <div class="body-text" style="font-size:13.5px">Storm\'s story — what happened in the six moons before she rejoined Ash. Where she went when she disappeared. Why she left. The injury. The wolves. The answer to questions Ash never asked out loud because she was afraid of the answer.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story IV</div>
-        <div class="spec-title">Fang and the First Run</div>
-        <div class="body-text" style="font-size:13.5px">How Fang and Topaz met — told entirely from Fang\'s perspective. The pack hunt. The strange WindScale that wandered into their territory. The eye contact that neither of them has ever been able to explain. And why, of all the dragons in the world, it was him.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story V</div>
-        <div class="spec-title">Luna\'s Secret</div>
-        <div class="book-desc">Fifteen years before the main series, a GalaxyScale stepped out of shadows and introduced herself to a MoonScale on watch duty. This is Luna\'s story — what she was running from, what she was hoping for, and what she set in motion the night she said hello.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story VI</div>
-        <div class="spec-title">Pearl and the Prisoner</div>
-        <div class="book-desc">Princess Pearl of the SeaScales. She heard a rumour about a GalaxyScale in the Forbidden Dungeons, and decided she would do something about it. This is the full account of her visits to Twilight, the planning of the escape, and what she gave up to make it happen.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story VII</div>
-        <div class="spec-title">Eclipse Before</div>
-        <div class="book-desc">Eclipse at school. Before Ky. Before Topaz. Before Shadow. When she was just a dragonette with her mother\'s history following her like a storm cloud and a growing sense that the world was wrong about her tribe — and about her. The story that makes everything else hurt more.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story VIII</div>
-        <div class="spec-title">The ShadowHunter Diaries</div>
-        <div class="book-desc">ShadowHunter\'s account of the events of the main series — from her perspective, in her voice, completely unapologetically. Not a redemption arc. Not a justification. A window into a mind that operates on a completely different set of rules, and finds the dragons\' struggle genuinely amusing.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story IX</div>
-        <div class="spec-title">A Quartet</div>
-        <div class="book-desc">One event. Four perspectives. Simultaneously. The same moment seen through four entirely different sets of eyes, each one revealing something the others missed. Which four characters. Which moment. Not yet disclosed — only that it changes how you read everything before it.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story X</div>
-        <div class="spec-title">Taco: A Pup\'s Account</div>
-        <div class="book-desc">The smallest and youngest member of Fang and Storm\'s pack narrates the events she witnessed during the journey. She is two and a half months old. She doesn\'t understand everything. But she notices more than anyone expected, and her observations are — accidentally — the most accurate record of several key events.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story XI</div>
-        <div class="spec-title">The Aquamarine Account</div>
-        <div class="book-desc">Aquamarine was Talon\'s first family — the dragon he stumbled into through a collision and shattered glass, who became his sister by choice. This is her story, running parallel to his. What she saw from her side. What she chose not to say. What she did when he was gone.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story XII</div>
-        <div class="spec-title">Cobalt\'s Promise</div>
-        <div class="book-desc">Cobalt, who snuck Ky snacks and treats after Lapis\'s lessons, who built a tent in a secret spot so a shy dragonet would have somewhere safe. The full story of how he came to be at the palace, what he knew that he never told Ky, and why he kept it.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story XIII</div>
-        <div class="spec-title">The Heartstone Chronicles</div>
-        <div class="book-desc">An in-universe historical document. The scholarly record of the Heartstone — its creation, its uses throughout history, the attempts to destroy it, and the debates among every tribe\'s historians about what it actually is. Written as an academic text. Contains more truth than it appears to.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Story XIV</div>
-        <div class="spec-title">Gifts from the Altar</div>
-        <div class="book-desc">The five crystal gifts found in the hidden clearing — the Gift of Comfort, Endurance, Prosperity, Light, and Dreams. The Gift of Power, the missing one. This story traces each gift: where it came from, who made it, what the empty socket was meant to hold, and why someone removed it before anyone could find it.</div>
-      </div>
-      <div class="spec-card">
-        <div class="spec-num">Special Edition XV</div>
-        <div class="spec-title">The Forbidden Archives</div>
-        <div class="book-desc">The collector\'s edition — deleted scenes, alternate chapters, author notes, early drafts, original character concepts, and in-world documents that never made it into the main books. For the readers who want to see the bones beneath the world. Includes Ky\'s original journal entry that someone wrote in without his knowledge.</div>
-      </div>
+      <div class="spec-card"><div class="spec-num">Special Story I</div><div class="spec-title">The Falcon Who Chose</div><div class="body-text" style="font-size:13.5px">Saiber\'s story from his own perspective. Non-mythical, no power — just a peregrine falcon who decided, without being asked, that Agate was worth everything. About what loyalty looks like from the smallest member of the group.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story II</div><div class="spec-title">The Hawk, Objectively</div><div class="body-text" style="font-size:13.5px">Dyno narrates his own story. He is a narcissist. This is not presented as a flaw — it is a perspective. Unreliable narrator, blueberry obsession, and a surprisingly sharp view of the main series. His reliability is left as an exercise for the reader.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story III</div><div class="spec-title">Storm at the Edge</div><div class="body-text" style="font-size:13.5px">Storm\'s story — what happened in the six moons before she rejoined Ash. Where she went when she disappeared. Why she left. The injury. The answer to questions Ash never asked out loud because she was afraid of the answer.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story IV</div><div class="spec-title">Fang and the First Run</div><div class="body-text" style="font-size:13.5px">How Fang and Topaz met — from Fang\'s perspective. The pack hunt. The strange WindScale that wandered into their territory. The eye contact neither of them has ever been able to explain. And why, of all the dragons in the world, it was him.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story V</div><div class="spec-title">Luna\'s Secret</div><div class="body-text" style="font-size:13.5px">Fifteen years before the main series, a GalaxyScale stepped out of shadows and introduced herself to a MoonScale on watch duty. Luna\'s story — what she was running from, what she set in motion the night she said hello.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story VI</div><div class="spec-title">Pearl and the Prisoner</div><div class="body-text" style="font-size:13.5px">Princess Pearl of the SeaScales heard a rumour about a GalaxyScale in the Forbidden Dungeons, and decided she would do something about it. The full account of her visits to Twilight and what she gave up to make the escape happen.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story VII</div><div class="spec-title">Eclipse Before</div><div class="body-text" style="font-size:13.5px">Eclipse at school. Before Ky. Before Topaz. Before Shadow. When she was just a dragonette with her mother\'s history following her like a storm cloud. The story that makes everything else hurt more.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story VIII</div><div class="spec-title">The ShadowHunter Diaries</div><div class="body-text" style="font-size:13.5px">ShadowHunter\'s account of the events of the main series — from her perspective, completely unapologetically. Not a redemption arc. A window into a mind that operates on a completely different set of rules, and finds the dragons\' struggle genuinely amusing.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story IX</div><div class="spec-title">A Quartet</div><div class="body-text" style="font-size:13.5px">One event. Four perspectives. Simultaneously. The same moment seen through four entirely different sets of eyes, each one revealing something the others missed. Which four characters. Which moment. Not yet disclosed.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story X</div><div class="spec-title">Taco: A Pup\'s Account</div><div class="body-text" style="font-size:13.5px">The smallest member of Fang and Storm\'s pack narrates the events she witnessed. She is two and a half months old. She doesn\'t understand everything. But her observations are — accidentally — the most accurate record of several key events.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story XI</div><div class="spec-title">The Aquamarine Account</div><div class="body-text" style="font-size:13.5px">Aquamarine was Talon\'s first family — the dragon he stumbled into through shattered glass, who became his sister by choice. This is her story, running parallel to his. What she saw from her side. What she did when he was gone.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story XII</div><div class="spec-title">Cobalt\'s Promise</div><div class="body-text" style="font-size:13.5px">Cobalt, who snuck Ky snacks after Lapis\'s lessons, who built a tent in a secret spot so a shy dragonet would have somewhere safe. The full story of what he knew that he never told Ky, and why he kept it.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story XIII</div><div class="spec-title">The Heartstone Chronicles</div><div class="body-text" style="font-size:13.5px">An in-universe historical document — the scholarly record of the Heartstone\'s creation, its uses through history, the attempts to destroy it, and the debates among every tribe\'s historians about what it actually is. Contains more truth than it appears to.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Story XIV</div><div class="spec-title">Gifts from the Altar</div><div class="body-text" style="font-size:13.5px">The five crystal gifts found in the hidden clearing — Comfort, Endurance, Prosperity, Light, and Dreams. The Gift of Power, missing. This story traces each gift: where it came from, who made it, and why someone removed the sixth before anyone could find it.</div></div>
+      <div class="spec-card"><div class="spec-num">Special Edition XV</div><div class="spec-title">The Forbidden Archives</div><div class="body-text" style="font-size:13.5px">The collector\'s edition — deleted scenes, alternate chapters, author notes, early drafts, original character concepts, and in-world documents that never made it into the main books. Includes Ky\'s original journal entry that someone wrote in without his knowledge.</div></div>
     </div>
   </div>
 </section>
 <div class="divider"></div>
-'''
 
-with open('/home/claude/tfs_site.html', 'a') as f:
-    f.write(books)
-print("Books done:", len(books))
-PYEOF
-Output
-
-Books done: 19391
-
-
-bash
-
-python3 << 'PYEOF'
-sow = '''<!-- SCALES OF WAR -->
+<!-- ══ SCALES OF WAR ══ -->
 <section class="section" id="sow">
   <div class="sec-title">Scales of War</div>
-  <p class="sec-intro">A companion series to The Forbidden Scales — set in the same world, running through the same wars, but following an entirely different set of characters across the six kingdoms. While the main series follows five young dragons discovering who they are, Scales of War follows six warriors discovering what the world costs. Every event in Scales of War ties directly into the mythology, politics, and lore of the main series. They are the same world, seen from the other side of the battlefield.</p>
-
+  <p class="sec-intro">A companion series set in the same world, running through the same wars, but following an entirely different cast across the six kingdoms. While the main series follows five young dragons discovering who they are, Scales of War follows warriors discovering what the world costs. Every event ties directly into the mythology, politics, and lore of The Forbidden Scales. Same world. Other side of the battlefield.</p>
   <div class="sow-banner">
-    <div style="font-family:\'Cinzel Decorative\',serif;font-size:1rem;color:#e8703a;margin-bottom:.5rem">Scales of War</div>
-    <div style="font-size:11px;font-family:\'Cinzel\',serif;letter-spacing:.15em;color:var(--text-d);margin-bottom:1rem">By Daniel Lim &nbsp;·&nbsp; A companion series to The Forbidden Scales</div>
-    <div class="body-text">Set across the six dragon kingdoms during the same era as the main series, Scales of War follows warriors, generals, and council members who are trying to end a war that has been running long enough to become simply the world as it exists. It begins with two Flamescale trainees and their dragon queen, expands to six warriors from six tribes, and ends with all of them sitting across a table trying to accomplish what armies never could: peace.</div>
+    <div style="font-family:'Cinzel Decorative',serif;font-size:1rem;color:#e8703a;margin-bottom:.5rem">Scales of War</div>
+    <div style="font-size:11px;font-family:'Cinzel',serif;letter-spacing:.15em;color:var(--text-d);margin-bottom:1rem">By Daniel Lim &nbsp;·&nbsp; Companion series to The Forbidden Scales</div>
+    <div class="body-text">Scales of War follows warriors, generals, and council members trying to end a war that has run long enough to become simply the world as it exists. It begins with two FlameScale trainees and their queen, expands to six warriors from six tribes, and ends with all of them sitting across a table trying to accomplish what armies never could: peace. The Heartstone — mentioned in the main series — is the central object of power here, created by all tribes\' Shards working together.</div>
   </div>
-
-  <!-- SOW CHARACTERS -->
-  <div class="lbl" style="margin-bottom:1.25rem">Main & Side Characters</div>
-  <div class="g2" style="margin-bottom:2rem">
-
+  <div class="g2">
     <div class="sow-card">
       <div class="sow-name" style="color:#e8703a">Anile</div>
       <div class="sow-sub">FlameScale &nbsp;·&nbsp; FlameShard &nbsp;·&nbsp; Main Character</div>
-      <div class="weapon-badge" style="background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="2" y1="14" x2="14" y2="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="8" x2="14" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Lance
-      </div>
-      <div class="body-text">Daughter of Eidas, the greatest traitor in FlameScale history — a stigma that has followed her since before she could fly. Despite this, she is the most powerful dragonet in her training cohort, a full FlameShard who can transform into living fire. Queen Firetalon personally witnessed her powers manifest, compared her gifts to her own, and invited her to train directly under the queen\'s supervision. She accepted. <strong>She is trying to prove that being someone\'s daughter does not determine who you are.</strong> She uses a lance.</div>
+      <div class="weapon-badge" style="background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)">{LANCE} Lance</div>
+      <div class="body-text">Daughter of Eidas, the greatest traitor in FlameScale history — a stigma that has followed her since before she could fly. Despite this, she is the most powerful dragonet in her training cohort and a full FlameShard who can transform into living fire. Queen Firetalon personally witnessed her powers manifest and invited her to train directly under the queen\'s supervision. <strong>She is proving that being someone\'s daughter does not determine who you are.</strong></div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#e8703a">Anred</div>
       <div class="sow-sub">FlameScale &nbsp;·&nbsp; Main Character</div>
-      <div class="weapon-badge" style="background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="5" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="11" y1="5" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Spear
-      </div>
-      <div class="body-text">Anile\'s best friend and the person most responsible for the fact that she is still alive. The most powerful fighter in their squad, Anred is the kind of companion who shows up without being asked and leaves when the problem is solved — never earlier. When Firetalon invited Anile, he came too. He carries a spear. He is very good with it. He is better at friendship.</div>
+      <div class="weapon-badge" style="background:rgba(232,112,58,.1);color:#e8703a;border:1px solid rgba(232,112,58,.3)">{SPEAR} Spear</div>
+      <div class="body-text">Anile\'s best friend and the person most responsible for the fact that she is still alive. The most powerful fighter in their squad — the kind of companion who shows up without being asked and leaves when the problem is solved. When Firetalon invited Anile, he came too. He carries a spear. He is very good with it. He is better at friendship.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#4aaee8">Leinad</div>
       <div class="sow-sub">SeaScale &nbsp;·&nbsp; SeaShard &nbsp;·&nbsp; Main Character</div>
-      <div class="weapon-badge" style="background:rgba(74,174,232,.1);color:#4aaee8;border:1px solid rgba(74,174,232,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="8" y1="2" x2="8" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="4" y1="6" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="6" x2="8" y2="2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3" y1="10" x2="6" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Trident
-      </div>
-      <div class="body-text">General of the SeaScale army, Queen Angelfish\'s right hand, and a SeaShard. He met Anile and Anred during a joint expedition to capture a traitor who had been evading both the FlameScale and SeaScale forces. They fought on the same side without planning to, and realised somewhere in the middle of it that they were better together than apart. He carries a trident. He is also responsible for explaining what Shards are to several characters who had never encountered the term.</div>
+      <div class="weapon-badge" style="background:rgba(74,174,232,.1);color:#4aaee8;border:1px solid rgba(74,174,232,.3)">{TRIDENT} Trident</div>
+      <div class="body-text">General of the SeaScale army, Queen Angelfish\'s right hand, and a SeaShard. He met Anile and Anred during a joint expedition to capture a traitor who had been evading both kingdoms. They fought on the same side without planning to, and realised somewhere in the middle of it that they were better together than apart. He carries a trident and is responsible for explaining what Shards are to several characters who had never encountered the term.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#9b8de8">Ahsrav</div>
       <div class="sow-sub">MoonScale &nbsp;·&nbsp; MoonShard &nbsp;·&nbsp; Side Character</div>
-      <div class="weapon-badge" style="background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><path d="M4 12 L12 4 M9 4 L12 4 L12 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Knife / Dagger
-      </div>
-      <div class="body-text">MoonScale and MoonShard. One of the six warriors who will eventually converge to build political bridges between the kingdoms. Carries a dagger — small, fast, precise. The weapon reflects the dragon. She prefers not to be seen coming.</div>
+      <div class="weapon-badge" style="background:rgba(155,141,232,.1);color:#9b8de8;border:1px solid rgba(155,141,232,.3)">{DAGGER} Knife / Dagger</div>
+      <div class="body-text">MoonScale and MoonShard. One of the six warriors who will eventually converge to build political bridges between the kingdoms. Carries a dagger — small, fast, precise. The weapon reflects the dragon. She prefers not to be seen coming, and is rarely seen going either.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#2ec4aa">Nevar</div>
       <div class="sow-sub">ShardScale &nbsp;·&nbsp; CrystalShard &nbsp;·&nbsp; Side Character</div>
-      <div class="weapon-badge" style="background:rgba(46,196,170,.1);color:#2ec4aa;border:1px solid rgba(46,196,170,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><line x1="3" y1="13" x2="13" y2="3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="6" y1="3" x2="13" y2="3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="13" y1="3" x2="13" y2="10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Sword
-      </div>
-      <div class="body-text">Senior officer for Queen Sapphire of the ShardScales. Champion of war on the royal council. He is the champion of war on the council, which means he has been in more of them than anyone else at the table. His son, Lasgol, is not the kindest dragonet in Anile\'s training cohort. Nevar carries a sword. He is not yet aware that someday he will sit across a table with the people he currently considers enemies and call it an alliance.</div>
+      <div class="weapon-badge" style="background:rgba(46,196,170,.1);color:#2ec4aa;border:1px solid rgba(46,196,170,.3)">{SWORD} Sword</div>
+      <div class="body-text">Senior officer for Queen Sapphire of the ShardScales, champion of war on the royal council. He has been in more wars than anyone else at the table, which is why he knows what they actually cost. His son Lasgol is not the kindest dragonet in Anile\'s training cohort. Nevar is not yet aware that someday he will sit across a table with people he currently considers enemies and call it an alliance.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#e8c96a">Crande</div>
       <div class="sow-sub">WindScale &nbsp;·&nbsp; WindShard &nbsp;·&nbsp; Side Character</div>
-      <div class="weapon-badge" style="background:rgba(201,168,76,.1);color:#e8c96a;border:1px solid rgba(201,168,76,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><path d="M2 8 Q6 4 10 8 Q14 12 14 8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><line x1="10" y1="5" x2="14" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        Bow
-      </div>
-      <div class="body-text">WindScale and WindShard, connected to Queen Opalite\'s court. One of the six who will eventually meet and attempt the impossible — ending a war through diplomacy rather than force. Carries a bow. Hits what they aim at, which is rarely what you expect them to be aiming at.</div>
+      <div class="weapon-badge" style="background:rgba(201,168,76,.1);color:#e8c96a;border:1px solid rgba(201,168,76,.3)">{BOW} Bow</div>
+      <div class="body-text">WindScale and WindShard, connected to Queen Opalite\'s court. One of the six who will eventually attempt the impossible — ending a war through diplomacy rather than force. Carries a bow. Hits what they aim at, which is rarely what you expect them to be aiming at.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#f5c842">Mantre</div>
       <div class="sow-sub">SunScale &nbsp;·&nbsp; SunShard &nbsp;·&nbsp; Side Character</div>
-      <div class="weapon-badge" style="background:rgba(245,200,66,.1);color:#f5c842;border:1px solid rgba(245,200,66,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.2"/><line x1="8" y1="2" x2="8" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="12" x2="8" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="2" y1="8" x2="4" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        War Staff
-      </div>
-      <div class="body-text">SunScale and SunShard, trained under Queen Sunstone. One of the six. Carries a war staff — something to focus the light through at range. Knows things the others don\'t about why the SunScales and FlameScales consider themselves sister tribes, and what that alliance has historically cost both sides.</div>
+      <div class="weapon-badge" style="background:rgba(245,200,66,.1);color:#f5c842;border:1px solid rgba(245,200,66,.3)">{STAFF} War Staff</div>
+      <div class="body-text">SunScale and SunShard, trained under Queen Sunstone. Carries a war staff to focus light through at range. Knows things the others don\'t about why the SunScales and FlameScales consider themselves sister tribes, and what that alliance has historically cost both sides.</div>
     </div>
-
     <div class="sow-card">
       <div class="sow-name" style="color:#c084fc">Ephant</div>
       <div class="sow-sub">GalaxyScale &nbsp;·&nbsp; GalaxyShard &nbsp;·&nbsp; Side Character</div>
-      <div class="weapon-badge" style="background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)">
-        <svg viewBox="0 0 16 16" fill="none" style="width:12px;height:12px"><ellipse cx="8" cy="8" rx="5" ry="2" stroke="currentColor" stroke-width="1.1" transform="rotate(-30 8 8)"/><circle cx="8" cy="8" r="1.5" fill="currentColor" opacity=".5"/></svg>
-        None Recorded
-      </div>
-      <div class="body-text">A GalaxyScale and GalaxyShard — one of the rarest combinations alive. Ephant knew Eclipse. They were connected before the main series began, though the nature of that connection is not yet recorded in the official files. Ephant also lost siblings — how, and to what, is part of the story Scales of War is building toward. Ephant operates under <strong>Goldstone</strong>, the de facto leader of the GalaxyScales. Their weapon is not recorded. Galaxy Shards rarely need one.</div>
+      <div class="weapon-badge" style="background:rgba(192,132,252,.1);color:#c084fc;border:1px solid rgba(192,132,252,.3)">{GALAXY_WPN} None Recorded</div>
+      <div class="body-text">A GalaxyScale and GalaxyShard — one of the rarest combinations alive. Ephant knew Eclipse. They were connected before the main series began, though the nature of that connection is not yet in the official files. Ephant also lost siblings — how, and to what, is part of what Scales of War is building toward. Operates under Goldstone, de facto leader of the GalaxyScales. Galaxy Shards rarely need a recorded weapon.</div>
     </div>
-
   </div>
-
-  <!-- SOW QUEEN -->
-  <div class="card">
+  <div class="card" style="margin-top:1.5rem">
     <div class="lbl">Queen Firetalon — Monarch of the FlameScales</div>
-    <div class="body-text">The reigning monarch of the FlameScale kingdom and the most powerful FlameScale alive. She personally intervened when Anile\'s powers manifested and an admiral used violence against a training dragonet. Her words were precise: <em>"I promote strength and discipline. But this is neither. This is the opposite of what I stand for."</em> She demoted the admiral to common soldier on the spot and invited Anile to train directly under her. She is calm in the way that only someone who has survived a very long time can be — not because she is unthreatened, but because she has already assessed every threat and chosen her response before anyone else noticed there was a threat at all. She knows what a FlameShard is. She was one of the first.</div>
+    <div class="body-text">The most powerful FlameScale alive and the reigning monarch of the FlameScale kingdom. She personally intervened when Anile\'s powers manifested and an admiral used violence against a training dragonet. Her exact words: <em>"I promote strength and discipline. But this is neither. This is the opposite of what I stand for."</em> She demoted the admiral to common soldier on the spot and invited Anile to train directly under her. She is calm the way only someone who has survived a very long time can be — not because she is unthreatened, but because she has already assessed every threat and chosen her response before anyone else noticed there was one. She knows what a FlameShard is. She was one of the first.</div>
   </div>
 </section>
 <div class="divider"></div>
-'''
 
-with open('/home/claude/tfs_site.html', 'a') as f:
-    f.write(sow)
-print("SOW done:", len(sow))
-PYEOF
-Output
-
-SOW done: 11663
-  
-<!-- SHARDS -->
+<!-- ══ SHARDS ══ -->
 <section class="section" id="shards">
   <div class="sec-title">The Shards</div>
-  <p class="sec-intro">The elemental bloodlines of the dragon world are not just categories of power. They are inheritances, identities, and entire ways of being. Some are loud and obvious. Some are hidden in plain sight. All of them shape the Balance more than most dragons understand.</p>
-
+  <p class="sec-intro">The most powerful dragon bloodlines in recorded history. Each Shard commands absolute dominion over a fundamental force of the world — not as a skill, not as a learned ability, but as a birthright written into their scales at the moment of hatching. Old scholars called them Shards because they believed each bloodline was a fragment broken from something far greater — a primordial power too vast for any single being to hold whole. They appear once every century, sometimes less. They exist in both series. No two are equivalent. None are safe to underestimate.</p>
   <div class="g2">
+
     <div class="shard-card sf">
-      <div class="dh">
-        <div class="sicon">🔥</div>
-        <div>
-          <div class="sname">FlameShard</div>
-          <div class="sdom">Heat · Fire · Volatility</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a">{FLAME_SVG}</div>
+        <div><div class="sname">Flame</div><div class="sdom" style="color:#e8703a">Domain of Fire &amp; Heat</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">The most feared and most loudly misunderstood of the major Shards. FlameShard dragons carry power that can become destructive fast, but in the right hands it is also discipline, protection, and resolve. Their bloodline is tied closely to war, leadership, and the politics of survival.</div>
+      <div class="srule" style="background:#e8703a"></div>
+      <div class="slbl" style="color:#e8703a">Core Power</div>
+      <div class="body-text">A Flame Shard can transform their entire body into living fire — not a coating or an aura, but a <strong>full physical conversion</strong> into something between dragon and star. The flames burn at temperatures so extreme they can <strong>melt any known metal on contact</strong>. Stone becomes liquid glass. Ice does not melt — it ceases to exist. When Anile\'s powers first manifested, she set her training grounds ablaze before she understood what she was. Queen Firetalon was the one who reached into her fiery consciousness and helped her find the off switch.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#e8703a">Extended Abilities</div>
+      <div class="body-text">Can <strong>command fire from any source</strong> within a wide radius. Completely fireproof. Advanced Flame Shards ignite the air itself, creating pressure waves of burning force that knock enemies flat before the fire arrives. They leave <strong>scorched glass footprints</strong> at full power. The most gifted create sustained infernos requiring no fuel — fire that burns indefinitely, without consuming anything.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#e8703a">Known — Anile (SOW) · Queen Firetalon (SOW)</div>
     </div>
 
     <div class="shard-card ss">
-      <div class="dh">
-        <div class="sicon">🌊</div>
-        <div>
-          <div class="sname">SeaShard</div>
-          <div class="sdom">Tide · Pressure · Depth</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8">{SEA_SVG}</div>
+        <div><div class="sname">Sea</div><div class="sdom" style="color:#4aaee8">Domain of Water &amp; Ice</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">SeaShard dragons are shaped by endurance, control, and pressure that never looks dangerous until it becomes overwhelming. Their politics are old, their traditions are older, and their courts tend to know more about the world than they are saying aloud.</div>
+      <div class="srule" style="background:#4aaee8"></div>
+      <div class="slbl" style="color:#4aaee8">Core Power</div>
+      <div class="body-text">Sea Shards command water in every form — liquid, ice, vapour, and the transitional states between. They can <strong>pull moisture from the air itself</strong>, drawing from clouds, stone, even the exhalations of living things. Their senses are calibrated so precisely to water that they can <strong>detect any source within miles</strong>: underground rivers, rainfall before clouds form, hidden reservoirs. What they find, they control. What they control, they weaponise.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#4aaee8">Extended Abilities</div>
+      <div class="body-text">Can <strong>freeze water instantly</strong> — rivers into walls, rain into falling blades, waves into cages. Advanced Sea Shards freeze the moisture in the air around a target, building a prison mid-motion. They breathe underwater indefinitely. Most unsettlingly: they can <strong>sense the water content of living bodies</strong> — and the most powerful have learned to use this knowledge in ways not documented in public records.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#4aaee8">Known — Leinad (SOW)</div>
     </div>
 
     <div class="shard-card sm">
-      <div class="dh">
-        <div class="sicon">🌙</div>
-        <div>
-          <div class="sname">MoonShard</div>
-          <div class="sdom">Night · Change · Reflection</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8">{MOON_SVG}</div>
+        <div><div class="sname">Moon</div><div class="sdom" style="color:#9b8de8">Domain of Darkness &amp; Perception</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">MoonShard power follows cycles, shadows, and the kind of strength that changes with what the sky is doing. They are often underestimated because their power is quiet until it is not. That mistake tends to be expensive.</div>
+      <div class="srule" style="background:#9b8de8"></div>
+      <div class="slbl" style="color:#9b8de8">Core Power</div>
+      <div class="body-text">Moon Shards do not destroy — they <strong>unmake the ability to perceive</strong>. They can reach into an enemy\'s visual field and darken their sight completely — lasting from seconds to minutes. They conjure <strong>spheres of pure, absolute darkness</strong> that expand like a held breath releasing, swallowing areas whole. Inside these zones, nothing can be seen and sound bends away from its source.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#9b8de8">Extended Abilities</div>
+      <div class="body-text">Linked directly to the lunar cycle — at full moon <strong>near-unstoppable</strong>, at new moon significantly weakened. Can muffle sound within darkness zones. Advanced Moon Shards create a <strong>shadow-self</strong> — a duplicate made of darkness that moves independently and mirrors their actions. The most powerful sustain darkness that persists after they leave, fed by moonlight alone. They see perfectly in any darkness.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#9b8de8">Known — Ahsrav (SOW) · Ash draws moon power — Shard status unconfirmed</div>
     </div>
 
     <div class="shard-card sc">
-      <div class="dh">
-        <div class="sicon">💎</div>
-        <div>
-          <div class="sname">CrystalShard</div>
-          <div class="sdom">Clarity · Structure · Precision</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(46,196,170,.15);border-color:rgba(46,196,170,.4);color:#2ec4aa">{CRYSTAL_SVG}</div>
+        <div><div class="sname">Crystal</div><div class="sdom" style="color:#2ec4aa">Domain of Earth &amp; Armour</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">CrystalShard dragons are exacting, elegant, and terrifyingly hard to move once they have committed to a course. Their power tends to reward planning, discipline, and the ability to see the hidden shape of a problem before anyone else can.</div>
+      <div class="srule" style="background:#2ec4aa"></div>
+      <div class="slbl" style="color:#2ec4aa">Core Power</div>
+      <div class="body-text">Crystal Shards can <strong>manifest armour from nothing</strong> — pulling mineral matter from earth, stone, or minerals dissolved in air itself, forming perfectly-structured crystalline plates in seconds. This armour is not rock: it is <strong>harder than anything produced in any forge</strong>, structured at a molecular level to distribute impact instead of absorbing it. They can also command the earth — shift stone, raise walls, crack ground open with surgical precision.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#2ec4aa">Extended Abilities</div>
+      <div class="body-text">Can extend armour into <strong>spikes, shields, blades, and barriers</strong> — wearing the battlefield as an extension of their body. If armour shatters, they simply pull more from the ground beneath them. They can <strong>sense structural weaknesses in anything solid</strong> — walls, terrain, armour on other dragons. The most powerful have been recorded <strong>encasing opponents in crystal entirely</strong>, freezing them mid-motion in a transparent prison.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#2ec4aa">Known — Nevar (SOW)</div>
     </div>
 
     <div class="shard-card sw">
-      <div class="dh">
-        <div class="sicon">🌪</div>
-        <div>
-          <div class="sname">WindShard</div>
-          <div class="sdom">Motion · Breath · Freedom</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#e8c96a">{WIND_SVG}</div>
+        <div><div class="sname">Wind</div><div class="sdom" style="color:#e8c96a">Domain of Air &amp; Motion</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">WindShard dragons live at the edge between speed and control. Their powers can look graceful or chaotic, but in practice they are often the ones who notice danger first. They are linked to movement, instinct, and the ability to adapt without breaking.</div>
+      <div class="srule" style="background:#e8c96a"></div>
+      <div class="slbl" style="color:#e8c96a">Core Power</div>
+      <div class="body-text">Wind Shards bend the air entirely to their will — from a current gentle enough to carry a whisper miles away to a sustained gale that levels forests. The wind is not only a weapon: it is a <strong>sixth sense</strong>. They feel every disturbance in the air around them — movement, approaching bodies, even emotional states read through the subtle shifts in what a living creature exhales. They are <strong>nearly impossible to ambush</strong>. They know you are coming before you decide to come.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#e8c96a">Extended Abilities</div>
+      <div class="body-text">Can fly at speeds that make them nearly impossible to track visually. Can create localised <strong>vacuums</strong> — pockets with no air — effective against fire and suffocating against anything that breathes. Elite Wind Shards create contained storms: <strong>vortexes that trap opponents, twisters that scour terrain, walls of wind that deflect everything</strong> including sound. Agate\'s emotion-triggered outbursts share qualities with a Wind Shard at partial strength — her Shard status is unconfirmed.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#e8c96a">Known — Crande (SOW) · Agate — Wind-Shard-adjacent, unconfirmed</div>
     </div>
 
     <div class="shard-card ssu">
-      <div class="dh">
-        <div class="sicon">☀️</div>
-        <div>
-          <div class="sname">SunShard</div>
-          <div class="sdom">Light · Heat · Authority</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+        <div class="sicon" style="background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842">{SUN_SVG}</div>
+        <div><div class="sname">Sun</div><div class="sdom" style="color:#f5c842">Domain of Light &amp; Radiance</div></div>
       </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">SunShard dragons carry visibility, pressure, and the burden of being seen. Their power is often tied to leadership, diplomacy, and public strength. When they choose to shine, they can turn a battlefield into a stage and a stage into a verdict.</div>
+      <div class="srule" style="background:#f5c842"></div>
+      <div class="slbl" style="color:#f5c842">Core Power</div>
+      <div class="body-text">Sun Shards can unleash <strong>blinding flashes of concentrated light</strong> — not ordinary brightness but focused photonic force that overwhelms visual processing entirely, leaving enemies sightless for extended periods. They can also become a <strong>living beacon</strong>, radiating brilliance visible from impossible distances. Their light is directional, concentrated, and capable of revealing anything hidden in shadow or obscured by Moon Shard power.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#f5c842">Extended Abilities</div>
+      <div class="body-text">Draw directly from sunlight — dramatically stronger at midday and in open terrain. Can focus radiance into a <strong>narrow beam of concentrated solar energy</strong> capable of cutting through stone. Advanced Sun Shards maintain light constructs: sustained walls of radiance that hurt to approach, illuminated decoys, persistent beacons. Some scholars believe powerful Sun Shards can <strong>accelerate biological processes</strong> using focused light — healing, growth, and in theory, the reverse. Their power always announces their location. This is the price.</div>
+      <div class="card-rule"></div>
+      <div class="slbl" style="color:#f5c842">Known — Mantre (SOW)</div>
     </div>
 
-    <div class="shard-card sg">
-      <div class="dh">
-        <div class="sicon">✦</div>
-        <div>
-          <div class="sname">GalaxyShard</div>
-          <div class="sdom">Stars · Vastness · Duality</div>
-        </div>
-      </div>
-      <div class="srule"></div>
-      <div class="slbl">Nature</div>
-      <div class="body-text">GalaxyShard dragons are rare, difficult to classify, and often treated like myth even when standing directly in front of someone. Their power reaches into vastness, contradiction, and the kind of force that can hold both light and dark without choosing one to become.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- QUEENS -->
-<section class="section" id="queens">
-  <div class="sec-title">The Queens</div>
-  <p class="sec-intro">The six kingdoms each have a ruler with a different style of power, a different relationship to their tribe, and a different way of holding a world together that is always trying to split. Some rule by force. Some by memory. Some by love. None of them are simple.</p>
-
-  <div class="g3">
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(232,112,58,.15);border-color:rgba(232,112,58,.4);color:#e8703a;">F</div>
-      <div class="queen-name" style="color:#e8703a;">Queen Firetalon</div>
-      <div class="queen-tribe">FlameScales</div>
-      <div class="queen-desc">Commanding, precise, and frighteningly hard to manipulate. She believes strength should have rules and discipline should have purpose. When she acts, the whole kingdom feels it.</div>
-    </div>
-
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(74,174,232,.15);border-color:rgba(74,174,232,.4);color:#4aaee8;">A</div>
-      <div class="queen-name" style="color:#4aaee8;">Queen Angelfish</div>
-      <div class="queen-tribe">SeaScales</div>
-      <div class="queen-desc">Elegant on the surface, unreadable underneath. She understands diplomacy as a weapon and compassion as a kind of leverage, though she is not cruel. She simply knows the sea keeps what it can.</div>
-    </div>
-
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(155,141,232,.15);border-color:rgba(155,141,232,.4);color:#9b8de8;">S</div>
-      <div class="queen-name" style="color:#9b8de8;">Queen Sapphire</div>
-      <div class="queen-tribe">ShardScales</div>
-      <div class="queen-desc">The kind of ruler who makes every room feel like a negotiation. She values structure, loyalty, and results, but she also knows exactly how much damage a throne can do to the dragon sitting on it.</div>
-    </div>
-
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.4);color:#c9a84c;">O</div>
-      <div class="queen-name" style="color:#c9a84c;">Queen Opalite</div>
-      <div class="queen-tribe">WindScales</div>
-      <div class="queen-desc">Graceful, quick-thinking, and impossible to pin down. She can sound soft while making a decision that changes everything. Her kingdom moves on her intuition almost as much as on law.</div>
-    </div>
-
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4);color:#f5c842;">S</div>
-      <div class="queen-name" style="color:#f5c842;">Queen Sunstone</div>
-      <div class="queen-tribe">SunScales</div>
-      <div class="queen-desc">Warm in public, relentless in private. She represents the kingdom that tries hardest to look stable, which means she is constantly balancing tradition, expectation, and the quiet fear of collapse.</div>
-    </div>
-
-    <div class="queen-card">
-      <div class="queen-av" style="background:rgba(192,132,252,.15);border-color:rgba(192,132,252,.4);color:#c084fc;">G</div>
-      <div class="queen-name" style="color:#c084fc;">Queen Goldstone</div>
-      <div class="queen-tribe">GalaxyScales</div>
-      <div class="queen-desc">Rarely seen, always important, and impossible to fully separate from the secret history of her tribe. She rules through long memory, hidden ties, and the kind of authority that survives because it was never built for display.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- BALANCE -->
-<section class="section" id="balance">
-  <div class="sec-title">The Balance</div>
-  <p class="sec-intro">The Balance is the oldest structure in the series after the world itself, an invisible system of opposing forces that keeps the kingdoms from drifting into permanent chaos. It is not worshipped in the normal sense, though some dragons treat it like a sacred law and others treat it like a curse. The truth is simpler and harder: it is a mechanism that does not care whether anyone understands it, only whether it continues to function.</p>
-
-  <div class="balance-card">
-    <div class="bal-head">
-      <div class="bal-name">The Wheel</div>
-      <div class="bal-vs">OPPOSING FORCES</div>
-    </div>
-    <div class="body-text">The Wheel is the pattern by which power is distributed, mirrored, and resisted across the world. Flame does not exist without water pushing back against it, and light does not stay stable without shadow defining its edge. The Wheel is why kingdoms have always been able to coexist without one bloodline consuming the others permanently. It is also why every attempt to dominate the world eventually creates its own collapse. The Balance does not reward cruelty. It simply waits until cruelty creates consequences large enough to be felt everywhere at once.</div>
-    <div class="bal-quote">What looks like stability is often only the pause before the world remembers how to break.</div>
   </div>
 
-  <div class="balance-card">
-    <div class="bal-head">
-      <div class="bal-name">The Correspondence</div>
-      <div class="bal-vs">SERIES-LONG TENSION</div>
-    </div>
-    <div class="body-text">The Correspondence is the hidden logic beneath the kingdoms, the old alignment of bloodlines, roles, inheritances, and old obligations that keeps certain dragons tied to certain events long before they know why. Some are born directly into that structure, others are pulled into it by accident, and some seem to be placed there by history itself with no warning at all. Throughout the series, the characters keep discovering that what they thought was random was actually shaped by older rules they were never taught. The worst part is that the rules are not fully broken. They are only damaged enough to let the wrong things through.</div>
-    <div class="bal-quote">A prophecy is not always a prediction. Sometimes it is just the record of a system that has been failing for a very long time.</div>
-  </div>
-
-  <div class="balance-card">
-    <div class="bal-head">
-      <div class="bal-name">What Is Breaking</div>
-      <div class="bal-vs">CURRENT THREAT</div>
-    </div>
-    <div class="body-text">The Balance is fraying rather than shattering, which is why so many dragons miss the danger at first. It shows up in missing pages, forgotten names, strange power surges, impossible survivals, and bloodlines that should not still be awake. The kingdoms notice the symptoms before they recognize the illness. That delay matters, because every lost record and every silenced witness makes the next fracture easier to hide. By the time the characters understand the shape of the problem, the problem has already spread into the foundations of their world.</div>
-    <div class="bal-quote">The world does not end by announcing itself. It ends by teaching everyone to call the damage normal.</div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- EXCERPTS -->
-<section class="section" id="excerpts">
-  <div class="sec-title">Excerpts</div>
-  <p class="sec-intro">These lines are written like fragments pulled from a larger archive, the kind of sentences that remain after the context has been sealed away. They are not meant to explain the story. They are meant to preserve the feeling of it: ancient, elegant, dangerous, and always one step away from revelation.</p>
-
-  <div class="excerpt">
-    <div class="elbl">RECORD ONE</div>
-    <div class="etext">The first thing any dragon learns about power is that the world will praise it only after it has already learned to fear it.</div>
-  </div>
-
-  <div class="excerpt">
-    <div class="elbl">RECORD TWO</div>
-    <div class="etext">They were not friends because fate had made them compatible. They became friends because they survived each other’s worst instincts long enough to notice the shape of trust forming underneath.</div>
-  </div>
-
-  <div class="excerpt">
-    <div class="elbl">RECORD THREE</div>
-    <div class="etext">A kingdom is never only its ruler. It is also the stories the ruler is trying to keep buried, the names that survive despite that effort, and the children who grow up asking the wrong questions at the wrong time.</div>
-  </div>
-
-  <div class="excerpt">
-    <div class="elbl">RECORD FOUR</div>
-    <div class="etext">The stars above the dragon world do not simply shine. They remember. And when they are disturbed, the memory reaches down into blood and bone.</div>
-  </div>
-
-  <div class="excerpt">
-    <div class="elbl">RECORD FIVE</div>
-    <div class="etext">No one noticed the Balance failing at first because the failures were polite. They arrived as hesitation, silence, and the strange sense that everyone had forgotten something important in the same exact way.</div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- THE BALANCE -->
-<section class="section" id="balance">
-  <div class="section-title">The Balance</div>
-  <p class="section-intro">Nothing in the world of The Forbidden Scales exists without its opposite. Every strength has a mirror. Every power has a counter. The ancient scholars called this the Correspondence: the belief that the world does not stay whole because all things agree, but because opposing forces are forced to remain in motion together. When one side grows too strong, another rises to push back. When one bloodline, kingdom, or power reaches too far, the world answers.</p>
-
-  <div class="balance-pair">
-    <div class="balance-header">
-      <div class="balance-name" style="color:#f09575">Flame</div>
-      <div class="balance-vs">vs</div>
-      <div class="balance-name" style="color:#85b7eb">Sea</div>
-    </div>
-    <div class="balance-body">
-      Flame and Sea are the oldest known opposition in the world. Flame burns with overwhelming force, turning stone to glass and air to heat, while Sea answers with water, ice, and pressure that can smother even the hottest fire. A Flame Shard can overpower ordinary defenses, but Sea Shards can remove the moisture, cool the air, and freeze the battlefield before the flames fully spread. Neither side is simple victory material for the other. They do not cancel each other out so much as force the fight to become something else entirely.
-    </div>
-    <div class="balance-lore">This is why old records treat fire and water as a law rather than a battle. Each side makes the other reveal its limits.</div>
-  </div>
-
-  <div class="balance-pair">
-    <div class="balance-header">
-      <div class="balance-name" style="color:#e8c96a">Wind</div>
-      <div class="balance-vs">vs</div>
-      <div class="balance-name" style="color:#3dd6c0">Crystal</div>
-    </div>
-    <div class="balance-body">
-      Wind is motion, reach, and speed. Crystal is weight, structure, and resistance. Wind Shards can redirect projectiles, launch themselves across huge distances, and tear through open spaces with force, but Crystal can anchor, brace, and build defensive walls that make raw motion harder to use. When these two powers clash, the result is often not a clean victory but a shift in terrain. One side controls the air; the other controls what the air strikes.
-    </div>
-    <div class="balance-lore">The smartest Wind fighters do not try to beat Crystal head-on. They aim for balance points, weak seams, and the moment before the armor settles.</div>
-  </div>
-
-  <div class="balance-pair">
-    <div class="balance-header">
-      <div class="balance-name" style="color:#b3a0ee">Moon</div>
-      <div class="balance-vs">vs</div>
-      <div class="balance-name" style="color:#fac775">Sun</div>
-    </div>
-    <div class="balance-body">
-      Moon and Sun represent one of the most dangerous forms of opposition because both are extreme and both are absolute. Moon Shards dominate darkness, silence, and perception, while Sun Shards dominate radiance, exposure, and overwhelming light. A Moon Shard can blind, conceal, and disorient; a Sun Shard can expose, burn through, and force everything into visibility. When the two meet, the battlefield becomes a contest not just of power but of what can be perceived at all.
-    </div>
-    <div class="balance-lore">The old scholars feared this pairing most because neither side is weaker by nature. Each simply makes the other visible.</div>
-  </div>
-
-  <div class="balance-pair">
-    <div class="balance-header">
-      <div class="balance-name" style="color:#cbb8ff">Galaxy</div>
-      <div class="balance-vs">vs</div>
-      <div class="balance-name" style="color:#8a8070">All others</div>
-    </div>
-    <div class="balance-body">
-      Galaxy Shards are the exception that proves the rule. They carry both Moon and Sun power at once, which makes them difficult to classify and even harder to stop. Because they can move between darkness and radiance, they are not locked into the weaknesses of either side in the normal way. That is part of why they are rare, and part of why they are feared. Their existence suggests that the Balance is not always neat, only old.
-    </div>
-    <div class="balance-lore">The world rarely likes dragons that do not fit the expected pattern. Galaxy Shards are one of the sharpest examples of that unease.</div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- EXCERPTS -->
-<section class="section" id="excerpts">
-  <div class="section-title">Excerpts</div>
-  <p class="section-intro">These are fragments from the records: lines kept because they matter, even when the context around them has been lost, removed, or deliberately left out. They do not explain everything. They only preserve the shape of the story well enough for the next reader to understand that something larger exists beneath the surface.</p>
-
-  <div class="excerpt-box">
-    <div class="excerpt-label">RECORD I</div>
-    <div class="excerpt-text">The first thing the world teaches a dragon is not how to fly. It is how to survive being named before they understand what their name will cost them.</div>
-  </div>
-
-  <div class="excerpt-box">
-    <div class="excerpt-label">RECORD II</div>
-    <div class="excerpt-text">Loyalty does not always arrive as a promise. Sometimes it begins as a mistake, then stays because both sides are too stubborn to admit they needed it.</div>
-  </div>
-
-  <div class="excerpt-box">
-    <div class="excerpt-label">RECORD III</div>
-    <div class="excerpt-text">The Balance was never gentle. It only ever looked gentle from a distance, while everyone still had enough time to pretend the cracks were decoration.</div>
-  </div>
-
-  <div class="excerpt-box">
-    <div class="excerpt-label">RECORD IV</div>
-    <div class="excerpt-text">A kingdom can hide its history in many ways: in missing names, altered records, quiet halls, and the dragons who were taught not to ask the wrong questions twice.</div>
-  </div>
-
-  <div class="excerpt-box">
-    <div class="excerpt-label">RECORD V</div>
-    <div class="excerpt-text">Some bonds are born from family. Others are forged by fear, rescue, rivalry, or the simple decision to stand beside someone after they have already fallen once.</div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- WOLF PACK -->
-<section class="section" id="wolves">
-  <div class="section-title">Wolf Pack</div>
-  <p class="section-intro">The Wolf Pack is a structured group with leaders, healers, scouts, hunters, caretakers, pups, and gatherers. It is a full society of wolves with roles that matter to the world of The Forbidden Scales. Fang leads as alpha male, Storm serves as female alpha, and the rest of the pack are organized into the duties that keep them alive and functional.</p>
-
-  <div class="grid-3">
-    <div class="wolf-card">
-      <div class="wolf-name">Fang</div>
-      <div class="wolf-role">Alpha Male</div>
-      <div class="wolf-desc">Blue-coated wolf, dark gold eyes, silver claws, silver-tipped tail, orange-red flecks in the eyes. Fang can run faster than a flying dragon, understands Topaz in certain ways through their connection, and can call his pack across the continent when needed. He loves berries, vegetables, and sugarcane, rolls in mud, climbs trees, and races Topaz. He is vegan, photographic in memory, and the pack’s strongest leader.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Storm</div>
-      <div class="wolf-role">Female Alpha</div>
-      <div class="wolf-desc">White fur with blue specks, red features, and red eyes. Storm is Arctic and Red wolf heritage, fast, agile, and deeply loyal to Ash. She is injured in the paw, which slows her speed, but she still remains a powerful leader. Ash and Storm understand each other, which makes their connection one of the clearest in the records.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Freki</div>
-      <div class="wolf-role">Main Healer</div>
-      <div class="wolf-desc">Dusky blue and silver coat with black nose, white underbelly, and dusky red ears, tail, and legs. Freki is deeply loyal to Storm and to the pack, loves herbs, nature, hunting, caring for pups, swimming, and rolling in snow. She has excellent senses and photographic memory, and she prefers her original language even though she can vaguely speak Dragon.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Echo</div>
-      <div class="wolf-role">Head of Defense</div>
-      <div class="wolf-desc">Silky red fur with black splotches, strong muscles, piercing black eyes, and sturdy claws. Echo is strong, confident, loud, stealthy, and highly respected. She is kind but firm, deeply loyal to Fang and Storm, and much more loyal to Fang overall. She does not trust newcomers easily and will deal with threats when ordered to.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Chair</div>
-      <div class="wolf-role">Scout Leader</div>
-      <div class="wolf-desc">Whitish-red fur with maroon splotches. Chair is serious, bossy, and does not like pups. He trusts his group, but he is not gentle or especially kind about it. He prefers to sit around lazily in his free time, which fits the irony of his name. His role is practical, not warm.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Bolt</div>
-      <div class="wolf-role">Gatherer Leader</div>
-      <div class="wolf-desc">Red-tinted green fur, brownish-maroon underbelly, and leaf-like shapes in brown. Bolt is fast, resourceful, and prefers being alone. He has a soft spot for Hail, good instincts, and anger issues that loud noises or sudden movements can trigger. Hail often helps him manage them.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Aspen</div>
-      <div class="wolf-role">Hunter Leader</div>
-      <div class="wolf-desc">Bright red fur, black underbelly, black splotches, and heterochromia with one brown eye and one yellow eye. Aspen is kind and caring but focused on getting work done. She dislikes procrastination, gets along with the healers and caretakers, and likes carving small wooden figures in her free time.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Hail</div>
-      <div class="wolf-role">Caretaker Leader</div>
-      <div class="wolf-desc">Light blue fur with red flecks, deep soft golden-brown eyes, silver-tipped tail, and retractable teal claws. Hail is protective, kind, trusting, and always with the pups. She is extremely smart, solves problems well, and has no hesitation about killing a threat to protect a pup. Fang wants her as a scout, but she prefers the caretakers.</div>
-    </div>
-
-    <div class="wolf-card">
-      <div class="wolf-name">Pack Structure</div>
-      <div class="wolf-role">28 Total Wolves</div>
-      <div class="wolf-desc">The pack includes healers Ace, Kodiak, Griffin, and Freki; guards Gunnolf, Adwulf, Aragorn, Echo, and Adalwolf; scouts Chair, GreenBean, and Beowulf; pups GreenBean, Taco, Apollo, and Adalwolf; gatherers Turtle, Bolt, and Cypress; hunters Ares, Apollo, and Aspen; and caretakers Potato, Bonecrusher, Hail, Starveil, and Thorin. The full pack count is 28 wolves.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- COMPANIONS -->
-<section class="section" id="companions">
-  <div class="section-title">Companions</div>
-  <p class="section-intro">Companions are their own section and have their own hyperlink because they are separate from the wolf pack. These are the bonded animals tied to specific authors or dragons, and they are treated as individual records rather than part of the pack structure. In the files, they are listed as their own category because each bond matters on its own terms.</p>
-
-  <div class="grid-3">
-    <div class="pet-card">
-      <div class="pet-name">Saiber</div>
-      <div class="pet-owner">Agate's peregrine falcon</div>
-      <div class="pet-desc">Grayish-blue head, brown and white wings, black eyes with shadowed golden irises. Saiber loves strawberries and marshmallows and is marked as non-mythical. He is a companion record, not part of the wolf pack.</div>
-    </div>
-
-    <div class="pet-card">
-      <div class="pet-name">Dyno</div>
-      <div class="pet-owner">Talon's hawk companion</div>
-      <div class="pet-desc">Dyno is a hawk who loves blueberries and is described as a narcissist. He is non-mythical and has his own record entry because he is a companion, not a wolf pack member.</div>
-    </div>
-
-    <div class="pet-card">
-      <div class="pet-name">Angel</div>
-      <div class="pet-owner">Twighlight's arctic fox</div>
-      <div class="pet-desc">White fur with dabs of blue, pink, and purple, blueish-brown eyes, and teal-tipped dark blue claws. Angel has a majestic tail and belongs in the companions section as her own separate record.</div>
-    </div>
-
-    <div class="pet-card">
-      <div class="pet-name">Storm</div>
-      <div class="pet-owner">Ash’s wolf companion</div>
-      <div class="pet-desc">Storm is also listed as Ash’s companion and should stay in the companions section when referenced in that context. She is fast, loyal, and able to understand Ash, which makes her bond especially important.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- LORE -->
-<section class="section" id="lore">
-  <div class="section-title">Lore</div>
-  <p class="section-intro">The lore of The Forbidden Scales is not just background information. It is the structure that everything else rests on. The world is built from tribes, ranks, inherited powers, hidden history, and long-running consequences that reach far beyond any one dragon’s life. Almost every important detail in the records points to something older than the current story, as if the world itself was written in layers and only the newest layer is visible at first glance.</p>
-
-  <div class="grid-2">
-    <div class="card">
-      <div class="lbl">The World</div>
-      <div class="body-text">The dragon world is divided into kingdoms and bloodlines, but those divisions are not just political. They shape identity, duty, power, and survival. A dragon’s tribe determines how they are seen, what expectations follow them, and what kind of future others believe they are allowed to have. That makes the world feel larger than any single setting, because every place in it carries rules, history, and memory.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">Power and Cost</div>
-      <div class="body-text">Power in this series is never presented as free. Wind can be overwhelming, moonlight can strengthen and weaken, galaxy power can be extraordinary and dangerous, and the rare Shards are so powerful that the world itself seems to react to them. The records repeatedly show that the more a character gains, the more the world asks in return. That is part of what gives the series its tension: strength is real, but it always has a price.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">The Shards</div>
-      <div class="body-text">The Shards are the highest and most dangerous bloodlines in the records. Flame, Sea, Moon, Crystal, Wind, Sun, and Galaxy each represent a domain of power that is fundamental rather than ordinary. They are not simply stronger dragons. They are force made into living form, which is why they are feared, studied, and in some cases hunted. Galaxy is especially rare because it carries both Moon and Sun power together, making it the most difficult bloodline to classify or counter.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">The Balance</div>
-      <div class="body-text">The Balance is the oldest governing idea in the world. It is the reason opposing powers exist in pairs, the reason no force can remain unchecked forever, and the reason records keep returning to the theme of correspondence. Flame opposes Sea, Wind opposes Crystal, Moon opposes Sun, and Galaxy stands at a strange intersection of both sides. The Balance is not a moral force. It does not reward goodness or punish evil in any simple way. It preserves motion, and motion is what keeps the world from locking into collapse.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">Bloodline Memory</div>
-      <div class="body-text">Bloodlines in this world carry more than appearance or elemental ability. They carry expectation, inherited patterns, and the pressure of history. That is why some dragons seem to know who they are before they fully understand themselves. The world has already been teaching them through custom, rank, and assumption. A dragon can resist that pressure, but they cannot pretend it is not there.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">Records and Gaps</div>
-      <div class="body-text">The archive is full of missing pieces on purpose. Sections exist because someone thought they were important enough to preserve, but the writing often hints that not everything was meant to be seen by every reader. There are removed pages, special editions, notes on mistakes, owing pages, and records that feel like they were meant to be read after something else happened. That creates the feeling that the story is still unfolding even when the page is static.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">Companions</div>
-      <div class="body-text">Companions are a separate section because they matter in their own right. They are not simply animals placed beside the dragons. Saiber, Fang, Dyno, Storm, and Angel each have their own roles, behaviors, and connections. Some are protectors, some are family substitutes, some are witnesses, and some are part of the emotional framework of a character’s life. The records give them space because the bonds themselves are part of the worldbuilding.</div>
-    </div>
-
-    <div class="card">
-      <div class="lbl">Story Shape</div>
-      <div class="body-text">The whole series feels like a growing archive of connected revelations. Early records explain the main dragons; later records expand the world through rules, animals, departments, notes, and hidden pages. That structure matters because it makes the story feel lived-in rather than invented all at once. The reader is not simply being told a story. They are being invited into a system of memory, recordkeeping, and revealed history.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- TEAM -->
-<section class="section" id="team">
-  <div class="section-title">The Authors</div>
-  <p class="section-intro">The site is maintained by four authors: Daniel, Elina, Raven, and Varsha. Their names appear throughout the records because they are the people building the archive, writing the books, and organizing the material that keeps the whole project moving forward. The page also reflects how each author handles different responsibilities inside the project.</p>
-
-  <div class="grid-4">
-    <div class="team-card">
-      <div class="team-avatar">D</div>
-      <div class="team-name">Daniel</div>
-      <div class="team-role">Head of Tech, Co-Head of Marketing, and Head of Websites.</div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-avatar">E</div>
-      <div class="team-name">Elina</div>
-      <div class="team-role">Co-Head of Marketing, Head of Art, and Co-Head of Original Book.</div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-avatar">R</div>
-      <div class="team-name">Raven</div>
-      <div class="team-role">Co-Head of Marketing and Co-Head of Original Book.</div>
-    </div>
-
-    <div class="team-card">
-      <div class="team-avatar">V</div>
-      <div class="team-name">Varsha</div>
-      <div class="team-role">Co-Head of Marketing, Head of Editing, and Co-Head of Publishing.</div>
-    </div>
-  </div>
-</section>
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="section-title">Contact</div>
-  <p class="section-intro">The contact section should stay simple and functional, since it exists to connect readers and collaborators with the authors. The records list the team’s school emails and additional contact methods directly, making this section practical rather than decorative.</p>
-
-  <div class="contact-block">
-    <div class="contact-row">
-      <div class="contact-init">D</div>
+  <div class="shard-card sg" style="margin-top:1.5rem">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+      <div class="sicon" style="background:rgba(192,132,252,.18);border-color:rgba(192,132,252,.5);color:#c084fc;width:62px;height:62px">{GALAXY_SVG}</div>
       <div>
-        <div class="contact-name">Daniel Lim</div>
-        <div class="contact-detail">limd@elisabethmorrow.org · 646-483-9001 · danielwonillim@gmail.com</div>
+        <div class="sname" style="font-size:1.25rem">Galaxy</div>
+        <div class="sdom" style="color:#c084fc">The Dual Shard &nbsp;·&nbsp; Domain of All Light &amp; All Dark</div>
       </div>
     </div>
-
-    <div class="contact-row">
-      <div class="contact-init">E</div>
-      <div>
-        <div class="contact-name">Elina Yoon</div>
-        <div class="contact-detail">yoone@elisabethmorrow.org · elinayoonny@gmail.com</div>
-      </div>
+    <div class="tags" style="margin-bottom:1rem">
+      <span class="tag t-moon">Full Moon Powers</span>
+      <span class="tag t-sun">Full Sun Powers</span>
+      <span class="tag t-purple">Dual Domain</span>
+      <span class="tag t-purple">Extremely Rare</span>
+      <span class="tag t-flame">Hunted</span>
     </div>
-
-    <div class="contact-row">
-      <div class="contact-init">V</div>
-      <div>
-        <div class="contact-name">Varsha Gangu</div>
-        <div class="contact-detail">ganguvarsha@elisabethmorrow.org · ivarshagangu@gmail.com</div>
-      </div>
-    </div>
-
-    <div class="contact-row">
-      <div class="contact-init">R</div>
-      <div>
-        <div class="contact-name">Raven Taylor</div>
-        <div class="contact-detail">taylorr@elisabehtmorrow.org</div>
-      </div>
-    </div>
+    <div class="srule" style="background:#c084fc"></div>
+    <div class="slbl" style="color:#c084fc">What Makes Them Different</div>
+    <div class="body-text">Galaxy Shards carry the <strong>full power of the Moon and the full power of the Sun simultaneously</strong> in one body, without cancelling each other out. Old scholars believed this impossible — that light and dark in equal measure would neutralise into nothing. Instead they compound. A Galaxy Shard can flood a battlefield with blinding radiance and snuff every light source in existence in the same breath. They are not a compromise. They are both, entire.</div>
+    <div class="card-rule"></div>
+    <div class="slbl" style="color:#c084fc">The Unique Ability — Spatial Perception</div>
+    <div class="body-text">Because Galaxy Shards command both what can be seen and what cannot, they develop something unique: <strong>spatial perception</strong>. An awareness of the space between light and dark. In practice: they detect cloaked or invisible things that even Moon Shards miss, track the path of light bending around obstacles. Advanced Galaxy Shards can <strong>bend light around their own form</strong>, rendering themselves invisible not in darkness but in plain sight. Twilight generated both a blinding flash and a total darkness field simultaneously in the SeaScale dungeons, creating complete sensory disorientation. She burned her attacker to ash. She did not know she could do that.</div>
+    <div class="card-rule"></div>
+    <div class="slbl" style="color:#c084fc">Known — Twilight (TFS) · Ephant (SOW) · Eclipse — status complicated</div>
+    <div class="body-text" style="margin-top:.75rem">No other single Shard type can fully counter a Galaxy Shard. Moon Shards cannot use darkness against them — they share it. Sun Shards cannot blind them — they invented the ability. <strong>This is not a power that should exist in one dragon.</strong> This is why they are hunted. This is why Goldstone hides her people.</div>
+  </div>
 </section>
-<div class="divider"></div>
+<div class="divider"></div>'''
 
-  
+with open('/home/claude/tfs_final.html', 'a') as f:
+    f.write(content)
+print("Books + SOW + Shards written:", len(content))
+PYEOF
+Output
+
+Books + SOW + Shards written: 46302
+Done
